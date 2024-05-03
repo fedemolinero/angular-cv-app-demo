@@ -1,19 +1,21 @@
 <main class="main">
   <div class="container-fluid">
 
-    <section class="sectionheader d-flex border m-1 p-3 ">
+    <section name="personalData" class="d-flex p-3 align-items-center justify-content-center">
 
-      <img src="../assets/CVphoto.jpg" class="thumbnail">
+      <div class="headerPhoto">
+        <img src="../assets/CVphoto.jpg" class="thumbnail">
+      </div>
 
-      <div class="headerDescription m-1 p-3">
+      <div class="headerDescription m-1 p-2">
         <div class="headername">
           <h2>
-            {{personalData.name}}
+            {{personalData.name}} {{personalData.lastname}}
           </h2>
         </div>
         <div class="headerjob">
           <h3>
-            {{personalData.name}}
+            {{personalData.position}}
           </h3>
         </div>
         <div class="headerlocation">
@@ -24,81 +26,259 @@
       </div>
     </section>
 
+    <section name="about" class="card p-3 mb-2">
+      <div>
+        {{personalData.aboutDescription1}}
+      </div>
+      <div>
+        {{personalData.aboutDescription2}}
+      </div>
+      <div>
+        {{personalData.aboutDescription3}}
 
-    <section class="card m-1 p-3">
-      Experienced tech professional proficient in full-stack web development, application support, and user management
-      platforms.
-      Skilled in front end development building responsive, interactive designs adhering to web accessibility
-      guidelines.
-      Proven ability to lead teams and deploy applications on cloud platforms like Azure and AWS.
-      Passionate about leveraging technology to drive innovation and enhance user experiences.
+      </div>
+      <div>
+        {{personalData.aboutDescription4}}
+
+      </div>
     </section>
 
-    <div class="card mb-3">
-      <div class="card-header bg-transparent p-3">
-        <div class="row">
-          <div class="col-1">
-            <img src="../assets/globant_logo.jpg">
-          </div>
-          <div class="col-11">
-            <div class="expJobCompany">
-              {{personalData.job.companyName}}
-            </div>
-            <div class="expJobName">
-              {{personalData.job.jobTitle}}
-            </div>
-            <div class="expJobDate">
-              <i class="bi bi-calendar3"></i> {{personalData.job.worktime}}
-            </div>
-            <div class="expJobPlace">
-              <i class="bi bi-geo-alt"></i> {{personalData.job.jobPlace}}
-            </div>
-            <span class="expJobType">
-              <i class="bi bi-person-workspace"></i> {{personalData.job.jobType}}
-            </span> -
-            <span class="jobRange">
-              {{personalData.job.jobRange}}
-            </span>
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div>
-          Full-stack web development, application support, and user management platforms.
-        </div>
-        <div class="card-text">
-          UI design and development following custom models, with a focus on building responsive, interactive designs
-          adhering to web accessibility guidelines.
-        </div>
-        <div>
-          Implementing and maintaining scalable and performant Angular-based frontends, utilizing web technologies and
-          agile methodologies with distributed teams globally.
-        </div>
-        <div>
-          APIs interacting, conducting research for new development solutions, and contributing to collaborative
-          software
-          development.
-          Providing support in application development and bug-fixing.
-        </div>
-        <div>
-          At Globant, I had the privilege of serving esteemed global enterprises, including leading firms such as EY and
-          PwC. I crafted innovative, bespoke solutions tailored to meet their unique needs, contributing to their
-          business
-          success in a dynamic and competitive landscape
-        </div>
+    <section name="experience">
 
-      </div>
-      <div class="card-footer bg-transparent border-success">
+      <div class="card mb-3">
+        <div class="card-header bg-transparent p-3">
+          <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
+            <div class="jobPhoto p-1">
+              <img [src]="personalData.job1.companyLogo" class="thumbnail">
+            </div>
 
-        <div class="expJobAptitude" class="d-flex flex-row justify-content-center flex-wrap">
-          <div *ngFor="let aptitude of personalData.job.workAptitudes" class=" p-1 btn-group btn-group-sm">
-            <button type="button" class="btn btn-outline-primary">
-              {{ aptitude }}
-            </button>
+            <div class="jobData p-1">
+              <div class="expJobCompany">
+                <h4>
+                  {{personalData.job1.companyName}}
+                </h4>
+              </div>
+              <div class="expJobName ">
+                <h5>
+                  {{personalData.job1.jobTitle}}
+                </h5>
+              </div>
+
+            </div>
+
+            <div class="jobData p-1 ms-auto">
+              <div class="expJobDate">
+                <i class="bi bi-calendar3"></i> {{personalData.job1.worktime}}
+              </div>
+              <div class="expJobPlace">
+                <i class="bi bi-geo-alt"></i> {{personalData.job1.jobPlace}}
+              </div>
+              <span class="expJobType">
+                <i class="bi bi-person-workspace"></i> {{personalData.job1.jobType}}
+              </span> -
+              <span class="jobRange">
+                {{personalData.job1.jobRange}}
+              </span>
+            </div>
+
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-text">{{personalData.job1.jobDescription1}}</div>
+          <div class="card-text">{{personalData.job1.jobDescription2}}</div>
+          <div class="card-text">{{personalData.job1.jobDescription3}}</div>
+          <div class="card-text">{{personalData.job1.jobDescription4}}</div>
+          <div class="card-text">{{personalData.job1.jobDescription5}}</div>
+        </div>
+        <div class="card-footer bg-transparent border-success">
+          <div class="expJobAptitude" class="d-flex flex-row justify-content-center flex-wrap">
+            <div *ngFor="let aptitude of personalData.job1.workAptitudes" class=" p-1 btn-group btn-group-sm">
+              <button type="button" class="btn btn-outline-primary">
+                {{ aptitude }}
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <div class="card mb-3">
+        <div class="card-header bg-transparent p-3">
+          <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
+            <div class="jobPhoto p-1">
+              <img [src]="personalData.job2.companyLogo" class="thumbnail">
+            </div>
+
+            <div class="jobData p-1">
+              <div class="expJobCompany">
+                <h4>
+                  {{personalData.job2.companyName}}
+                </h4>
+              </div>
+              <div class="expJobName ">
+                <h5>
+                  {{personalData.job2.jobTitle}}
+                </h5>
+              </div>
+
+            </div>
+
+            <div class="jobData p-1 ms-auto">
+              <div class="expJobDate">
+                <i class="bi bi-calendar3"></i> {{personalData.job2.worktime}}
+              </div>
+              <div class="expJobPlace">
+                <i class="bi bi-geo-alt"></i> {{personalData.job2.jobPlace}}
+              </div>
+              <span class="expJobType">
+                <i class="bi bi-person-workspace"></i> {{personalData.job2.jobType}}
+              </span> -
+              <span class="jobRange">
+                {{personalData.job2.jobRange}}
+              </span>
+            </div>
+
+
+
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-text">{{personalData.job2.jobDescription1}}</div>
+          <div class="card-text">{{personalData.job2.jobDescription2}}</div>
+          <div class="card-text">{{personalData.job2.jobDescription3}}</div>
+          <div class="card-text">{{personalData.job2.jobDescription4}}</div>
+          <div class="card-text">{{personalData.job2.jobDescription5}}</div>
+        </div>
+        <div class="card-footer bg-transparent border-success">
+
+          <div class="expJobAptitude" class="d-flex flex-row justify-content-center flex-wrap">
+            <div *ngFor="let aptitude of personalData.job2.workAptitudes" class=" p-1 btn-group btn-group-sm">
+              <button type="button" class="btn btn-outline-primary">
+                {{ aptitude }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-header bg-transparent p-3">
+          <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
+            <div class="jobPhoto p-1">
+              <img [src]="personalData.job3.companyLogo" class="thumbnail">
+            </div>
+
+            <div class="jobData p-1">
+              <div class="expJobCompany">
+                <h4>
+                  {{personalData.job3.companyName}}
+                </h4>
+              </div>
+              <div class="expJobName ">
+                <h5>
+                  {{personalData.job3.jobTitle}}
+                </h5>
+              </div>
+
+            </div>
+
+            <div class="jobData p-1 ms-auto">
+              <div class="expJobDate">
+                <i class="bi bi-calendar3"></i> {{personalData.job3.worktime}}
+              </div>
+              <div class="expJobPlace">
+                <i class="bi bi-geo-alt"></i> {{personalData.job3.jobPlace}}
+              </div>
+              <span class="expJobType">
+                <i class="bi bi-person-workspace"></i> {{personalData.job3.jobType}}
+              </span> -
+              <span class="jobRange">
+                {{personalData.job3.jobRange}}
+              </span>
+            </div>
+
+
+
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-text">{{personalData.job3.jobDescription1}}</div>
+          <div class="card-text">{{personalData.job3.jobDescription2}}</div>
+          <div class="card-text">{{personalData.job3.jobDescription3}}</div>
+          <div class="card-text">{{personalData.job3.jobDescription4}}</div>
+          <div class="card-text">{{personalData.job3.jobDescription5}}</div>
+        </div>
+        <div class="card-footer bg-transparent border-success">
+
+          <div class="expJobAptitude" class="d-flex flex-row justify-content-center flex-wrap">
+            <div *ngFor="let aptitude of personalData.job3.workAptitudes" class=" p-1 btn-group btn-group-sm">
+              <button type="button" class="btn btn-outline-primary">
+                {{ aptitude }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-header bg-transparent p-3">
+          <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
+            <div class="jobPhoto p-1">
+              <img [src]="personalData.job4.companyLogo" class="thumbnail">
+            </div>
+
+            <div class="jobData p-1">
+              <div class="expJobCompany">
+                <h4>
+                  {{personalData.job4.companyName}}
+                </h4>
+              </div>
+              <div class="expJobName ">
+                <h5>
+                  {{personalData.job4.jobTitle}}
+                </h5>
+              </div>
+
+            </div>
+
+            <div class="jobData p-1 ms-auto">
+              <div class="expJobDate">
+                <i class="bi bi-calendar3"></i> {{personalData.job4.worktime}}
+              </div>
+              <div class="expJobPlace">
+                <i class="bi bi-geo-alt"></i> {{personalData.job4.jobPlace}}
+              </div>
+              <span class="expJobType">
+                <i class="bi bi-person-workspace"></i> {{personalData.job4.jobType}}
+              </span> -
+              <span class="jobRange">
+                {{personalData.job4.jobRange}}
+              </span>
+            </div>
+
+
+
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-text">{{personalData.job4.jobDescription1}}</div>
+          <div class="card-text">{{personalData.job4.jobDescription2}}</div>
+          <div class="card-text">{{personalData.job4.jobDescription3}}</div>
+          <div class="card-text">{{personalData.job4.jobDescription4}}</div>
+          <div class="card-text">{{personalData.job4.jobDescription5}}</div>
+        </div>
+        <div class="card-footer bg-transparent border-success">
+
+          <div class="expJobAptitude" class="d-flex flex-row justify-content-center flex-wrap">
+            <div *ngFor="let aptitude of personalData.job4.workAptitudes" class=" p-1 btn-group btn-group-sm">
+              <button type="button" class="btn btn-outline-primary">
+                {{ aptitude }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
   </div>
 </main>
