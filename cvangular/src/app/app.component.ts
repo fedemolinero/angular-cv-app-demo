@@ -160,7 +160,26 @@ export class AppComponent {
         'Cloud Computing',
         'API',
       ]
+    },
+    study1: {
+      studyName: 'Universidad Tecnológica Nacional',
+      studyLogo: '../assets/utn_logo.jpg',
+      studyTitle: 'Computer Systems Analyst',
+      studyTime: 'Mar 2010 - Present',
+      studyPlace: 'Rosario, Santa Fe, Argentina',
+      studyType: 'On-site',
+      studyDescription1: 'I dropped out of my previous degree program during my third year and proceeded to pursue a degree in Computer Systems Analyst.',
+    },
+    study2: {
+      studyName: 'Universidad Nacional de Rosario',
+      studyLogo: '../assets/unr_logo.jpg',
+      studyTitle: 'Bachelor of Computer Science',
+      studyTime: 'Mar 2006 - Dic 2009',
+      studyPlace: 'Rosario, Santa Fe, Argentina',
+      studyType: 'On-site',
+      studyDescription1: 'I dropped out during my third year and proceeded to pursue a degree in Computer Systems Analyst.',
     }
+
 
   }
 

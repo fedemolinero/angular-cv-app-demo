@@ -338,6 +338,82 @@
       </div>
     </section>
 
+    <section name="studies">
+
+      <div class="card mb-3">
+        <div class="card-header bg-transparent p-3">
+          <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
+            <div class="studyPhoto p-1">
+              <img [src]="personalData.study1.studyLogo" class="thumbnail">
+            </div>
+            <div class="studyData p-1">
+              <div class="expstudyCompany">
+                <h4>
+                  {{personalData.study1.studyName}}
+                </h4>
+              </div>
+              <div class="expstudyName">
+                <h5>
+                  {{personalData.study1.studyTitle}}
+                </h5>
+              </div>
+            </div>
+            <div class="studyData p-1 ms-auto">
+              <div class="expstudyDate">
+                <i class="bi bi-calendar3"></i> {{personalData.study1.studyTime}}
+              </div>
+              <div class="expstudyPlace">
+                <i class="bi bi-geo-alt"></i> {{personalData.study1.studyPlace}}
+              </div>
+              <span class="expstudyType">
+                <i class="bi bi-person-workspace"></i> {{personalData.study1.studyType}}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-text">{{personalData.study1.studyDescription1}}</div>
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-header bg-transparent p-3">
+          <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
+            <div class="studyPhoto p-1">
+              <img [src]="personalData.study2.studyLogo" class="thumbnail">
+            </div>
+            <div class="studyData p-1">
+              <div class="expstudyCompany">
+                <h4>
+                  {{personalData.study2.studyName}}
+                </h4>
+              </div>
+              <div class="expstudyName">
+                <h5>
+                  {{personalData.study2.studyTitle}}
+                </h5>
+              </div>
+            </div>
+            <div class="studyData p-1 ms-auto">
+              <div class="expstudyDate">
+                <i class="bi bi-calendar3"></i> {{personalData.study2.studyTime}}
+              </div>
+              <div class="expstudyPlace">
+                <i class="bi bi-geo-alt"></i> {{personalData.study2.studyPlace}}
+              </div>
+              <span class="expstudyType">
+                <i class="bi bi-person-workspace"></i> {{personalData.study2.studyType}}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-text">{{personalData.study2.studyDescription1}}</div>
+        </div>
+      </div>
+
+    </section>
+
 
   </div>
 </main>
