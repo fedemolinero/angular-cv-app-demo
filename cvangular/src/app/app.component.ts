@@ -178,8 +178,19 @@ export class AppComponent {
       studyPlace: 'Rosario, Santa Fe, Argentina',
       studyType: 'On-site',
       studyDescription1: 'I dropped out during my third year and proceeded to pursue a degree in Computer Systems Analyst.',
+    },
+    lang1: {
+      langName: 'Spanish',
+      proficiency: 'Native or bilingual proficiency'
+    },
+    lang2: {
+      langName: 'English',
+      proficiency: 'Full professional proficiency'
+    },
+    lang3: {
+      langName: 'Italian',
+      proficiency: 'Professional working proficiency',
     }
-
 
   }
 
