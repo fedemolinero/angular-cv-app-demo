@@ -277,6 +277,65 @@
           </div>
         </div>
       </div>
+
+      <div class="card mb-3">
+        <div class="card-header bg-transparent p-3">
+          <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
+            <div class="jobPhoto p-1">
+              <img [src]="personalData.job5.companyLogo" class="thumbnail">
+            </div>
+
+            <div class="jobData p-1">
+              <div class="expJobCompany">
+                <h4>
+                  {{personalData.job5.companyName}}
+                </h4>
+              </div>
+              <div class="expJobName ">
+                <h5>
+                  {{personalData.job5.jobTitle}}
+                </h5>
+              </div>
+
+            </div>
+
+            <div class="jobData p-1 ms-auto">
+              <div class="expJobDate">
+                <i class="bi bi-calendar3"></i> {{personalData.job5.worktime}}
+              </div>
+              <div class="expJobPlace">
+                <i class="bi bi-geo-alt"></i> {{personalData.job5.jobPlace}}
+              </div>
+              <span class="expJobType">
+                <i class="bi bi-person-workspace"></i> {{personalData.job5.jobType}}
+              </span> -
+              <span class="jobRange">
+                {{personalData.job5.jobRange}}
+              </span>
+            </div>
+
+
+
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-text">{{personalData.job5.jobDescription1}}</div>
+          <div class="card-text">{{personalData.job5.jobDescription2}}</div>
+          <div class="card-text">{{personalData.job5.jobDescription3}}</div>
+          <div class="card-text">{{personalData.job5.jobDescription4}}</div>
+          <div class="card-text">{{personalData.job5.jobDescription5}}</div>
+        </div>
+        <div class="card-footer bg-transparent border-success">
+
+          <div class="expJobAptitude" class="d-flex flex-row justify-content-center flex-wrap">
+            <div *ngFor="let aptitude of personalData.job5.workAptitudes" class=" p-1 btn-group btn-group-sm">
+              <button type="button" class="btn btn-outline-primary">
+                {{ aptitude }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
 

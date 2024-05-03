@@ -49,7 +49,8 @@ export class AppComponent {
         'Databases',
         'Microsoft Azure',
         'Azure DevOps',
-        'API'
+        'API',
+        'JSON',
       ]
     },
     job2: {
@@ -136,6 +137,27 @@ export class AppComponent {
         'SysAdmin',
         'Databases',
         'NPM',
+        'API',
+        'WordPress'
+      ]
+    },
+    job5: {
+      companyName: 'IRSA CORPORATION',
+      companyLogo: '../assets/irsa_logo.jpg',
+      jobTitle: 'SysAdmin',
+      worktime: 'Aug 2011 - Sep 2013 · 2 yrs 2 mos',
+      jobPlace: 'Rosario, Santa Fe, Argentina',
+      jobType: 'On-site',
+      jobRange: 'Full time',
+      jobDescription1: 'I managed the installation, maintenance, configuration, and control of workstations and devices, including hardware enhancements.',
+      jobDescription2: 'Additionally, I administered applications and user accounts for shopping centers, overseeing system implementations across various international locations.',
+      jobDescription3: 'My responsibilities encompassed incident logging, inventory management, backups, and Data Center oversight. I provided telephone and remote support to customers, ensuring seamless assistance and resolution of technical issues.',
+      workAptitudes: [
+        'SysAdmin',
+        'User Management',
+        'Application Support',
+        'Databases',
+        'Cloud Computing',
         'API',
       ]
     }
