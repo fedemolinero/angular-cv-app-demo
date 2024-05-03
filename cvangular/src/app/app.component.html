@@ -1,107 +1,109 @@
 <main class="main">
   <div class="container-fluid">
 
-    <section class="sectionheader d-flex border m-1 p-1 ">
+    <section class="sectionheader d-flex border m-1 p-3 ">
 
-      <div class="headerImage img-fluid">
-        <!-- <img src="../assets/CVphoto.jpg"> -->
-      </div>
+      <img src="../assets/CVphoto.jpg" class="thumbnail">
 
-      <div class="headerDescription ">
+      <div class="headerDescription m-1 p-3">
         <div class="headername">
           <h2>
-            Federico Martin Molinero
+            {{personalData.name}}
           </h2>
         </div>
         <div class="headerjob">
           <h3>
-            Fullstack Developer
+            {{personalData.name}}
           </h3>
         </div>
         <div class="headerlocation">
           <h6>
-            Rosario, Argentina
+            <i class="bi bi-geo-fill"></i> Rosario, Argentina
           </h6>
         </div>
       </div>
     </section>
 
 
-    <section class="sectionaboutme border m-1 p-1">
-      <div class="aboutshortdescription">
-        Experienced tech professional proficient in full-stack web development, application support, and user management
-        platforms.
-        Skilled in front end development building responsive, interactive designs adhering to web accessibility
-        guidelines.
-        Proven ability to lead teams and deploy applications on cloud platforms like Azure and AWS.
-        Passionate about leveraging technology to drive innovation and enhance user experiences.
-      </div>
+    <section class="card m-1 p-3">
+      Experienced tech professional proficient in full-stack web development, application support, and user management
+      platforms.
+      Skilled in front end development building responsive, interactive designs adhering to web accessibility
+      guidelines.
+      Proven ability to lead teams and deploy applications on cloud platforms like Azure and AWS.
+      Passionate about leveraging technology to drive innovation and enhance user experiences.
     </section>
 
-
-
-    <section class="sectionexperience border m-1 p-1">
-
-      <div class="expJobImage">
-        image here
+    <div class="card mb-3">
+      <div class="card-header bg-transparent p-3">
+        <div class="row">
+          <div class="col-1">
+            <img src="../assets/globant_logo.jpg">
+          </div>
+          <div class="col-11">
+            <div class="expJobCompany">
+              {{personalData.job.companyName}}
+            </div>
+            <div class="expJobName">
+              {{personalData.job.jobTitle}}
+            </div>
+            <div class="expJobDate">
+              <i class="bi bi-calendar3"></i> {{personalData.job.worktime}}
+            </div>
+            <div class="expJobPlace">
+              <i class="bi bi-geo-alt"></i> {{personalData.job.jobPlace}}
+            </div>
+            <span class="expJobType">
+              <i class="bi bi-person-workspace"></i> {{personalData.job.jobType}}
+            </span> -
+            <span class="jobRange">
+              {{personalData.job.jobRange}}
+            </span>
+          </div>
+        </div>
       </div>
+      <div class="card-body">
+        <div>
+          Full-stack web development, application support, and user management platforms.
+        </div>
+        <div class="card-text">
+          UI design and development following custom models, with a focus on building responsive, interactive designs
+          adhering to web accessibility guidelines.
+        </div>
+        <div>
+          Implementing and maintaining scalable and performant Angular-based frontends, utilizing web technologies and
+          agile methodologies with distributed teams globally.
+        </div>
+        <div>
+          APIs interacting, conducting research for new development solutions, and contributing to collaborative
+          software
+          development.
+          Providing support in application development and bug-fixing.
+        </div>
+        <div>
+          At Globant, I had the privilege of serving esteemed global enterprises, including leading firms such as EY and
+          PwC. I crafted innovative, bespoke solutions tailored to meet their unique needs, contributing to their
+          business
+          success in a dynamic and competitive landscape
+        </div>
 
-      <div class="expJobName">
-        Globant
       </div>
+      <div class="card-footer bg-transparent border-success">
 
-      <div class="expJobDate">
-        jun. 2019 - sept. 2023 · 4 años 4 meses
+        <div class="expJobAptitude" class="d-flex flex-row justify-content-center flex-wrap">
+          <div *ngFor="let aptitude of personalData.job.workAptitudes" class=" p-1 btn-group btn-group-sm">
+            <button type="button" class="btn btn-outline-primary">
+              {{ aptitude }}
+            </button>
+          </div>
+        </div>
       </div>
-
-      <div class="expJobPlace">
-        Rosario, Santa Fe, Argentina
-      </div>
-
-      <div class="expJobType">
-        Híbrido
-      </div>
-
-      <div class="experiencedescription">
-        Full-stack web development, application support, and user management platforms.
-
-        UI design and development following custom models, with a focus on building responsive, interactive designs
-        adhering to web accessibility guidelines.
-        Implementing and maintaining scalable and performant Angular-based frontends, utilizing web technologies and
-        agile methodologies with distributed teams globally.
-
-        APIs interacting, conducting research for new development solutions, and contributing to collaborative software
-        development.
-        Providing support in application development and bug-fixing.
-
-        At Globant, I had the privilege of serving esteemed global enterprises, including leading firms such as EY and
-        PwC. I crafted innovative, bespoke solutions tailored to meet their unique needs, contributing to their business
-        success in a dynamic and competitive landscape
-      </div>
-
-      <div class="expJobAptitude">
-        NPM,
-        Metodologías Agile
-        Waterfall,
-        Hojas de estilos en cascada (CSS)
-        html5
-        typescript
-        Diseño web
-        Computacion en la nube
-        GIT
-        Angular
-        Javascript
-        GitHub
-        Base de datos
-        Microsft Azure
-        Azure Devops
-      </div>
-
-    </section>
-
+    </div>
 
   </div>
 </main>
+
+
 
 
 <router-outlet />
