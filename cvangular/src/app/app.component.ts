@@ -190,7 +190,42 @@ export class AppComponent {
     lang3: {
       langName: 'Italian',
       proficiency: 'Professional working proficiency',
-    }
+    },
+    course1: {
+      courseName: 'Creativity, Design Thinking, and Innovation for Business',
+      courseLogo: '../assets/udemy_logo.jpg',
+      courseTitle: 'Udemy',
+      courseTime: 'Jun 2021',
+      courseType: 'Online'
+    },
+    course2: {
+      courseName: 'Power BI A-Z: Hands-On Power BI Training for Data Science',
+      courseLogo: '../assets/udemy_logo.jpg',
+      courseTitle: 'Udemy',
+      courseTime: 'Jun 2021',
+      courseType: 'Online'
+    },
+    course3: {
+      courseName: 'Node.js API Masterclass With Express & MongoDB',
+      courseLogo: '../assets/udemy_logo.jpg',
+      courseTitle: 'Udemy',
+      courseTime: 'Mar 2021',
+      courseType: 'Online'
+    },
+    course4: {
+      courseName: 'Angular: The Complete Guide',
+      courseLogo: '../assets/udemy_logo.jpg',
+      courseTitle: 'Udemy',
+      courseTime: 'Dec 2020',
+      courseType: 'Online'
+    },
+    course5: {
+      courseName: 'Front-end Angular/React',
+      courseLogo: '../assets/full_solutions_logo.jpg',
+      courseTitle: 'FullSolutions',
+      courseTime: 'May 2019',
+      courseType: 'OnSite'
+    },
 
   }
 
