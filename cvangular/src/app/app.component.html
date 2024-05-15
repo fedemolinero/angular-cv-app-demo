@@ -27,21 +27,24 @@
     </section>
 
     <section name="about" class="card p-3 mb-2">
-      <div>
-        {{personalData.aboutDescription1}}
+      <div class="about-item">
+        <i class="bi bi-person-circle"></i>
+        <span>{{personalData.aboutDescription1}}</span>
       </div>
-      <div>
-        {{personalData.aboutDescription2}}
+      <div class="about-item">
+        <i class="bi bi-briefcase"></i>
+        <span>{{personalData.aboutDescription2}}</span>
       </div>
-      <div>
-        {{personalData.aboutDescription3}}
-
+      <div class="about-item">
+        <i class="bi bi-award"></i>
+        <span>{{personalData.aboutDescription3}}</span>
       </div>
-      <div>
-        {{personalData.aboutDescription4}}
-
+      <div class="about-item">
+        <i class="bi bi-journal-text"></i>
+        <span>{{personalData.aboutDescription4}}</span>
       </div>
     </section>
+
 
     <section name="experience">
 
@@ -638,8 +641,6 @@
 
   </div>
 </main>
-
-
 
 
 <router-outlet />
