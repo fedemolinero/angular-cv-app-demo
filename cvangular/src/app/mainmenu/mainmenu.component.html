@@ -1,0 +1,17 @@
+<div class="list-group">
+
+    <button type="button" class="list-group-item list-group-item-action" (click)="allCategory()">
+      All
+    </button>
+    @for (aptitude of categories; track categories ){
+        <div class=" p-1 btn-group btn-group-sm">
+            <button type="button" class="btn btn-outline-primary">
+                {{ aptitude }}
+            </button>
+        </div>
+        } @empty {
+        <div class="p-1">
+            CATEGORY HERE
+        </div>
+        }  
+  </div>
