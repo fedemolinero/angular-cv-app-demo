@@ -1,17 +1,20 @@
 <div class="list-group">
 
-    <button type="button" class="list-group-item list-group-item-action" (click)="allCategory()">
-      All
-    </button>
-    @for (aptitude of categories; track categories ){
-        <div class=" p-1 btn-group btn-group-sm">
-            <button type="button" class="btn btn-outline-primary">
-                {{ aptitude }}
-            </button>
-        </div>
+</div>
+
+<nav class="navbar bg-body-tertiary">
+    <form class="container-fluid justify-content-start">
+
+        <button class="btn btn-outline-success me-2" (click)="goHome()" type="button">HOME</button>
+
+        @for (aptitude of categories; track categories ){
+        <button type="button" class="btn btn-sm btn-outline-secondary m-1">
+            {{ aptitude }}
+        </button>
         } @empty {
         <div class="p-1">
             CATEGORY HERE
         </div>
-        }  
-  </div>
+        }
+    </form>
+</nav>

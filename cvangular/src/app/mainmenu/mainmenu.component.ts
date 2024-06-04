@@ -12,9 +12,9 @@ export class MainmenuComponent {
     private router: Router
   ) { }
 
-  categories: string[] = ['ONE', 'TWO'];
+  categories: string[] = ['ONE', 'TWO', 'TRES'];
 
-  allCategory() {
+  goHome() {
     this.router.navigate(['']);
   }
 

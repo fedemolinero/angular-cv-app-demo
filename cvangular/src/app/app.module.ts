@@ -7,12 +7,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { DataWrapperComponent } from './data-wrapper/data-wrapper.component';
 import { MainmenuComponent } from './mainmenu/mainmenu.component';
+import { CvPreviewComponent } from './cvpreview/cvpreview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DataWrapperComponent,
-    MainmenuComponent
+    MainmenuComponent,
+    CvPreviewComponent
   ],
   imports: [
     BrowserModule,

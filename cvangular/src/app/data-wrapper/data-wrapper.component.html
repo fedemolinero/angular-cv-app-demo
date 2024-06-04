@@ -1,9 +1,9 @@
 <main class="main">
     <!-- NEW WAY IN ANGULAR 17 TO SHOW NGIFS -->
-    @if (personalData == []){
+    @if (!personalData){
     <div class="container-fluid">
         <div class="row">
-            <div> NO DATA TO SHOW </div>
+            <div> SERVER OFFLINE </div>
         </div>
     </div>
     }@else{
@@ -300,16 +300,16 @@
 
                     <div class="expJobAptitude" class="d-flex flex-row justify-content-center flex-wrap">
                         @for (aptitude of personalData.job4.workAptitudes; track personalData.job4.workAptitudes ){
-                            <div class=" p-1 btn-group btn-group-sm">
-                                <button type="button" class="btn btn-outline-primary">
-                                    {{ aptitude }}
-                                </button>
-                            </div>
-                            } @empty {
-                            <div class="p-1">
-                                DEVELOPING APTITUDES
-                            </div>
-                            }
+                        <div class=" p-1 btn-group btn-group-sm">
+                            <button type="button" class="btn btn-outline-primary">
+                                {{ aptitude }}
+                            </button>
+                        </div>
+                        } @empty {
+                        <div class="p-1">
+                            DEVELOPING APTITUDES
+                        </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -365,16 +365,16 @@
 
                     <div class="expJobAptitude" class="d-flex flex-row justify-content-center flex-wrap">
                         @for (aptitude of personalData.job4.workAptitudes; track personalData.job4.workAptitudes ){
-                            <div class=" p-1 btn-group btn-group-sm">
-                                <button type="button" class="btn btn-outline-primary">
-                                    {{ aptitude }}
-                                </button>
-                            </div>
-                            } @empty {
-                            <div class="p-1">
-                                DEVELOPING APTITUDES
-                            </div>
-                            }
+                        <div class=" p-1 btn-group btn-group-sm">
+                            <button type="button" class="btn btn-outline-primary">
+                                {{ aptitude }}
+                            </button>
+                        </div>
+                        } @empty {
+                        <div class="p-1">
+                            DEVELOPING APTITUDES
+                        </div>
+                        }
                     </div>
                 </div>
             </div>
