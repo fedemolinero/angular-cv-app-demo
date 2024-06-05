@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data-service.service';
 import { Person } from '../models/cvPersonalData.model';
-// import { jsPDF } from 'jspdf';
 
 @Component({
   selector: 'app-cv-preview',
@@ -30,7 +29,6 @@ export class CvPreviewComponent implements OnInit, OnDestroy {
     }
   }
 
-
   getpersonalDataList() {
     this.personalDataSubscription = this.personalDataService.getCv()
       .subscribe(
@@ -41,18 +39,8 @@ export class CvPreviewComponent implements OnInit, OnDestroy {
           error: (e) => {
             console.error(e);
           }
-
         }
       );
   }
 
-  // {
-  //   generatePdf() {
-  //     const doc = new jsPDF();
-  //     doc.text('This is my CV', 10, 10);
-  //     doc.save('cv.pdf');
-  //   }
-  // }
-
 }
-
