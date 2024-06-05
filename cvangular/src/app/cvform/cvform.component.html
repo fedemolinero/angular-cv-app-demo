@@ -1,41 +1,67 @@
-<form [formGroup]="productForm" (ngSubmit)="saveChanges()">
+<form [formGroup]="personForm" (ngSubmit)="saveChanges()">
 
     <div class="input-group mt-3 mb-3">
-        <span class="input-group-text" id="nameLabel">Name</span>
-        <input id="name" type="text" class="form-control" formControlName="name">
+        <span id="nameLabel" class="input-group-text">Name</span>
+        <input id="name" type="text" class="form-control" formControlName="name" [ngClass]="{
+            'is-valid': name!.valid && (name!.dirty || name!.touched),
+            'is-invalid': name!.invalid && (name!.dirty || name!.touched)
+          }">
+        <div *ngIf="personForm.invalid && (name!.dirty || name!.touched)" id="validationNameFeedback"
+            class="invalid-feedback">
+            Please choose a username.
+        </div>
     </div>
 
     <div class="input-group mb-3">
-        <span class="input-group-text" id="secondNameLabel">Second Name</span>
+        <span id="secondNameLabel" class="input-group-text">Second Name</span>
         <input id="secondName" type="text" class="form-control" formControlName="secondName">
     </div>
 
     <div class="input-group mb-3">
-        <span class="input-group-text" id="lastnameLabel">Lastname</span>
-        <input id="lastname" class="form-control" formControlName="lastname">
+        <span id="lastNameLabel" class="input-group-text">Last Name</span>
+        <input id="lastName" class="form-control" formControlName="lastName" [ngClass]="{
+            'is-valid': lastName!.valid && (lastName!.dirty || lastName!.touched),
+            'is-invalid': lastName!.invalid && (lastName!.dirty || lastName!.touched)
+          }">
+        <div *ngIf="personForm.invalid && (lastName!.dirty || lastName!.touched)" id="validationLastNameFeedback"
+            class="invalid-feedback">
+            Please choose a last name.
+        </div>
     </div>
 
     <div class="input-group mb-3">
-        <span class="input-group-text" id="ratingLabel">City</span>
-        <input id="city" class="form-control" formControlName="city">
+        <span class="input-group-text" id="cityLabel">City</span>
+        <input id="city" class="form-control" formControlName="city" [ngClass]="{
+            'is-valid': city!.valid && (city!.dirty || city!.touched),
+            'is-invalid': city!.invalid && (city!.dirty || city!.touched)
+          }">
+        <div *ngIf="personForm.invalid && (city!.dirty || city!.touched)" id="validationCityFeedback"
+            class="invalid-feedback">
+            Please choose a city.
+        </div>
     </div>
 
     <div class="input-group mb-3">
-        <span class="input-group-text" id="positionLabel">Position</span>
-        <input id="position" class="form-control" formControlName="position">
+        <span id="positionLabel" class="input-group-text">Position</span>
+        <input id="position" class="form-control" formControlName="position" [ngClass]="{
+            'is-valid': position!.valid && (position!.dirty || position!.touched),
+            'is-invalid': position!.invalid && (position!.dirty || position!.touched)
+          }">
+        <div *ngIf="personForm.invalid && (position!.dirty || position!.touched)" id="validationPositionFeedback"
+            class="invalid-feedback">
+            Please choose a position.
+        </div>
     </div>
-
-    <!-- <div class="input-group mb-3">
-        <span class="input-group-text" id="aboutDescriptionsLabel">About</span>
-        <input id="aboutDescriptions" class="form-control" formControlName="aboutDescriptions">
-    </div> -->
 
     <div formArrayName="aboutDescriptions">
         <button class="btn btn-secondary" type="button" (click)="addAboutDescription()">Add Description</button>
-        <div class="input-group mb-3" *ngFor="let alias of aboutDescriptions.controls; let i=index">
-            <span id="alias-{{i}}" class="input-group-text">About</span>
-            <input id="input-{{i}}"  class="form-control" type="text"  [formControlName]="i">
-            <button class="btn btn-secondary" type="button" (click)="removeAboutDescription(i)"><i class="bi bi-trash"></i></button>
+        <div class="input-group mb-3" *ngFor="let about of aboutDescriptions.controls; let i=index">
+            <span id="about-{{i}}" class="input-group-text">About</span>
+            <input id="input-{{i}}" class="form-control" type="text" [formControlName]="i">
+
+            <button class="btn btn-secondary" type="button" [disabled]="i === 0" (click)="removeAboutDescription(i)">
+                <i class="bi bi-trash"></i>
+            </button>
         </div>
     </div>
 

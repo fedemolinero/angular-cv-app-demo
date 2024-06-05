@@ -11,8 +11,9 @@ import { Subscription } from 'rxjs';
 })
 export class CvformComponent implements OnInit, OnDestroy {
   productId!: number;
-  productForm!: FormGroup;
+  personForm!: FormGroup;
   savedSuccess!: string;
+  @Output() formChanged = new EventEmitter<any>();
   private personalDataSubscription!: Subscription;
 
   constructor(
@@ -31,20 +32,13 @@ export class CvformComponent implements OnInit, OnDestroy {
   }
 
   initForm() {
-    this.productForm = this.fb.group({
+    this.personForm = this.fb.group({
       id: [{ value: '', disabled: true }],
       name: [{ value: '', disabled: false }, Validators.required],
       secondName: [{ value: '', disabled: false }, Validators.required],
-      lastname: [{ value: '', disabled: false }, Validators.required],
+      lastName: [{ value: '', disabled: false }, Validators.required],
       city: [{ value: '', disabled: false }, Validators.required],
       position: [{ value: '', disabled: false }, Validators.required],
-      // aboutDescriptions: [{ value: '', disabled: false }, Validators.required],
-      // aboutDescriptions: this.fb.group({
-      //   street: [{ value: '', disabled: false }, Validators.required],
-      //   city: [{ value: '', disabled: false }, Validators.required],
-      //   state:[{ value: '', disabled: false }, Validators.required],
-      //   zip: [{ value: '', disabled: false }, Validators.required],
-      // }),
       aboutDescriptions: this.fb.array([this.fb.control('')]),
       jobs: [],
       studies: [],
@@ -52,14 +46,19 @@ export class CvformComponent implements OnInit, OnDestroy {
       courses: []
     });
 
-    this.productForm.valueChanges
+    this.personForm.valueChanges
       .subscribe(value => {
         this.formChanged.emit(value);
       });
   }
 
+  get name() { return this.personForm.get('name'); }
+  get lastName() { return this.personForm.get('lastName'); }
+  get city() { return this.personForm.get('city'); }
+  get position() { return this.personForm.get('position'); }
+
   get aboutDescriptions() {
-    return this.productForm.get('aboutDescriptions') as FormArray;
+    return this.personForm.get('aboutDescriptions') as FormArray;
   }
 
   addAboutDescription() {
@@ -83,12 +82,15 @@ export class CvformComponent implements OnInit, OnDestroy {
         }
       );
   }
-
+  
+  onInputChange() {
+    this.formChanged.emit(this.personForm);
+  }
 
   saveChanges() {
-    if (this.productForm.valid) {
-      console.log('Form Data:', this.productForm.value);
-      this.postPersonalDataList(this.productForm.value)
+    if (this.personForm.valid) {
+      console.log('Form Data:', this.personForm.value);
+      this.postPersonalDataList(this.personForm.value)
       console.log('Save Complete');
       this.savedSuccess = 'Well done saving!!! It was succeess no fail';
     } else {
@@ -96,11 +98,6 @@ export class CvformComponent implements OnInit, OnDestroy {
     }
   }
 
-  @Output() formChanged = new EventEmitter<any>();
-
-  onInputChange() {
-    this.formChanged.emit(this.productForm);
-  }
 
 }
 
