@@ -1,1 +1,239 @@
-<p>cvpreview works!</p>
+<main class="main">
+    <!-- NEW WAY IN ANGULAR 17 TO SHOW NGIFS -->
+    @if (!personalData){
+    <div class="container-fluid">
+        <div class="row">
+            <div> SERVER OFFLINE </div>
+        </div>
+    </div>
+    }@else{
+    <div class="container-fluid">
+
+        <section name="personalData" class="d-flex p-3 align-items-center justify-content-center">
+
+            <div class="headerPhoto">
+                <img src="../assets/CVphoto.jpg" class="thumbnail">
+            </div>
+
+            <div class="headerDescription m-1 p-2">
+                <div class="headername">
+                    <h2>
+                        {{personalData.name}} {{personalData.lastname}}
+                    </h2>
+                </div>
+                <div class="headerjob">
+                    <h3>
+                        {{personalData.position}}
+                    </h3>
+                </div>
+                <div class="headerlocation">
+                    <h6>
+                        <i class="bi bi-geo-fill"></i> Rosario, Argentina
+                    </h6>
+                </div>
+            </div>
+        </section>
+
+        <section name="about" class="card p-3 mb-2">
+            @for (aboutDescription of personalData.aboutDescriptions; track personalData.aboutDescriptions ){
+
+            <div class="about-item">
+                <i [ngClass]="aboutDescription.icon" class="m-1"></i>
+                <span>{{aboutDescription.description}}</span>
+            </div>
+            } @empty {
+            <div class="p-1">
+                DEVELOPING APTITUDES
+            </div>
+            }
+        </section>
+
+        <section name="experience">
+            @for (job of personalData.jobs; track personalData.jobs ){
+            <div class="card mb-3">
+                <div class="card-header bg-transparent p-3">
+                    <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
+                        <div class="jobPhoto p-1">
+                            <img [src]="job.companyLogo" class="thumbnail">
+                        </div>
+
+                        <div class="jobData p-1">
+                            <div class="expJobCompany">
+                                <h4>
+                                    {{job.companyName}}
+                                </h4>
+                            </div>
+                            <div class="expJobName ">
+                                <h5>
+                                    {{job.jobTitle}}
+                                </h5>
+                            </div>
+
+                        </div>
+
+                        <div class="jobData p-1 ms-auto">
+                            <div class="expJobDate">
+                                <i class="bi bi-calendar3"></i> {{job.worktime}}
+                            </div>
+                            <div class="expJobPlace">
+                                <i class="bi bi-geo-alt"></i> {{job.jobPlace}}
+                            </div>
+                            <span class="expJobType">
+                                <i class="bi bi-person-workspace"></i> {{job.jobType}}
+                            </span> -
+                            <span class="jobRange">
+                                {{job.jobRange}}
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">{{job.jobDescription1}}</div>
+                    <div class="card-text">{{job.jobDescription2}}</div>
+                    <div class="card-text">{{job.jobDescription3}}</div>
+                    <div class="card-text">{{job.jobDescription4}}</div>
+                    <div class="card-text">{{job.jobDescription5}}</div>
+                </div>
+                <div class="card-footer bg-transparent border-success">
+                    <div class="expJobAptitude" class="d-flex flex-row justify-content-center flex-wrap">
+                        <!-- NEW WAY IN ANGULAR 17 TO SHOW NGFORS -->
+                        @for (aptitude of job.workAptitudes; track aptitude ){
+                        <div class=" p-1 btn-group btn-group-sm">
+                            <button type="button" class="btn btn-outline-primary">
+                                {{ aptitude }}
+                            </button>
+                        </div>
+                        } @empty {
+                        <div class="p-1">
+                            DEVELOPING APTITUDES
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            } @empty {
+            <div class="p-1">
+                DEVELOPING JOBS
+            </div>
+            }
+        </section>
+
+        <section name="studies">
+            @for (study of personalData.studies; track study ){
+            <div class="card mb-3">
+                <div class="card-header bg-transparent p-3">
+                    <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
+                        <div class="studyPhoto p-1">
+                            <img [src]="study.studyLogo" class="thumbnail">
+                        </div>
+                        <div class="studyData p-1">
+                            <div class="expstudyCompany">
+                                <h4>
+                                    {{study.studyName}}
+                                </h4>
+                            </div>
+                            <div class="expstudyName">
+                                <h5>
+                                    {{study.studyTitle}}
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="studyData p-1 ms-auto">
+                            <div class="expstudyDate">
+                                <i class="bi bi-calendar3"></i> {{study.studyTime}}
+                            </div>
+                            <div class="expstudyPlace">
+                                <i class="bi bi-geo-alt"></i> {{study.studyPlace}}
+                            </div>
+                            <span class="expstudyType">
+                                <i class="bi bi-person-workspace"></i> {{study.studyType}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">{{study.studyDescription1}}</div>
+                </div>
+            </div>
+            } @empty {
+            <div class="p-1">
+                DEVELOPING STUDIES
+            </div>
+            }
+
+        </section>
+
+        <section name="languagues">
+            @for (language of personalData.languages; track language ){
+
+            <div class="card mb-3">
+                <div class="card-body bg-transparent p-3">
+                    <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
+                        <div class="langData p-1">
+                            <div class="explangCompany">
+                                <h4>
+                                    <i class="bi bi-flag"></i>
+                                    {{language.langName}}
+                                </h4>
+                            </div>
+                            <div class="explangName">
+                                <h5>
+                                    {{language.proficiency}}
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            } @empty {
+            <div class="p-1">
+                DEVELOPING LANGUAGES
+            </div>
+            }
+        </section>
+
+        <section name="courses">
+
+            @for (course of personalData.courses; track course ){
+            <div class="card mb-3">
+                <div class="card-header bg-transparent p-3">
+                    <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
+                        <div class="coursePhoto p-1">
+                            <img [src]="course.courseLogo" class="thumbnail">
+                        </div>
+                        <div class="courseData p-1">
+                            <div class="expcourseCompany">
+                                <h4>
+                                    {{course.courseName}}
+                                </h4>
+                            </div>
+                            <div class="expcourseName">
+                                <h5>
+                                    {{course.courseTitle}}
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="courseData p-1 ms-auto">
+                            <div class="expcourseDate">
+                                <i class="bi bi-calendar3"></i> {{course.courseTime}}
+                            </div>
+                            <span class="expcourseType">
+                                <i class="bi bi-person-workspace"></i> {{course.courseType}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            } @empty {
+            <div class="p-1">
+                DEVELOPING COURSES
+            </div>
+            }
+        </section>
+
+    </div>
+    }
+</main>

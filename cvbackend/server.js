@@ -16,11 +16,24 @@ const personalData = {
   lastname: 'Molinero',
   city: 'Rosario, Argentina',
   position: 'Frontend Developer',
-  aboutDescription1: 'Experienced tech professional proficient in full-stack web development, application support, and user management platforms.',
-  aboutDescription2: 'Skilled in front end development building responsive, interactive designs adhering to web accessibility guidelines.',
-  aboutDescription3: 'Proficient in leading teams and deploying applications on cloud platforms like Azure and AWS.',
-  aboutDescription4: 'Passionate about leveraging technology to drive innovation and enhance user experiences.',
-  job1: {
+  aboutDescriptions: [
+    {
+      description: 'Experienced tech professional proficient in full-stack web development, application support, and user management platforms.',
+      icon: 'bi bi-person-circle'
+    },
+    {
+      description: 'Skilled in front end development building responsive, interactive designs adhering to web accessibility guidelines.',
+      icon: 'bi bi-briefcase'
+    },
+    {
+      description: 'Proficient in leading teams and deploying applications on cloud platforms like Azure and AWS.',
+      icon: 'bi bi-award'
+    }, {
+      description: 'Passionate about leveraging technology to drive innovation and enhance user experiences.',
+      icon: 'bi bi-journal-text'
+    },
+  ],
+  jobs: [{
     companyName: 'Globant',
     companyLogo: '../assets/globant_logo.jpg',
     jobTitle: 'Web User Interface Developer',
@@ -55,7 +68,7 @@ const personalData = {
       'JSON',
     ]
   },
-  job2: {
+  {
     companyName: 'Accenture',
     companyLogo: '../assets/accenture_logo.jpg',
     jobTitle: 'Data Engineering Analyst',
@@ -84,7 +97,7 @@ const personalData = {
       'API',
     ]
   },
-  job3: {
+  {
     companyName: 'MundoIT',
     companyLogo: '../assets/mundoit_logo.jpg',
     jobTitle: 'Implementation Analyst',
@@ -112,8 +125,7 @@ const personalData = {
       'User Management',
       'API',
     ]
-  },
-  job4: {
+  }, {
     companyName: 'Superintendencia de Riesgos del Trabajo (MTESS)',
     companyLogo: '../assets/srtargentina_logo.jpg',
     jobTitle: 'Fullstack Developer',
@@ -143,7 +155,7 @@ const personalData = {
       'WordPress'
     ]
   },
-  job5: {
+  {
     companyName: 'IRSA CORPORATION',
     companyLogo: '../assets/irsa_logo.jpg',
     jobTitle: 'SysAdmin',
@@ -162,73 +174,79 @@ const personalData = {
       'Cloud Computing',
       'API',
     ]
-  },
-  study1: {
-    studyName: 'Universidad Tecnológica Nacional',
-    studyLogo: '../assets/utn_logo.jpg',
-    studyTitle: 'Computer Systems Analyst',
-    studyTime: 'Mar 2010 - Present',
-    studyPlace: 'Rosario, Santa Fe, Argentina',
-    studyType: 'On-site',
-    studyDescription1: 'I dropped out of my previous degree program during my third year and proceeded to pursue a degree in Computer Systems Analyst.',
-  },
-  study2: {
-    studyName: 'Universidad Nacional de Rosario',
-    studyLogo: '../assets/unr_logo.jpg',
-    studyTitle: 'Bachelor of Computer Science',
-    studyTime: 'Mar 2006 - Dic 2009',
-    studyPlace: 'Rosario, Santa Fe, Argentina',
-    studyType: 'On-site',
-    studyDescription1: 'I dropped out during my third year and proceeded to pursue a degree in Computer Systems Analyst.',
-  },
-  lang1: {
-    langName: 'Spanish',
-    proficiency: 'Native or bilingual proficiency'
-  },
-  lang2: {
-    langName: 'English',
-    proficiency: 'Full professional proficiency'
-  },
-  lang3: {
-    langName: 'Italian',
-    proficiency: 'Professional working proficiency',
-  },
-  course1: {
-    courseName: 'Creativity, Design Thinking, and Innovation for Business',
-    courseLogo: '../assets/udemy_logo.jpg',
-    courseTitle: 'Udemy',
-    courseTime: 'Jun 2021',
-    courseType: 'Online'
-  },
-  course2: {
-    courseName: 'Power BI A-Z: Hands-On Power BI Training for Data Science',
-    courseLogo: '../assets/udemy_logo.jpg',
-    courseTitle: 'Udemy',
-    courseTime: 'Jun 2021',
-    courseType: 'Online'
-  },
-  course3: {
-    courseName: 'Node.js API Masterclass With Express & MongoDB',
-    courseLogo: '../assets/udemy_logo.jpg',
-    courseTitle: 'Udemy',
-    courseTime: 'Mar 2021',
-    courseType: 'Online'
-  },
-  course4: {
-    courseName: 'Angular: The Complete Guide',
-    courseLogo: '../assets/udemy_logo.jpg',
-    courseTitle: 'Udemy',
-    courseTime: 'Dec 2020',
-    courseType: 'Online'
-  },
-  course5: {
-    courseName: 'Front-end Angular/React',
-    courseLogo: '../assets/full_solutions_logo.jpg',
-    courseTitle: 'FullSolutions',
-    courseTime: 'May 2019',
-    courseType: 'OnSite'
-  },
-
+  }
+  ],
+  studies: [
+    {
+      studyName: 'Universidad Tecnológica Nacional',
+      studyLogo: '../assets/utn_logo.jpg',
+      studyTitle: 'Computer Systems Analyst',
+      studyTime: 'Mar 2010 - Present',
+      studyPlace: 'Rosario, Santa Fe, Argentina',
+      studyType: 'On-site',
+      studyDescription1: 'I dropped out of my previous degree program during my third year and proceeded to pursue a degree in Computer Systems Analyst.',
+    },
+    {
+      studyName: 'Universidad Nacional de Rosario',
+      studyLogo: '../assets/unr_logo.jpg',
+      studyTitle: 'Bachelor of Computer Science',
+      studyTime: 'Mar 2006 - Dic 2009',
+      studyPlace: 'Rosario, Santa Fe, Argentina',
+      studyType: 'On-site',
+      studyDescription1: 'I dropped out during my third year and proceeded to pursue a degree in Computer Systems Analyst.',
+    },
+  ],
+  languages: [
+    {
+      langName: 'Spanish',
+      proficiency: 'Native or bilingual proficiency'
+    },
+    {
+      langName: 'English',
+      proficiency: 'Full professional proficiency'
+    },
+    {
+      langName: 'Italian',
+      proficiency: 'Professional working proficiency',
+    }
+  ],
+  courses: [
+    {
+      courseName: 'Creativity, Design Thinking, and Innovation for Business',
+      courseLogo: '../assets/udemy_logo.jpg',
+      courseTitle: 'Udemy',
+      courseTime: 'Jun 2021',
+      courseType: 'Online'
+    },
+    {
+      courseName: 'Power BI A-Z: Hands-On Power BI Training for Data Science',
+      courseLogo: '../assets/udemy_logo.jpg',
+      courseTitle: 'Udemy',
+      courseTime: 'Jun 2021',
+      courseType: 'Online'
+    },
+    {
+      courseName: 'Node.js API Masterclass With Express & MongoDB',
+      courseLogo: '../assets/udemy_logo.jpg',
+      courseTitle: 'Udemy',
+      courseTime: 'Mar 2021',
+      courseType: 'Online'
+    },
+    {
+      courseName: 'Angular: The Complete Guide',
+      courseLogo: '../assets/udemy_logo.jpg',
+      courseTitle: 'Udemy',
+      courseTime: 'Dec 2020',
+      courseType: 'Online'
+    },
+    {
+      courseName: 'Front-end Angular/React',
+      courseLogo: '../assets/full_solutions_logo.jpg',
+      courseTitle: 'FullSolutions',
+      courseTime: 'May 2019',
+      courseType: 'OnSite'
+    },
+  ]
 }
 
 app.post('/create-cv', (req, res) => {

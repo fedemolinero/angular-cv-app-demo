@@ -1,0 +1,39 @@
+<form [formGroup]="productForm" (ngSubmit)="saveChanges()">
+
+    <div class="input-group mt-3 mb-3">
+        <span class="input-group-text" id="nameLabel">Name</span>
+        <input id="name" type="text" class="form-control" formControlName="name">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="secondNameLabel">Second Name</span>
+        <input id="secondName" type="text" class="form-control" formControlName="secondName">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="lastnameLabel">Lastname</span>
+        <input id="lastname" class="form-control" formControlName="lastname">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="ratingLabel">City</span>
+        <input id="city" class="form-control" formControlName="city">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="positionLabel">Position</span>
+        <input id="position" class="form-control" formControlName="position">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="aboutDescription1Label">About</span>
+        <input id="aboutDescription1" class="form-control" formControlName="aboutDescription1">
+    </div>
+
+    <div class="d-grid gap-2">
+        <button class="btn btn-primary mt-2 mt-2" type="submit">Save</button>
+    </div>
+
+</form>
+
+<div class="msg">{{savedSuccess}}</div>
