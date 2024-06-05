@@ -10,45 +10,37 @@
     <div class="container-fluid" id="contentToConvert">
 
         <section name="personalData" class="d-flex p-3 align-items-center justify-content-center">
-
             <div class="headerPhoto">
-                <img src="../assets/CVphoto.jpg" class="thumbnail">
+                <img src="../assets/cv-photo.jpg" class="thumbnail">
             </div>
-
             <div class="headerDescription m-1 p-2">
                 <div class="headername">
-                    <h2>
-                        {{personalData.name}} {{personalData.lastname}}
-                    </h2>
+                    <h2>{{personalData.name}} {{personalData.secondName}} {{personalData.lastname}}</h2>
                 </div>
                 <div class="headerjob">
-                    <h3>
-                        {{personalData.position}}
-                    </h3>
+                    <h3>{{personalData.position}}</h3>
                 </div>
                 <div class="headerlocation">
-                    <h6>
-                        <i class="bi bi-geo-fill"></i> Rosario, Argentina
-                    </h6>
+                    <h6><i class="bi bi-geo-fill"></i> {{personalData.city}} </h6>
                 </div>
             </div>
         </section>
 
         <section name="about" class="card p-3 mb-2">
             @for (aboutDescription of personalData.aboutDescriptions; track personalData.aboutDescriptions ){
-
             <div class="about-item">
-                <i [ngClass]="aboutDescription.icon" class="m-1"></i>
-                <span>{{aboutDescription.description}}</span>
+                <!-- <i [ngClass]="aboutDescription.icon" class="m-1"></i> -->
+                <span>{{aboutDescription}}</span>
             </div>
             } @empty {
-            <div class="p-1">
-                DEVELOPING APTITUDES
+            <div class="text-center">
+                <h3>ABOUT</h3>
             </div>
+            <img src="../assets/cv-about.png" class="img-fluid">
             }
         </section>
 
-        <section name="experience">
+        <section name="experience" class="card p-3 mb-2">
             @for (job of personalData.jobs; track personalData.jobs ){
             <div class="card mb-3">
                 <div class="card-header bg-transparent p-3">
@@ -96,10 +88,10 @@
                     <div class="card-text">{{job.jobDescription5}}</div>
                 </div>
                 <div class="card-footer bg-transparent border-success">
-                    <div class="expJobAptitude" class="d-flex flex-row justify-content-center flex-wrap">
+                    <div class="d-flex flex-row justify-content-center flex-wrap">
                         <!-- NEW WAY IN ANGULAR 17 TO SHOW NGFORS -->
                         @for (aptitude of job.workAptitudes; track aptitude ){
-                        <div class=" p-1 btn-group btn-group-sm">
+                        <div class="btn-group btn-group-sm p-1">
                             <button type="button" class="btn btn-outline-primary">
                                 {{ aptitude }}
                             </button>
@@ -113,13 +105,14 @@
                 </div>
             </div>
             } @empty {
-            <div class="p-1">
-                DEVELOPING JOBS
+            <div class="text-center">
+                <h3>EXPERIENCE</h3>
             </div>
+            <img src="../assets/cv-job-offers.png" class="img-fluid">
             }
         </section>
 
-        <section name="studies">
+        <section name="studies" class="card p-3 mb-2">
             @for (study of personalData.studies; track study ){
             <div class="card mb-3">
                 <div class="card-header bg-transparent p-3">
@@ -129,14 +122,10 @@
                         </div>
                         <div class="studyData p-1">
                             <div class="expstudyCompany">
-                                <h4>
-                                    {{study.studyName}}
-                                </h4>
+                                <h4>{{study.studyName}}</h4>
                             </div>
                             <div class="expstudyName">
-                                <h5>
-                                    {{study.studyTitle}}
-                                </h5>
+                                <h5>{{study.studyTitle}}</h5>
                             </div>
                         </div>
                         <div class="studyData p-1 ms-auto">
@@ -157,14 +146,15 @@
                 </div>
             </div>
             } @empty {
-            <div class="p-1">
-                DEVELOPING STUDIES
+            <div class="text-center">
+                <h3>STUDIES</h3>
             </div>
+            <img src="../assets/cv-studies.png" class="img-fluid">
             }
 
         </section>
 
-        <section name="languagues">
+        <section name="languagues" class="card p-3 mb-2">
             @for (language of personalData.languages; track language ){
 
             <div class="card mb-3">
@@ -188,13 +178,14 @@
 
             </div>
             } @empty {
-            <div class="p-1">
-                DEVELOPING LANGUAGES
+            <div class="text-center">
+                <h3>LANGUAGES</h3>
             </div>
+            <img src="../assets/cv-languages.png" class="img-fluid">
             }
         </section>
 
-        <section name="courses">
+        <section name="courses" class="card p-3 mb-2">
 
             @for (course of personalData.courses; track course ){
             <div class="card mb-3">
@@ -228,9 +219,10 @@
 
             </div>
             } @empty {
-            <div class="p-1">
-                DEVELOPING COURSES
+            <div class="text-center">
+                <h3>COURSES</h3>
             </div>
+            <img src="../assets/cv-courses.png" class="img-fluid">
             }
         </section>
 

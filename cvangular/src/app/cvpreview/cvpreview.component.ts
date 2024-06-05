@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data-service.service';
 import { Person } from '../models/cvPersonalData.model';
@@ -10,7 +10,7 @@ import { Person } from '../models/cvPersonalData.model';
 })
 export class CvPreviewComponent implements OnInit, OnDestroy {
 
-  personalData!: Person;
+  @Input() personalData!: Person;
 
   private personalDataSubscription: Subscription | undefined;
 
@@ -20,7 +20,7 @@ export class CvPreviewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.getpersonalDataList()
+    // this.getpersonalDataList()
   }
 
   ngOnDestroy(): void {

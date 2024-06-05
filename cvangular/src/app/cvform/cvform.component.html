@@ -25,9 +25,18 @@
         <input id="position" class="form-control" formControlName="position">
     </div>
 
-    <div class="input-group mb-3">
+    <!-- <div class="input-group mb-3">
         <span class="input-group-text" id="aboutDescriptionsLabel">About</span>
         <input id="aboutDescriptions" class="form-control" formControlName="aboutDescriptions">
+    </div> -->
+
+    <div formArrayName="aboutDescriptions">
+        <button class="btn btn-secondary" type="button" (click)="addAboutDescription()">Add Description</button>
+        <div class="input-group mb-3" *ngFor="let alias of aboutDescriptions.controls; let i=index">
+            <span id="alias-{{i}}" class="input-group-text">About</span>
+            <input id="input-{{i}}"  class="form-control" type="text"  [formControlName]="i">
+            <button class="btn btn-secondary" type="button" (click)="removeAboutDescription(i)"><i class="bi bi-trash"></i></button>
+        </div>
     </div>
 
     <div class="d-grid gap-2">

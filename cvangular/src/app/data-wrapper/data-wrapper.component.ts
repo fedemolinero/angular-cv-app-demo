@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data-service.service';
+import { Person } from '../models/cvPersonalData.model';
 
 @Component({
   selector: 'app-data-wrapper',
@@ -12,13 +13,31 @@ export class DataWrapperComponent implements OnInit, OnDestroy {
   personalData: any;
   private personalDataSubscription: Subscription | undefined;
 
+  formData: Person = {
+    name: '',
+    secondName: '',
+    lastname: '',
+    city: '',
+    position: '',
+    aboutDescriptions: [],
+    jobs: [],
+    studies: [],
+    languages: [],
+    courses: []
+  };
+
+  onFormChanged(data: Person) {
+    this.formData = data;
+  }
+
+
   constructor(
-    private personalDataervice: DataService
+    private personalDataService: DataService
   ) {
   }
 
   ngOnInit(): void {
-    this.getpersonalDataList()
+    // this.getpersonalDataList()
   }
 
   ngOnDestroy(): void {
@@ -28,7 +47,7 @@ export class DataWrapperComponent implements OnInit, OnDestroy {
   }
 
   getpersonalDataList() {
-    this.personalDataSubscription = this.personalDataervice.getCv()
+    this.personalDataSubscription = this.personalDataService.getCv()
       .subscribe(
         {
           next: (personalDataResponse: any) => {
