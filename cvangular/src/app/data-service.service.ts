@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Person } from './models/cvPersonalData.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class DataService {
     return this.http.post(`${this.apiUrl}/create-cv`, cvData);
   }
 
-  getCv(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/get-cv`);
+  getCv(): Observable<Person> {
+    return this.http.get<Person>(`${this.apiUrl}/get-cv`);
   }
 }

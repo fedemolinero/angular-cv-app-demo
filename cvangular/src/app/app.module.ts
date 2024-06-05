@@ -9,7 +9,7 @@ import { DataWrapperComponent } from './data-wrapper/data-wrapper.component';
 import { MainmenuComponent } from './mainmenu/mainmenu.component';
 import { CvPreviewComponent } from './cvpreview/cvpreview.component';
 import { CvformComponent } from './cvform/cvform.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -24,13 +24,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideHttpClient(withFetch()),
   ],
   bootstrap: [AppComponent]
 })
