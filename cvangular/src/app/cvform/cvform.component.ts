@@ -82,7 +82,7 @@ export class CvformComponent implements OnInit, OnDestroy {
         }
       );
   }
-  
+
   onInputChange() {
     this.formChanged.emit(this.personForm);
   }

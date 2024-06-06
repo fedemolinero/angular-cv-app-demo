@@ -16,21 +16,6 @@ export class MainmenuComponent {
   ) { }
 
   menuGroup: Menu[] = [
-    {
-      id: 1, 
-      name: 'ONE',
-      link: ''
-    },
-    {
-      id: 2, 
-      name: 'TWO',
-      link: ''
-    },
-    {
-      id: 3, 
-      name: 'LOGOUT',
-      link: 'logout()'
-    }
   ];
 
   goHome() {

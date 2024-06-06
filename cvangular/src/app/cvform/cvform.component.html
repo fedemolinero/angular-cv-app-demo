@@ -55,14 +55,20 @@
 
     <div formArrayName="aboutDescriptions">
         <button class="btn btn-secondary" type="button" (click)="addAboutDescription()">Add Description</button>
-        <div class="input-group mb-3" *ngFor="let about of aboutDescriptions.controls; let i=index">
-            <span id="about-{{i}}" class="input-group-text">About</span>
-            <input id="input-{{i}}" class="form-control" type="text" [formControlName]="i">
 
-            <button class="btn btn-secondary" type="button" [disabled]="i === 0" (click)="removeAboutDescription(i)">
+        @for (about of aboutDescriptions.controls; track about){
+        <div class="input-group mb-3">
+            <span id="about-{{$index}}" class="input-group-text">About</span>
+            <input id="input-{{$index}}" class="form-control" type="text" [formControlName]="$index">
+
+            <button class="btn btn-secondary" type="button" [disabled]="$index === 0"
+                (click)="removeAboutDescription($index)">
                 <i class="bi bi-trash"></i>
             </button>
         </div>
+        } @empty {
+        <div>ABOUT</div>
+        }
     </div>
 
     <div class="d-grid gap-2">
