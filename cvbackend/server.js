@@ -1,14 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+const secretKey = 'yourSecretKey'; // Cambia esto por una clave secreta más segura si es necesario. En prod no se mostrara.
 const port = 3000;
-
 const cvs = [];
+let users = []; // Esto es solo para el ejemplo, en un entorno real usarías una base de datos
 
 const personalData = {
   name: 'Federico',
@@ -248,6 +251,57 @@ const personalData = {
     },
   ]
 }
+
+// Registro de usuario
+app.post('/register', (req, res) => {
+  const { username, password } = req.body;
+  const hashedPassword = bcrypt.hashSync(password, 8);
+
+  users.push({ username, password: hashedPassword });
+  res.status(201).send({ message: 'User registered successfully!' });
+});
+
+
+// Middleware para verificar el token
+function verifyToken(req, res, next) {
+  const token = req.headers['authorization'];
+  if (!token) {
+    return res.status(403).send({ message: 'No token provided!' });
+  }
+
+  jwt.verify(token, secretKey, (err, decoded) => {
+    if (err) {
+      return res.status(500).send({ message: 'Failed to authenticate token!' });
+    }
+    req.userId = decoded.id;
+    next();
+  });
+}
+
+
+// Ruta protegida
+app.get('/me', verifyToken, (req, res) => {
+  res.status(200).send({ message: `Hello, ${req.userId}!` });
+});
+
+// Login de usuario
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  const user = users.find(u => u.username === username);
+
+  if (!user) {
+    return res.status(404).send({ message: 'User not found!' });
+  }
+
+  const passwordIsValid = bcrypt.compareSync(password, user.password);
+  if (!passwordIsValid) {
+    return res.status(401).send({ token: null, message: 'Invalid password!' });
+  }
+
+  const token = jwt.sign({ id: user.username }, secretKey, { expiresIn: 86400 }); // 24 horas
+  res.status(200).send({ token });
+});
+
 
 app.post('/create-cv', (req, res) => {
   const cvData = req.body;
