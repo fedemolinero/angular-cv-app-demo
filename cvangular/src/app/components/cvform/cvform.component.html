@@ -6,10 +6,12 @@
             'is-valid': name!.valid && (name!.dirty || name!.touched),
             'is-invalid': name!.invalid && (name!.dirty || name!.touched)
           }">
-        <div *ngIf="personForm.invalid && (name!.dirty || name!.touched)" id="validationNameFeedback"
+        @if(personForm.invalid && (name!.dirty || name!.touched)) {
+        <div id="validationNameFeedback">
             class="invalid-feedback">
             Please choose a username.
         </div>
+        }
     </div>
 
     <div class="input-group mb-3">
@@ -23,10 +25,11 @@
             'is-valid': lastName!.valid && (lastName!.dirty || lastName!.touched),
             'is-invalid': lastName!.invalid && (lastName!.dirty || lastName!.touched)
           }">
-        <div *ngIf="personForm.invalid && (lastName!.dirty || lastName!.touched)" id="validationLastNameFeedback"
-            class="invalid-feedback">
+        @if(personForm.invalid && (lastName!.dirty || lastName!.touched)) {
+        <div id="validationLastNameFeedback" class="invalid-feedback">
             Please choose a last name.
         </div>
+        }
     </div>
 
     <div class="input-group mb-3">
@@ -35,10 +38,11 @@
             'is-valid': city!.valid && (city!.dirty || city!.touched),
             'is-invalid': city!.invalid && (city!.dirty || city!.touched)
           }">
-        <div *ngIf="personForm.invalid && (city!.dirty || city!.touched)" id="validationCityFeedback"
-            class="invalid-feedback">
+        @if(personForm.invalid && (city!.dirty || city!.touched)) {
+        <div id="validationCityFeedback" class="invalid-feedback">
             Please choose a city.
         </div>
+        }
     </div>
 
     <div class="input-group mb-3">
@@ -47,10 +51,11 @@
             'is-valid': position!.valid && (position!.dirty || position!.touched),
             'is-invalid': position!.invalid && (position!.dirty || position!.touched)
           }">
-        <div *ngIf="personForm.invalid && (position!.dirty || position!.touched)" id="validationPositionFeedback"
-            class="invalid-feedback">
+        @if(personForm.invalid && (position!.dirty || position!.touched)) {
+        <div id="validationPositionFeedback" class="invalid-feedback">
             Please choose a position.
         </div>
+        }
     </div>
 
     <div formArrayName="aboutDescriptions">

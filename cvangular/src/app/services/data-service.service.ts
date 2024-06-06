@@ -9,7 +9,7 @@ import { Person } from '../models/cvPersonalData.model';
 export class DataService {
   private apiUrl = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   createCv(cvData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/create-cv`, cvData);
