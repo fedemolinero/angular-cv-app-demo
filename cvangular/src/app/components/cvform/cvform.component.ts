@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DataService } from '../data-service.service';
-import { Person } from '../models/cvPersonalData.model';
+import { DataService } from '../../services/data-service.service';
+import { Person } from '../../models/cvPersonalData.model';
 import { Subscription } from 'rxjs';
 
 @Component({
