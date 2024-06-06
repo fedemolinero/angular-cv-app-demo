@@ -1,22 +1,61 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { Subscription } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-  username!: string;
-  password!: string;
+  private loginSubscription!: Subscription;
+  loginForm!: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router) { }
+
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    this.initLoginForm();
+  }
+
+  ngOnDestroy(): void {
+    if (this.loginSubscription) {
+      this.loginSubscription?.unsubscribe();
+    }
+  }
+
+  initLoginForm() {
+    this.loginForm = this.fb.group({
+      username: [{ value: '', disabled: false }, Validators.required],
+      password: [{ value: '', disabled: false }, Validators.required],
+    });
+  }
+
+  get username() { return this.loginForm.get('username'); }
+  get password() { return this.loginForm.get('password'); }
+
 
   login() {
-    this.authService.login(this.username, this.password).subscribe(
-      () => this.router.navigate(['/']),
-      err => console.error('Error logging in', err)
-    );
+
+    this.loginSubscription = this.authService.login(this.loginForm.controls['username'].value, this.loginForm.controls['username'].value)
+      .subscribe(
+        {
+          next: (response: any) => {
+            console.log('login successfull', response);
+            this.router.navigate(['/']);
+          },
+          error: (e) => {
+            console.error(e);
+          }
+        }
+      );
+
   }
+
 }

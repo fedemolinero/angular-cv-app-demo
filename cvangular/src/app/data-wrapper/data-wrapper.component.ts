@@ -16,7 +16,7 @@ export class DataWrapperComponent implements OnInit, OnDestroy {
   formData: Person = {
     name: '',
     secondName: '',
-    lastname: '',
+    lastName: '',
     city: '',
     position: '',
     aboutDescriptions: [],

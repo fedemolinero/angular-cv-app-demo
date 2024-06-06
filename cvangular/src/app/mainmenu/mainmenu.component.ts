@@ -15,8 +15,9 @@ export class MainmenuComponent {
     private authService: AuthService
   ) { }
 
-  menuGroup: Menu[] = [
-  ];
+  isAuthenticated(): boolean {
+    return this.authService.isAuthenticated();
+  }
 
   goHome() {
     this.router.navigate(['']);

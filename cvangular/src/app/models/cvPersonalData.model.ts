@@ -1,7 +1,7 @@
 export interface Person {
     name: string;
     secondName: string;
-    lastname: string;
+    lastName: string;
     city: string;
     position: string;
     aboutDescriptions: PersonalDescriptions[];

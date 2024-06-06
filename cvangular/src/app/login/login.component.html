@@ -1,17 +1,35 @@
-<h2>Login</h2>
+<div class="container">
+  <div class="row">
 
-<form (ngSubmit)="login()" class="p-2 m-2">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="input-group mt-3 mb-3">
+        <span id="usernameLabel" class="input-group-text">Username</span>
+        <input id="username" type="text" class="form-control form-control-lg" formControlName="username" [ngClass]="{
+          'is-valid': username!.valid && (username!.dirty || username!.touched),
+          'is-invalid': username!.invalid && (username!.dirty || username!.touched)
+        }">
+        <div *ngIf="loginForm.invalid && (username!.dirty || username!.touched)" id="validationUsernameFeedback"
+          class="invalid-feedback">
+          Please choose a username.
+        </div>
+      </div>
+      <div class="input-group mt-3 mb-3">
 
-  <div class="form-group p-2 m-2">
-    <label for="username">Username</label>
-    <input id="username" [(ngModel)]="username" name="username" required>
+        <span id="passwordLabel" class="input-group-text">Password</span>
+        <input id="password" type="text" class="form-control form-control-lg" formControlName="password" [ngClass]="{
+          'is-valid': password!.valid && (password!.dirty || password!.touched),
+          'is-invalid': password!.invalid && (password!.dirty || password!.touched)
+        }">
+
+        <div *ngIf="loginForm.invalid && (password!.dirty || password!.touched)" id="validationPasswordFeedback"
+          class="invalid-feedback">
+          Please choose a password.
+        </div>
+
+
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+    </form>
+
   </div>
-
-  <div class="form-group p-2 m-2">
-    <label for="password">Password</label>
-    <input id="password" type="password" [(ngModel)]="password" name="password" required>
-  </div>
-
-  <button class="btn btn-primary" type="submit">Login</button>
-
-</form>
+</div>

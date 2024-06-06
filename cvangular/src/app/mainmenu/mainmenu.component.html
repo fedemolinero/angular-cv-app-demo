@@ -1,14 +1,12 @@
-<div class="list-group">
-
-</div>
-
-<nav class="navbar bg-body-tertiary">
+@if(isAuthenticated()){
+<nav class="navbar bg-body-secondary">
     <form class="container-fluid justify-content-start">
-        <button class="btn btn-outline-success me-2" (click)="goHome()" type="button">
+        <button type="button" class="btn btn-outline-success me-2" (click)="goHome()">
             HOME
         </button>
-        <button type="button" (click)="logout()" class="btn btn-sm btn-outline-secondary m-1">
+        <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="logout()">
             LOGOUT
         </button>
     </form>
 </nav>
+}

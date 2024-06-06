@@ -8,10 +8,11 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
+
   private tokenKey = 'authToken';
   private apiUrl = 'http://localhost:3000'; // Cambia esto por la URL de tu servidor
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   register(username: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, { username, password });

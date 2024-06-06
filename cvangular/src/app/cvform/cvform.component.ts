@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '../data-service.service';
 import { Person } from '../models/cvPersonalData.model';
 import { Subscription } from 'rxjs';
@@ -10,11 +10,13 @@ import { Subscription } from 'rxjs';
   styleUrl: './cvform.component.scss'
 })
 export class CvformComponent implements OnInit, OnDestroy {
+
+  @Output() formChanged = new EventEmitter<any>();
+  private personalDataSubscription!: Subscription;
+
   productId!: number;
   personForm!: FormGroup;
   savedSuccess!: string;
-  @Output() formChanged = new EventEmitter<any>();
-  private personalDataSubscription!: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -56,10 +58,7 @@ export class CvformComponent implements OnInit, OnDestroy {
   get lastName() { return this.personForm.get('lastName'); }
   get city() { return this.personForm.get('city'); }
   get position() { return this.personForm.get('position'); }
-
-  get aboutDescriptions() {
-    return this.personForm.get('aboutDescriptions') as FormArray;
-  }
+  get aboutDescriptions() { return this.personForm.get('aboutDescriptions') as FormArray; }
 
   addAboutDescription() {
     this.aboutDescriptions.push(this.fb.control(''));
