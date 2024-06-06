@@ -4,17 +4,11 @@
 
 <nav class="navbar bg-body-tertiary">
     <form class="container-fluid justify-content-start">
-
-        <button class="btn btn-outline-success me-2" (click)="goHome()" type="button">HOME</button>
-
-        @for (aptitude of categories; track categories ){
-        <button type="button" class="btn btn-sm btn-outline-secondary m-1">
-            {{ aptitude }}
+        <button class="btn btn-outline-success me-2" (click)="goHome()" type="button">
+            HOME
         </button>
-        } @empty {
-        <div class="p-1">
-            CATEGORY HERE
-        </div>
-        }
+        <button type="button" (click)="logout()" class="btn btn-sm btn-outline-secondary m-1">
+            LOGOUT
+        </button>
     </form>
 </nav>

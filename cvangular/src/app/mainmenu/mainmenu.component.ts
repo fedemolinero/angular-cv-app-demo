@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { Menu } from '../models/menu.model';
 
 @Component({
   selector: 'app-mainmenu',
@@ -9,13 +11,34 @@ import { Router } from '@angular/router';
 export class MainmenuComponent {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
-  categories: string[] = ['ONE', 'TWO', 'TRES'];
+  menuGroup: Menu[] = [
+    {
+      id: 1, 
+      name: 'ONE',
+      link: ''
+    },
+    {
+      id: 2, 
+      name: 'TWO',
+      link: ''
+    },
+    {
+      id: 3, 
+      name: 'LOGOUT',
+      link: 'logout()'
+    }
+  ];
 
   goHome() {
     this.router.navigate(['']);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

@@ -9,8 +9,13 @@ import { DataWrapperComponent } from './data-wrapper/data-wrapper.component';
 import { MainmenuComponent } from './mainmenu/mainmenu.component';
 import { CvPreviewComponent } from './cvpreview/cvpreview.component';
 import { CvformComponent } from './cvform/cvform.component';
-import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CapitalizePipe } from './capitalize.pipe';
+import { HighlightDirective } from './highlight.directive';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DataWrapperComponent,
     MainmenuComponent,
     CvPreviewComponent,
-    CvformComponent
+    CvformComponent,
+    CapitalizePipe,
+    HighlightDirective,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +40,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   providers: [
     provideClientHydration(),
     provideHttpClient(withFetch()),
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
