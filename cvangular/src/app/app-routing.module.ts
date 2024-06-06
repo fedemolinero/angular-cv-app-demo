@@ -4,9 +4,11 @@ import { DataWrapperComponent } from './components/data-wrapper/data-wrapper.com
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { authGuard } from './guards/auth.guard';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  { path: '', component: DataWrapperComponent, canActivate: [authGuard] },
+  { path: '', component: HomeComponent },
+  { path: 'cv', component: DataWrapperComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: "**", redirectTo: "", pathMatch: "full" }

@@ -27,4 +27,8 @@ export class MainmenuComponent {
     this.authService.logout();
   }
 
+  goToCV() {
+    this.router.navigate(['cv']);
+  }
+  
 }
