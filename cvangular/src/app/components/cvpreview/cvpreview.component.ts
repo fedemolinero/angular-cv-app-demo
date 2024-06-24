@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from '../../services/data-service.service';
-import { Person } from '../../models/cvPersonalData.model';
+import { Person } from '../../models/person.model';
 
 @Component({
   selector: 'app-cv-preview',
