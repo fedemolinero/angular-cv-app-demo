@@ -7,13 +7,14 @@ import { PopupService } from './services/popup.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private popupService: PopupService) { }
+  constructor(private popupService: PopupService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
-        this.popupService.setShowPopup(true);
-        return throwError(() => new Error(error.message));
+        const errorMessage = error.message || 'An unknown error occurred';
+        this.popupService.setShowPopup(true, errorMessage);
+        return throwError(() => new Error(errorMessage));
       })
     );
   }

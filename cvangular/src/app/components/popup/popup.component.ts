@@ -9,12 +9,14 @@ import { PopupService } from '../../services/popup.service';
 })
 export class PopupComponent implements OnInit {
   showPopup: boolean = false;
+  message: string = '';
 
   constructor(private popupService: PopupService) {}
 
   ngOnInit(): void {
-    this.popupService.showPopup$.subscribe((show: boolean) => {
-      this.showPopup = show;
+    this.popupService.showPopup$.subscribe((data: { show: boolean, message: string }) => {
+      this.showPopup = data.show;
+      this.message = data.message;
     });
   }
 

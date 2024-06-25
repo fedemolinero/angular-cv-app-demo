@@ -6,15 +6,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PopupService {
-  private showPopupSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private showPopupSubject: BehaviorSubject<{ show: boolean, message: string }> = new BehaviorSubject<{ show: boolean, message: string }>({ show: false, message: '' });
 
   constructor() {}
 
-  get showPopup$(): Observable<boolean> {
+  get showPopup$(): Observable<{ show: boolean, message: string }> {
     return this.showPopupSubject.asObservable();
   }
 
-  setShowPopup(value: boolean): void {
-    this.showPopupSubject.next(value);
+  setShowPopup(show: boolean, message: string = ''): void {
+    this.showPopupSubject.next({ show, message });
   }
 }
