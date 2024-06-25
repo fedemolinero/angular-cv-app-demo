@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PopupService } from '../../services/popup.service';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private popupService: PopupService
   ) { }
 
   ngOnInit(): void {

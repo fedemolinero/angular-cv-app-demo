@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { MainmenuComponent } from './components/mainmenu/mainmenu.component';
 import { CvPreviewComponent } from './components/cvpreview/cvpreview.component';
 import { CvformComponent } from './components/cvform/cvform.component';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
@@ -17,6 +17,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { HomeComponent } from './components/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { PopupComponent } from './components/popup/popup.component';
+import { PopupService } from './services/popup.service';
+import { ErrorInterceptor } from './error.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,12 +32,14 @@ import { LayoutComponent } from './components/layout/layout.component';
     HighlightDirective,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    HttpClientModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule
@@ -42,6 +47,8 @@ import { LayoutComponent } from './components/layout/layout.component';
   providers: [
     provideClientHydration(),
     provideHttpClient(withFetch()),
+    PopupService,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     AuthService
   ],
   bootstrap: [AppComponent]

@@ -23,12 +23,20 @@ export class MainmenuComponent {
     this.router.navigate(['']);
   }
 
-  logout() {
+  goRegister() {
+    this.router.navigate(['register']);
+  }
+
+  goLogin() {
+    this.router.navigate(['login']);
+  }
+  
+  goLayout() {
+    this.router.navigate(['layout']);
+  }
+
+  goLogout() {
     this.authService.logout();
   }
 
-  goToLayout() {
-    this.router.navigate(['layout']);
-  }
-  
 }
