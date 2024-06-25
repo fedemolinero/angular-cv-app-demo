@@ -20,6 +20,8 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { PopupComponent } from './components/popup/popup.component';
 import { PopupService } from './services/popup.service';
 import { ErrorInterceptor } from './error.interceptor';
+import { ColorTogglerComponent } from './components/color-toggler/color-toggler.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -33,10 +35,12 @@ import { ErrorInterceptor } from './error.interceptor';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    PopupComponent
+    PopupComponent,
+    ColorTogglerComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,

@@ -1,6 +1,7 @@
 @if(!isAuthenticated()){
 <nav class="navbar bg-body-secondary">
-    <form class="container-fluid justify-content-start">
+
+    <div class="mainMenu">
         <button type="button" class="btn btn-outline-success me-2" (click)="goHome()">
             HOME
         </button>
@@ -16,6 +17,11 @@
         <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goLayout()">
             CV
         </button>
-    </form>
+    </div>
+
+    <div class="themeToggler">
+        <app-toggler></app-toggler>
+    </div>
+
 </nav>
 }
