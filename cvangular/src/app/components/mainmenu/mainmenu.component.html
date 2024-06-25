@@ -1,5 +1,5 @@
 @if(!isAuthenticated()){
-<nav class="navbar bg-body-secondary">
+<nav class="navbar">
 
     <div class="mainMenu">
         <button type="button" class="btn btn-outline-success me-2" (click)="goHome()">
@@ -19,9 +19,7 @@
         </button>
     </div>
 
-    <div class="themeToggler">
-        <app-toggler></app-toggler>
-    </div>
+    <app-toggler></app-toggler>
 
 </nav>
 }

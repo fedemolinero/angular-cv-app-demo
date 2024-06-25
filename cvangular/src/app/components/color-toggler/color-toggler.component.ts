@@ -1,6 +1,7 @@
 // toggler.component.ts
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TemplateService } from '../../services/template.service';
 
 @Component({
   selector: 'app-toggler',
@@ -19,15 +20,25 @@ import { Component } from '@angular/core';
     ])
   ]
 })
-export class ColorTogglerComponent {
 
-  constructor() { }
+export class ColorTogglerComponent implements OnInit {
 
+  flipState: boolean = false;
 
-  flip: string = 'inactive';
+  constructor(
+    private templateService: TemplateService
+  ) { }
+
+  ngOnInit(): void {
+    this.templateService.color$.subscribe(color => {
+      this.flipState = color;
+    });
+  }
 
   toggleFlip() {
-    this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
+    this.flipState = (this.flipState == false) ? true : false;
+    console.log(this.flipState)
+    this.templateService.setColorMode(this.flipState);
   }
 
 }

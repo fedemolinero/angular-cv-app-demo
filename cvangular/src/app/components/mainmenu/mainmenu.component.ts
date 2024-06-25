@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { Menu } from '../../models/menu.model';
 
 @Component({
   selector: 'app-mainmenu',
@@ -30,7 +29,7 @@ export class MainmenuComponent {
   goLogin() {
     this.router.navigate(['login']);
   }
-  
+
   goLayout() {
     this.router.navigate(['layout']);
   }

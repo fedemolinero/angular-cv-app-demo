@@ -1,25 +1,27 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import { delay, of } from 'rxjs';
 import { PopupService } from './services/popup.service';
+import { TemplateService } from './services/template.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'cvangular';
+  isButtonActive = false;
 
   constructor(
-    // private popupService: PopupService
+    private templateService: TemplateService,
+  ) { }
 
-  ) {
-    // Simula una respuesta falsa del observable
-    // of(false).pipe(delay(2000)).subscribe((response: boolean) => {
-    //   if (!response) {
-    //     this.popupService.setShowPopup(true);
-    //   }
-    // });
+  ngOnInit(): void {
+    this.templateService.color$
+      .subscribe(state => {
+        this.isButtonActive = state;
+      });
   }
+
 
 }
