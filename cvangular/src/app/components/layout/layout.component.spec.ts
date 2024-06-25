@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DataWrapperComponent } from './data-wrapper.component';
+import { LayoutComponent } from './layout.component';
 
-describe('DataWrapperComponent', () => {
-  let component: DataWrapperComponent;
-  let fixture: ComponentFixture<DataWrapperComponent>;
+describe('LayoutComponent', () => {
+  let component: LayoutComponent;
+  let fixture: ComponentFixture<LayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DataWrapperComponent]
+      declarations: [LayoutComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(DataWrapperComponent);
+    fixture = TestBed.createComponent(LayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

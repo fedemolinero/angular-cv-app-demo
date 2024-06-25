@@ -1,4 +1,4 @@
-@if(isAuthenticated()){
+@if(!isAuthenticated()){
 <nav class="navbar bg-body-secondary">
     <form class="container-fluid justify-content-start">
         <button type="button" class="btn btn-outline-success me-2" (click)="goHome()">
@@ -7,7 +7,7 @@
         <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="logout()">
             LOGOUT
         </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goToCV()">
+        <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goToLayout()">
             CV
         </button>
     </form>

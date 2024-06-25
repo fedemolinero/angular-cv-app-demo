@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
-import { DataWrapperComponent } from './components/data-wrapper/data-wrapper.component';
 import { MainmenuComponent } from './components/mainmenu/mainmenu.component';
 import { CvPreviewComponent } from './components/cvpreview/cvpreview.component';
 import { CvformComponent } from './components/cvform/cvform.component';
@@ -17,11 +16,12 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { HomeComponent } from './components/home/home.component';
+import { LayoutComponent } from './components/layout/layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DataWrapperComponent,
+    LayoutComponent,
     MainmenuComponent,
     CvPreviewComponent,
     CvformComponent,

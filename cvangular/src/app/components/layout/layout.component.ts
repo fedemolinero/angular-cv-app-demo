@@ -4,11 +4,11 @@ import { DataService } from '../../services/data-service.service';
 import { Person } from '../../models/person.model';
 
 @Component({
-  selector: 'app-data-wrapper',
-  templateUrl: './data-wrapper.component.html',
-  styleUrl: './data-wrapper.component.scss'
+  selector: 'app-layout',
+  templateUrl: './layout.component.html',
+  styleUrl: './layout.component.scss'
 })
-export class DataWrapperComponent implements OnInit, OnDestroy {
+export class LayoutComponent implements OnInit, OnDestroy {
 
   personalData: any;
   private personalDataSubscription: Subscription | undefined;
