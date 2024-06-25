@@ -1,8 +1,9 @@
 <!-- popup.component.html -->
 <div *ngIf="showPopup" class="popup">
-    <div class="popup-content">
-      <span class="close" (click)="closePopup()">&times;</span>
-      <p>{{ message }}</p>
+  <div class="popup-content">
+    <div *ngFor="let message of messages" class="message">
+      <span>{{ message.message }}</span>
+      <span class="close" (click)="closePopup(message.id)">&times;</span>
     </div>
   </div>
-  
+</div>

@@ -2,6 +2,11 @@
 import { Component, OnInit } from '@angular/core';
 import { PopupService } from '../../services/popup.service';
 
+interface PopupMessage {
+  id: number;
+  message: string;
+}
+
 @Component({
   selector: 'app-popup',
   templateUrl: './popup.component.html',
@@ -9,18 +14,18 @@ import { PopupService } from '../../services/popup.service';
 })
 export class PopupComponent implements OnInit {
   showPopup: boolean = false;
-  message: string = '';
+  messages: PopupMessage[] = [];
 
   constructor(private popupService: PopupService) {}
 
   ngOnInit(): void {
-    this.popupService.showPopup$.subscribe((data: { show: boolean, message: string }) => {
+    this.popupService.showPopup$.subscribe((data: { show: boolean, messages: PopupMessage[] }) => {
       this.showPopup = data.show;
-      this.message = data.message;
+      this.messages = data.messages;
     });
   }
 
-  closePopup(): void {
-    this.popupService.setShowPopup(false);
+  closePopup(id: number): void {
+    this.popupService.removeErrorMessage(id);
   }
 }
