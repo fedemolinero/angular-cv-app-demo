@@ -26,33 +26,34 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     LayoutComponent,
     MainmenuComponent,
     CvPreviewComponent,
     CvformComponent,
-    CapitalizePipe,
-    HighlightDirective,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
     PopupComponent,
+
+    CapitalizePipe,
+    HighlightDirective,
     ColorTogglerComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    NgbModule,
     HttpClientModule,
-    CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     provideClientHydration(),
     provideHttpClient(withFetch()),
-    PopupService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    PopupService,
     AuthService
   ],
   bootstrap: [AppComponent]

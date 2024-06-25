@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { DataService } from '../../services/data-service.service';
-import { Person } from '../../models/person.model';
+import { DataService } from '@services/data-service.service';
+import { Person } from '@models/person.model';
 
 @Component({
   selector: 'app-layout',

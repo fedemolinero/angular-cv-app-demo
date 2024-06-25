@@ -1,6 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
-import { delay, of } from 'rxjs';
-import { PopupService } from './services/popup.service';
+import { Component, OnInit } from '@angular/core';
 import { TemplateService } from './services/template.service';
 
 @Component({

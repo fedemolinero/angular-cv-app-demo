@@ -1,7 +1,8 @@
 // toggler.component.ts
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
-import { TemplateService } from '../../services/template.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { TemplateService } from '@services/template.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-toggler',
@@ -21,18 +22,26 @@ import { TemplateService } from '../../services/template.service';
   ]
 })
 
-export class ColorTogglerComponent implements OnInit {
+export class ColorTogglerComponent implements OnInit, OnDestroy {
 
   flipState: string = 'inactive';
+  private destroy$ = new Subject<void>();
 
   constructor(
     private templateService: TemplateService
   ) { }
 
   ngOnInit(): void {
-    this.templateService.color$.subscribe(color => {
-      this.flipState = color;
-    });
+    this.templateService.color$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(color => {
+        this.flipState = color;
+      });
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   toggleFlip() {
