@@ -1,15 +1,28 @@
 @import 'bootstrap/scss/bootstrap';
 
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans+Mono:ital@0;1&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('assets/fonts/Ubuntu-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
-/* Importing Bootstrap SCSS file. */
-// @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@font-face {
+    font-family: 'Dosis';
+    src: url('assets/fonts/Dosis-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 body {
-    //   font-family: 'Open Sans', sans-serif; // Use Open Sans font, fallback to sans-serif
     font-family: "Ubuntu", sans-serif;
     font-weight: 400;
     font-style: normal;
+}
+
+.dosis-font {
+    font-family: 'Dosis', sans-serif;
 }
 
 // THEMING: DARK OR LIGHT MODE
@@ -28,8 +41,7 @@ $dark-bg: #000000;
     transition: background-color 0.3s;
 }
 
-
-.appMain{
+.appMain {
     width: 100%;
     height: 100vh;
 }

@@ -1,7 +1,10 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
 
+    <h1>LOGIN</h1>
+
     <form [formGroup]="loginForm" (ngSubmit)="login()">
+
       <div class="input-group mt-3 mb-3">
         <span id="usernameLabel" class="input-group-text">Username</span>
         <input id="username" type="text" class="form-control form-control-lg" formControlName="username" [ngClass]="{
@@ -13,8 +16,8 @@
           Please choose a username.
         </div>
       </div>
-      <div class="input-group mt-3 mb-3">
 
+      <div class="input-group mt-3 mb-3">
         <span id="passwordLabel" class="input-group-text">Password</span>
         <input id="password" type="text" class="form-control form-control-lg" formControlName="password" [ngClass]="{
           'is-valid': password!.valid && (password!.dirty || password!.touched),
@@ -25,10 +28,10 @@
           class="invalid-feedback">
           Please choose a password.
         </div>
-
-
       </div>
+
       <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="loginForm.invalid">Submit</button>
+
     </form>
 
   </div>
