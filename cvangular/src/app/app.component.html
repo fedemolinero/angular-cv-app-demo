@@ -1,5 +1,6 @@
-<div class="container-fluid" [ngClass]="{'clear': isButtonActive, 'dark': !isButtonActive}">
+<app-popup></app-popup>
+
+<div class="container-fluid appMain" [ngClass]="{'clear': !isButtonActive, 'dark': isButtonActive}">
     <app-mainmenu></app-mainmenu>
     <router-outlet />
-    <app-popup></app-popup>
 </div>

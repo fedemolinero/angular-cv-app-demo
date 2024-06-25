@@ -10,7 +10,7 @@ import { TemplateService } from './services/template.service';
 })
 export class AppComponent implements OnInit {
   title = 'cvangular';
-  isButtonActive = false;
+  isButtonActive = true;
 
   constructor(
     private templateService: TemplateService,
@@ -19,9 +19,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.templateService.color$
       .subscribe(state => {
-        this.isButtonActive = state;
+        (state == 'active') ? this.isButtonActive = true : this.isButtonActive = false;
       });
   }
-
 
 }

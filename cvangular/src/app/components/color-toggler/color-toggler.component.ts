@@ -23,7 +23,7 @@ import { TemplateService } from '../../services/template.service';
 
 export class ColorTogglerComponent implements OnInit {
 
-  flipState: boolean = false;
+  flipState: string = 'inactive';
 
   constructor(
     private templateService: TemplateService
@@ -36,8 +36,7 @@ export class ColorTogglerComponent implements OnInit {
   }
 
   toggleFlip() {
-    this.flipState = (this.flipState == false) ? true : false;
-    console.log(this.flipState)
+    this.flipState = (this.flipState == 'inactive') ? 'active' : 'inactive';
     this.templateService.setColorMode(this.flipState);
   }
 
