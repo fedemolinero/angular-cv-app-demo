@@ -47,3 +47,16 @@ $dark-bg: #000000;
 .padded {
     padding: 5rem;
 }
+
+.tooltip {
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 1000;
+    white-space: nowrap;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    font-size: 12px;
+    transition: opacity 0.3s;
+}

@@ -11,7 +11,6 @@ import { CvformComponent } from './components/cvform/cvform.component';
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
-import { HighlightDirective } from './directives/highlight.directive';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
@@ -19,10 +18,11 @@ import { HomeComponent } from './components/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { PopupComponent } from './components/popup/popup.component';
 import { PopupService } from './services/popup.service';
-import { ErrorInterceptor } from './error.interceptor';
+import { ErrorInterceptor } from './guards/error.interceptor';
 import { ColorTogglerComponent } from './components/color-toggler/color-toggler.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './components/footer/footer.component';
+import { TooltipDirective } from './directives/tooltip.directive';
 
 @NgModule({
   declarations: [
@@ -37,9 +37,9 @@ import { FooterComponent } from './components/footer/footer.component';
     PopupComponent,
 
     CapitalizePipe,
-    HighlightDirective,
     ColorTogglerComponent,
-    FooterComponent
+    FooterComponent,
+    TooltipDirective
   ],
   imports: [
     CommonModule,
