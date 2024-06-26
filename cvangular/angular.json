@@ -22,11 +22,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
             "outputPath": "dist/cvangular",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
+
             "polyfills": [
               "zone.js"
             ],
@@ -34,18 +35,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "src/assets/fonts"
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss"
             ],
             "scripts": [],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
           },
           "configurations": {
             "production": {
@@ -100,8 +95,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              "src/assets/fonts"
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss"
