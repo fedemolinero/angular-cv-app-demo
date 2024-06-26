@@ -1,5 +1,6 @@
 <!-- popup.component.html -->
-<div *ngIf="showPopup" class="popup">
+@if (showPopup){
+<div class="popup">
   <div class="popup-content">
     <div *ngFor="let message of messages" class="message">
       <span>{{ message.message }}</span>
@@ -7,3 +8,4 @@
     </div>
   </div>
 </div>
+}

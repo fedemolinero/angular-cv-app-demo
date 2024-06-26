@@ -10,10 +10,12 @@
           'is-valid': username!.valid && (username!.dirty || username!.touched),
           'is-invalid': username!.invalid && (username!.dirty || username!.touched)
         }">
-      <div *ngIf="loginForm.invalid && (username!.dirty || username!.touched)" id="validationUsernameFeedback"
-        class="invalid-feedback">
+
+      @if (loginForm.invalid && (username!.dirty || username!.touched)){
+      <div id="validationUsernameFeedback" class="invalid-feedback">
         Please choose a username.
       </div>
+      }
     </div>
 
     <div class="input-group mt-3 mb-3">
@@ -23,10 +25,11 @@
           'is-invalid': password!.invalid && (password!.dirty || password!.touched)
         }">
 
-      <div *ngIf="loginForm.invalid && (password!.dirty || password!.touched)" id="validationPasswordFeedback"
-        class="invalid-feedback">
+      @if (loginForm.invalid && (password!.dirty || password!.touched)){
+      <div id="validationPasswordFeedback" class="invalid-feedback">
         Please choose a password.
       </div>
+      }
     </div>
 
     <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="loginForm.invalid">Submit</button>
