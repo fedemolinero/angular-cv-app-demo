@@ -29,8 +29,8 @@ body {
 }
 
 // THEMING: DARK OR LIGHT MODE
-$clear-bg: #ffffff;
-$dark-bg: #000000;
+$clear-bg: #e9ecef;
+$dark-bg: #0d1b2a;
 
 .clear {
     background-color: $clear-bg;
@@ -48,21 +48,8 @@ $dark-bg: #000000;
     padding: 5rem;
 }
 
-// .customTooltip {
-//     background-color: black;
-//     color: white;
-//     padding: 5px 10px;
-//     border-radius: 4px;
-//     position: absolute;
-//     /* Use 'fixed' instead of 'absolute' */
-//     z-index: 1000;
-//     white-space: nowrap;
-//     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-//     font-size: 12px;
-//     transition: opacity 0.3s;
-// }
 
-
+// Tooltip
 .tooltip-wrapper [tooltip] {
     display: inline-block;
 }
@@ -120,4 +107,10 @@ $dark-bg: #000000;
 
 .customTooltip-show {
     opacity: 1;
+}
+
+
+//FORMS
+.input-group-text {
+    font-size: 1em;
 }

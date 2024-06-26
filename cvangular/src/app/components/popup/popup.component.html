@@ -2,10 +2,12 @@
 @if (showPopup){
 <div class="popup">
   <div class="popup-content">
-    <div *ngFor="let message of messages" class="message">
+    @for (message of messages; track message){
+    <div class="message">
       <span>{{ message.message }}</span>
       <span class="close" (click)="closePopup(message.id)">&times;</span>
     </div>
+    }
   </div>
 </div>
 }
