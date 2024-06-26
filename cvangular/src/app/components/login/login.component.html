@@ -1,38 +1,36 @@
-<div class="container-fluid">
-  <div class="row">
+<div class="container-fluid d-flex flex-column align-items-center justify-content-center padded">
 
-    <h1>LOGIN</h1>
+  <h1>LOGIN</h1>
 
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
 
-      <div class="input-group mt-3 mb-3">
-        <span id="usernameLabel" class="input-group-text">Username</span>
-        <input id="username" type="text" class="form-control form-control-lg" formControlName="username" [ngClass]="{
+    <div class="input-group mt-3 mb-3">
+      <span id="usernameLabel" class="input-group-text">Username</span>
+      <input id="username" type="text" class="form-control form-control-lg" formControlName="username" [ngClass]="{
           'is-valid': username!.valid && (username!.dirty || username!.touched),
           'is-invalid': username!.invalid && (username!.dirty || username!.touched)
         }">
-        <div *ngIf="loginForm.invalid && (username!.dirty || username!.touched)" id="validationUsernameFeedback"
-          class="invalid-feedback">
-          Please choose a username.
-        </div>
+      <div *ngIf="loginForm.invalid && (username!.dirty || username!.touched)" id="validationUsernameFeedback"
+        class="invalid-feedback">
+        Please choose a username.
       </div>
+    </div>
 
-      <div class="input-group mt-3 mb-3">
-        <span id="passwordLabel" class="input-group-text">Password</span>
-        <input id="password" type="text" class="form-control form-control-lg" formControlName="password" [ngClass]="{
+    <div class="input-group mt-3 mb-3">
+      <span id="passwordLabel" class="input-group-text">Password</span>
+      <input id="password" type="text" class="form-control form-control-lg" formControlName="password" [ngClass]="{
           'is-valid': password!.valid && (password!.dirty || password!.touched),
           'is-invalid': password!.invalid && (password!.dirty || password!.touched)
         }">
 
-        <div *ngIf="loginForm.invalid && (password!.dirty || password!.touched)" id="validationPasswordFeedback"
-          class="invalid-feedback">
-          Please choose a password.
-        </div>
+      <div *ngIf="loginForm.invalid && (password!.dirty || password!.touched)" id="validationPasswordFeedback"
+        class="invalid-feedback">
+        Please choose a password.
       </div>
+    </div>
 
-      <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="loginForm.invalid">Submit</button>
+    <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="loginForm.invalid">Submit</button>
 
-    </form>
+  </form>
 
-  </div>
 </div>

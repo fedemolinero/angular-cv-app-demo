@@ -22,6 +22,7 @@ import { PopupService } from './services/popup.service';
 import { ErrorInterceptor } from './error.interceptor';
 import { ColorTogglerComponent } from './components/color-toggler/color-toggler.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
     CapitalizePipe,
     HighlightDirective,
-    ColorTogglerComponent
+    ColorTogglerComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
