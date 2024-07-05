@@ -1,7 +1,6 @@
 import { Component, Input, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@services/auth.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-mainmenu',

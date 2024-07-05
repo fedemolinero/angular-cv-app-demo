@@ -1,7 +1,11 @@
 <app-popup></app-popup>
-<app-mainmenu [isAuthenticated]="isAuthenticated$ | async"></app-mainmenu>
 
-<div class="container-fluid ptvh-10 pbvh-10" [ngClass]="{'clear': !isButtonActive, 'dark': isButtonActive}">
-    <router-outlet />
+<div class="container-fluid" [ngClass]="{'clear': !isButtonActive, 'dark': isButtonActive}">
+    <app-mainmenu [isAuthenticated]="isAuthenticated$ | async"></app-mainmenu>
+
+    <div class="ptvh-10 pbvh-10">
+        <router-outlet />
+    </div>
+
+    <app-footer></app-footer>
 </div>
-<app-footer></app-footer>
