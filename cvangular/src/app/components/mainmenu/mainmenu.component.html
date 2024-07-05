@@ -12,12 +12,15 @@
         <button type="button" class="btn btn-outline-success me-2" (click)="goHome()">
             HOME
         </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goLogin()">
-            LOGIN
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goRegister()">
+        <div class="tooltip-wrapper">
+            <button type="button" tooltip="Login or Register" placement="bottom" delay="500"
+                class="btn btn-sm btn-outline-secondary m-1" (click)="goLogin()">
+                LOGIN
+            </button>
+        </div>
+        <!-- <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goRegister()">
             REGISTER
-        </button>
+        </button> -->
         }
     </div>
 
