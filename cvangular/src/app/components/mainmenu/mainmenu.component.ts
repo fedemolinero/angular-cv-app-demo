@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-mainmenu',
@@ -9,14 +10,12 @@ import { AuthService } from '@services/auth.service';
 })
 export class MainmenuComponent {
 
+  @Input() isAuthenticated!: boolean | null;
+
   constructor(
     private router: Router,
     private authService: AuthService
   ) { }
-
-  isAuthenticated(): boolean {
-    return this.authService.isAuthenticated();
-  }
 
   goHome() {
     this.router.navigate(['']);

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TemplateService } from './services/template.service';
+import { AuthService } from './services/auth.service';
+import { Observable } from 'rxjs/internal/Observable';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,16 +12,23 @@ import { TemplateService } from './services/template.service';
 export class AppComponent implements OnInit {
   title = 'cvangular';
   isButtonActive = true;
+  isAuthenticated$!: Observable<boolean>;
 
   constructor(
     private templateService: TemplateService,
+    private authService: AuthService
+
   ) { }
 
   ngOnInit(): void {
+
+    this.isAuthenticated$ = of(this.authService.isAuthenticated());
+
     this.templateService.color$
       .subscribe(state => {
         (state == 'active') ? this.isButtonActive = true : this.isButtonActive = false;
       });
+
   }
 
 }

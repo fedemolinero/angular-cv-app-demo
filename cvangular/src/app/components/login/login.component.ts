@@ -43,18 +43,22 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login() {
 
-    this.loginSubscription = this.authService.login(this.loginForm.controls['username'].value, this.loginForm.controls['username'].value)
-      .subscribe(
-        {
-          next: (response: any) => {
-            console.log('login successfull', response);
-            this.router.navigate(['/cv']);
-          },
-          error: (e) => {
-            console.error(e);
+    this.loginSubscription =
+      this.authService.login(
+        this.loginForm.controls['username'].value,
+        this.loginForm.controls['password'].value
+      )
+        .subscribe(
+          {
+            next: (response: any) => {
+              console.log('login successfull', response);
+              this.router.navigate(['/cv']);
+            },
+            error: (e) => {
+              console.error(e);
+            }
           }
-        }
-      );
+        );
 
   }
 

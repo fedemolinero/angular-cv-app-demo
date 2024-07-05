@@ -1,7 +1,14 @@
-@if(!isAuthenticated()){
 <nav class="navbar">
 
     <div class="mainMenu">
+        @if(isAuthenticated){
+        <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goLogout()">
+            LOGOUT
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goLayout()">
+            CV
+        </button>
+        } @else {
         <button type="button" class="btn btn-outline-success me-2" (click)="goHome()">
             HOME
         </button>
@@ -11,15 +18,9 @@
         <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goRegister()">
             REGISTER
         </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goLogout()">
-            LOGOUT
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goLayout()">
-            CV
-        </button>
+        }
     </div>
 
     <app-toggler></app-toggler>
 
 </nav>
-}

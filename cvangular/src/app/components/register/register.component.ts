@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@services/auth.service';
-import { PopupService } from '@services/popup.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +17,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private popupService: PopupService
   ) { }
 
   ngOnInit(): void {
