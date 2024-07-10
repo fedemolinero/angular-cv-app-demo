@@ -1,5 +1,7 @@
 <app-popup></app-popup>
 
+<app-buttontoggler></app-buttontoggler>
+
 <div class="container-fluid" [ngClass]="{'clear': !isButtonActive, 'dark': isButtonActive}">
     <app-mainmenu [isAuthenticated]="isAuthenticated$ | async"></app-mainmenu>
 

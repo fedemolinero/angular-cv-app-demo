@@ -1,0 +1,6 @@
+<div class="button-container">
+  <button *ngFor="let btn of buttons; let i = index" [style.top]="btn.y + 'px'" [style.left]="btn.x + 'px'"
+    (click)="swap(i)">
+    {{ btn.label }}
+  </button>
+</div>

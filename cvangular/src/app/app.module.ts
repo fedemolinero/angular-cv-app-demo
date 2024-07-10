@@ -23,6 +23,7 @@ import { ColorTogglerComponent } from './components/color-toggler/color-toggler.
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './components/footer/footer.component';
 import { TooltipDirective } from './directives/tooltip.directive';
+import { ButtontogglerComponent } from './components/buttontoggler/buttontoggler.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { TooltipDirective } from './directives/tooltip.directive';
     CapitalizePipe,
     ColorTogglerComponent,
     FooterComponent,
-    TooltipDirective
+    TooltipDirective,
+    ButtontogglerComponent
   ],
   imports: [
     CommonModule,

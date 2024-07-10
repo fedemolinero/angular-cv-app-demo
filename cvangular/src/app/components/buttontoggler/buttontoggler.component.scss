@@ -1,0 +1,13 @@
+.button-container {
+    width: 315px;
+    height: 115px;
+    position: relative;
+  }
+  
+  button {
+    width: 100px;
+    height: 50px;
+    margin: 5px;
+    position: absolute;
+    transition: all 0.5s ease-in-out;
+  }
