@@ -5,8 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './buttontoggler.component.html',
   styleUrl: './buttontoggler.component.scss'
 })
+
 export class ButtontogglerComponent {
   name = 'Angular';
+
   buttons = [
     { label: 'Button 1', x: 0, y: 0 },
     { label: 'Button 2', x: 105, y: 0 },
@@ -26,11 +28,14 @@ export class ButtontogglerComponent {
 
     const prevX = this.buttons[this.selectedButtonIndex].x;
     const prevY = this.buttons[this.selectedButtonIndex].y;
+
     this.buttons[this.selectedButtonIndex].x = this.buttons[currentIndex].x;
     this.buttons[this.selectedButtonIndex].y = this.buttons[currentIndex].y;
+
     this.buttons[currentIndex].x = prevX;
     this.buttons[currentIndex].y = prevY;
 
     this.selectedButtonIndex = null;
   }
+
 }

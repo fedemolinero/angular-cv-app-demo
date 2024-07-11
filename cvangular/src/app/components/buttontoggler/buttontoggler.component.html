@@ -1,6 +1,16 @@
 <div class="button-container">
-  <button *ngFor="let btn of buttons; let i = index" [style.top]="btn.y + 'px'" [style.left]="btn.x + 'px'"
-    (click)="swap(i)">
+  <!-- NOTE: implementation of ngfor loop in new angular 17 feature -->
+  @for (btn of buttons; track btn; let i = $index){
+  <button class="btn btn-primary" [style.top]="btn.y + 'px'" [style.left]="btn.x + 'px'" (click)="swap(i)">
     {{ btn.label }}
   </button>
+  }
+</div>
+
+<div class="tooltip-wrapper">
+
+  <div tooltip="tootip on bottom" placement="bottom" delay="500">
+    <button class="btn btn-primary">tootip on bottom</button>
+  </div>
+
 </div>

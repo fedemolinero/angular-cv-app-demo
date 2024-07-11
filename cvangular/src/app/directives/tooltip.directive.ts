@@ -48,11 +48,11 @@ export class TooltipDirective {
     this.renderer.addClass(this.tooltip, 'customTooltip');
     this.renderer.addClass(this.tooltip, `customTooltip-${this.placement}`);
 
-    // delay 설정
     this.renderer.setStyle(this.tooltip, '-webkit-transition', `opacity ${this.delay}ms`);
     this.renderer.setStyle(this.tooltip, '-moz-transition', `opacity ${this.delay}ms`);
     this.renderer.setStyle(this.tooltip, '-o-transition', `opacity ${this.delay}ms`);
     this.renderer.setStyle(this.tooltip, 'transition', `opacity ${this.delay}ms`);
+    // debugger;
   }
 
   setPosition() {
