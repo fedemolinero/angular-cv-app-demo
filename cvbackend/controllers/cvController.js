@@ -1,39 +1,30 @@
 const { readData } = require('../utils/fileHandler');
 
-const createCv = (req, res) => {
-  const cvData = req.body;
-  const cvs = readData().cvs || [];
-  cvs.push(cvData);
-  writeData({ cvs });
-  res.status(201).send(cvData);
-};
-
-const getCv = (req, res) => {
-  const data = readData();
-  if (data) {
-    res.send(data);
-  } else {
-    res.status(500).send({ message: 'Error al obtener los datos del CV' });
+const getAllCvIds = (req, res) => {
+  try {
+    const data = readData();
+    const resumeId = data.id;
+    res.status(200).json({ resumeId });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };
 
-// Implementación para obtener un CV por ID
 const getCvById = (req, res) => {
-  const { cvId } = req.params;
-  const data = readData();
-  const cvs = data.cvs || [];
-
-  const cv = cvs.find(cv => cv.id === cvId); // Suponiendo que cada CV tiene un campo 'id'
-
-  if (cv) {
-    res.status(200).send(cv);
-  } else {
-    res.status(404).send({ message: `CV with ID ${cvId} not found` });
+  const { id } = req.params;
+  try {
+    const data = readData();
+    if (data.id.toString() === id) {
+      res.status(200).json(data);
+    } else {
+      res.status(404).json({ message: `CV with ID ${id} not found` });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };
 
 module.exports = {
-  createCv,
-  getCv,
+  getAllCvIds,
   getCvById,
 };

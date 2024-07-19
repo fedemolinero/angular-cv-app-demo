@@ -14,8 +14,10 @@ app.get('/', (req, res) => {
   res.send('API Running');
 });
 
-// Llamada de ejemplo
-// http://localhost:3000/api/cv/get-cv
+// Example call:
+// ALL: http://localhost:3000/api/cv/get-cv/
+// ID: http://localhost:3000/api/cv/get-cv/258139
+
 
 
 app.listen(port, () => {
