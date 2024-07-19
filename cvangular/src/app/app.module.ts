@@ -24,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './components/footer/footer.component';
 import { TooltipDirective } from './directives/tooltip.directive';
 import { ButtontogglerComponent } from './components/buttontoggler/buttontoggler.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ButtontogglerComponent } from './components/buttontoggler/buttontoggler
     ColorTogglerComponent,
     FooterComponent,
     TooltipDirective,
-    ButtontogglerComponent
+    ButtontogglerComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,

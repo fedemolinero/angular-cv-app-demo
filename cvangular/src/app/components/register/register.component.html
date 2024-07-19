@@ -2,7 +2,7 @@
 
   <h1>REGISTER</h1>
 
-  <form [formGroup]="registerForm" (ngSubmit)="register()">
+  <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
 
     <div class="input-group mt-5 mb-3">
       <label for="username" class="input-group-text">Username</label>
@@ -16,11 +16,16 @@
              }"
              aria-labelledby="usernameLabel"
              aria-describedby="validationUsernameFeedback"
-             required>
+             required
+             (blur)="username?.markAsTouched()">
 
       <div id="validationUsernameFeedback" class="invalid-feedback" role="alert"
-           *ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched)">
-        Please choose a valid username.
+           *ngIf="username?.errors?.['required'] && username?.touched">
+        Username is required.
+      </div>
+      <div id="validationUsernameFeedback" class="invalid-feedback" role="alert"
+           *ngIf="username?.errors?.['minlength'] && username?.touched">
+        Username must be at least 4 characters long.
       </div>
     </div>
 
@@ -36,19 +41,29 @@
              }"
              aria-labelledby="passwordLabel"
              aria-describedby="validationPasswordFeedback"
-             required>
+             required
+             (blur)="password?.markAsTouched()">
 
       <div id="validationPasswordFeedback" class="invalid-feedback" role="alert"
-           *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)">
-        Please choose a valid password.
+           *ngIf="password?.errors?.['required'] && password?.touched">
+        Password is required.
+      </div>
+      <div id="validationPasswordFeedback" class="invalid-feedback" role="alert"
+           *ngIf="password?.errors?.['minlength'] && password?.touched">
+        Password must be at least 6 characters long.
       </div>
     </div>
 
     <button type="submit"
             class="btn btn-primary btn-lg w-100 btn-block mt-3 mb-3"
-            [disabled]="registerForm.invalid">
-      REGISTER
+            [disabled]="registerForm.invalid || isLoading">
+      {{ isLoading ? 'Loading...' : 'REGISTER' }}
     </button>
+
+    <div class="alert alert-danger mt-3" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
   </form>
 
 </div>

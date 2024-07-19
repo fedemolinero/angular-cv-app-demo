@@ -69,7 +69,7 @@ export class AuthService {
 
     if (!refreshToken) {
       // Manejar el caso cuando no hay refresh token disponible
-      return throwError('No hay refresh token disponible') as Observable<string | null>;
+      return throwError(() => 'No hay refresh token disponible') as Observable<string | null>;
     }
 
     return this.http.post<ResponseModel>(`${this.apiUrl}/api/auth/refresh-token`, { refreshToken })
