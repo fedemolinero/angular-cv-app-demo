@@ -6,7 +6,7 @@ import {
   HttpEvent,
   HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, throwError, BehaviorSubject, of } from 'rxjs';
+import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { catchError, switchMap, filter, take, finalize } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
@@ -31,7 +31,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (error.status === 401) {
           return this.handle401Error(req, next);
         } else {
-          return throwError(error);
+          return throwError(() => error); // Utilizar función de fábrica para crear el error
         }
       })
     );
@@ -64,12 +64,12 @@ export class AuthInterceptor implements HttpInterceptor {
 
           // Si no se pudo obtener un nuevo token, manejar según la lógica de tu aplicación
           this.authService.logout(); // Cerrar sesión o manejar el error
-          return throwError('No se pudo obtener un nuevo token');
+          return throwError(() => new Error('No se pudo obtener un nuevo token'));
         }),
         catchError((error) => {
           // Manejar el error de refreshToken, por ejemplo, cerrar sesión o manejar de acuerdo a la lógica de tu aplicación
           this.authService.logout(); 
-          return throwError(error);
+          return throwError(() => error);
         }),
         finalize(() => {
           this.isRefreshing = false;
