@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { ResponseModel } from '@app/models/response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,18 +15,18 @@ export class AuthService {
 
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
-  
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  register(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/api/auth/register`, { username, password });
+  register(username: string, password: string): Observable<ResponseModel> {
+    return this.http.post<ResponseModel>(`${this.apiUrl}/api/auth/register`, { username, password });
   }
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/api/auth/login`, { username, password })
+  login(username: string, password: string): Observable<ResponseModel> {
+    return this.http.post<ResponseModel>(`${this.apiUrl}/api/auth/login`, { username, password })
       .pipe(
-        tap((response: any) => {
+        tap((response: ResponseModel) => {
+          console.log('response', response)
           if (response.token) {
             this.setToken(response.token);
             this.isAuthenticatedSubject.next(true);

@@ -23,11 +23,11 @@ export class TooltipDirective {
   show() {
     this.create();
     this.setPosition();
-    this.renderer.addClass(this.tooltip, 'customTooltip-show');
+    this.renderer?.addClass(this.tooltip, 'customTooltip-show');
   }
 
   hide() {
-    this.renderer.removeClass(this.tooltip, 'customTooltip-show');
+    this.renderer?.removeClass(this.tooltip, 'customTooltip-show');
     window.setTimeout(() => {
       this.renderer.removeChild(document.body, this.tooltip);
       this.tooltip = null;

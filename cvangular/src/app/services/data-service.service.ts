@@ -12,10 +12,10 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   createCv(cvData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/api/create-cv`, cvData);
+    return this.http.post(`${this.apiUrl}/api/cv/create-cv`, cvData);
   }
 
   getCv(): Observable<Person> {
-    return this.http.get<Person>(`${this.apiUrl}/api/get-cv`);
+    return this.http.get<Person>(`${this.apiUrl}/api/cv/get-cv`);
   }
 }
