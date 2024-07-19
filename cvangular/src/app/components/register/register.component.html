@@ -5,35 +5,50 @@
   <form [formGroup]="registerForm" (ngSubmit)="register()">
 
     <div class="input-group mt-5 mb-3">
-      <span id="usernameLabel" class="input-group-text">Username</span>
-      <input id="username" type="text" class="form-control form-control-lg" formControlName="username" [ngClass]="{
-          'is-valid': username?.valid && (username?.dirty || username?.touched),
-          'is-invalid': username?.invalid && (username?.dirty || username?.touched)
-        }">
+      <label for="username" class="input-group-text">Username</label>
+      <input id="username"
+             type="text"
+             class="form-control form-control-lg"
+             formControlName="username"
+             [ngClass]="{
+               'is-valid': username?.valid && (username?.dirty || username?.touched),
+               'is-invalid': username?.invalid && (username?.dirty || username?.touched)
+             }"
+             aria-labelledby="usernameLabel"
+             aria-describedby="validationUsernameFeedback"
+             required>
 
-      @if (registerForm.invalid && (username?.dirty || username?.touched)){
-      <div id="validationUsernameFeedback" class="invalid-feedback">
-        Please choose a username.
+      <div id="validationUsernameFeedback" class="invalid-feedback" role="alert"
+           *ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched)">
+        Please choose a valid username.
       </div>
-      }
     </div>
 
     <div class="input-group mt-5 mb-3">
-      <span id="passwordLabel" class="input-group-text">Password</span>
-      <input id="password" type="text" class="form-control form-control-lg" formControlName="password" [ngClass]="{
-          'is-valid': password?.valid && (password?.dirty || password?.touched),
-          'is-invalid': password?.invalid && (password?.dirty || password?.touched)
-        }">
+      <label for="password" class="input-group-text">Password</label>
+      <input id="password"
+             type="password"
+             class="form-control form-control-lg"
+             formControlName="password"
+             [ngClass]="{
+               'is-valid': password?.valid && (password?.dirty || password?.touched),
+               'is-invalid': password?.invalid && (password?.dirty || password?.touched)
+             }"
+             aria-labelledby="passwordLabel"
+             aria-describedby="validationPasswordFeedback"
+             required>
 
-      @if (registerForm.invalid && (password?.dirty || password?.touched)){
-      <div id="validationPasswordFeedback" class="invalid-feedback">
-        Please choose a password.
+      <div id="validationPasswordFeedback" class="invalid-feedback" role="alert"
+           *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)">
+        Please choose a valid password.
       </div>
-      }
     </div>
 
-    <button type="submit" class="btn btn-primary btn-lg w-100 btn-block mt-3 mb-3"
-      [disabled]="registerForm.invalid">REGISTER</button>
+    <button type="submit"
+            class="btn btn-primary btn-lg w-100 btn-block mt-3 mb-3"
+            [disabled]="registerForm.invalid">
+      REGISTER
+    </button>
   </form>
 
 </div>

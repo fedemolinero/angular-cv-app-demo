@@ -6,55 +6,63 @@ import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html'
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit, OnDestroy {
 
-  private registerSubscription!: Subscription;
-  registerForm!: FormGroup;
+  private registerSubscription: Subscription | undefined;
+  registerForm: FormGroup;
+  isLoading = false; // Para mostrar un indicador de carga si es necesario
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router,
-  ) { }
+    private router: Router
+  ) {
+    this.registerForm = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(4)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
 
   ngOnInit(): void {
-    this.initRegisterForm();
   }
 
   ngOnDestroy(): void {
     if (this.registerSubscription) {
-      this.registerSubscription?.unsubscribe();
+      this.registerSubscription.unsubscribe();
     }
-  }
-
-  initRegisterForm() {
-    this.registerForm = this.fb.group({
-      username: [{ value: '', disabled: false }, Validators.required],
-      password: [{ value: '', disabled: false }, Validators.required],
-    });
   }
 
   get username() { return this.registerForm.get('username'); }
   get password() { return this.registerForm.get('password'); }
 
-
   register() {
+    if (this.registerForm.invalid) {
+      return; // Evitar envío de formulario si es inválido
+    }
 
-    this.registerSubscription = this.authService.register(this.registerForm.controls['username'].value, this.registerForm.controls['username'].value)
+    const username = this.username?.value;
+    const password = this.password?.value;
+
+    this.isLoading = true; // Mostrar indicador de carga
+
+    this.registerSubscription = this.authService.register(username, password)
       .subscribe(
         {
           next: (response: any) => {
-            console.log('register successfull', response);
+            console.log('Registration successful', response);
+            this.isLoading = false; // Ocultar indicador de carga
             this.router.navigate(['/login']);
           },
           error: (e) => {
-            console.error(e);
+            console.error('Registration error', e);
+            this.isLoading = false; // Ocultar indicador de carga
           }
         }
-      );
 
+      );
   }
 
 }
