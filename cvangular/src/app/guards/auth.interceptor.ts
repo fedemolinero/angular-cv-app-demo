@@ -6,45 +6,83 @@ import {
   HttpEvent,
   HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { AuthService } from '../services/auth.service'; // Asegúrate de ajustar la ruta al servicio AuthService si es necesario
+import { Observable, throwError, BehaviorSubject, of } from 'rxjs';
+import { catchError, switchMap, filter, take, finalize } from 'rxjs/operators';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
+  private isRefreshing = false;
+  private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+
   constructor(private authService: AuthService, private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // Obtener el token de autenticación
     const authToken = this.authService.getToken();
 
-    // Clonar la solicitud original para agregar el token de autorización si está disponible
-    let authReq = req;
     if (authToken) {
-      authReq = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${authToken}`,
-          'Content-Type': 'application/json', // Puedes ajustar según tus necesidades
-          Accept: 'application/json', // Puedes ajustar según tus necesidades
-          'Accept-Language': 'en-US' // Puedes hacer esto dinámico según el idioma del usuario
-        }
-      });
-    } else {
-      // Si no hay token, se puede hacer algo aquí (depende de tu lógica de manejo de sesiones)
+      req = this.addToken(req, authToken);
     }
 
-    // Manejar la solicitud modificada o no modificada
-    return next.handle(authReq).pipe(
+    return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
-          // Manejar errores de autenticación (por ejemplo, redirigir al login)
-          this.authService.logout(); // Método de tu servicio AuthService para limpiar la sesión
-          this.router.navigate(['/login']); // Redirigir al usuario al inicio de sesión
+          return this.handle401Error(req, next);
+        } else {
+          return throwError(error);
         }
-        return throwError(error); // Propagar el error hacia arriba
       })
     );
+  }
+
+  private addToken(req: HttpRequest<any>, token: string | null): HttpRequest<any> {
+    if (token) {
+      return req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        }
+      });
+    }
+    return req; // Si no hay token, devolver la solicitud original sin modificar
+  }
+
+  private handle401Error(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (!this.isRefreshing) {
+      this.isRefreshing = true;
+      this.refreshTokenSubject.next(null);
+
+      return this.authService.refreshToken().pipe(
+        switchMap((newToken: any) => {
+          if (newToken) {
+            this.authService.setToken(newToken); // Actualizar el token en AuthService
+            return next.handle(this.addToken(req, newToken));
+          }
+
+          // Si no se pudo obtener un nuevo token, manejar según la lógica de tu aplicación
+          this.authService.logout(); // Cerrar sesión o manejar el error
+          return throwError('No se pudo obtener un nuevo token');
+        }),
+        catchError((error) => {
+          // Manejar el error de refreshToken, por ejemplo, cerrar sesión o manejar de acuerdo a la lógica de tu aplicación
+          this.authService.logout(); 
+          return throwError(error);
+        }),
+        finalize(() => {
+          this.isRefreshing = false;
+          this.refreshTokenSubject.next(null);
+        })
+      );
+    } else {
+      // Esperar a que se complete la solicitud de refreshToken antes de repetir la solicitud original
+      return this.refreshTokenSubject.pipe(
+        filter(result => result !== null),
+        take(1),
+        switchMap(() => next.handle(this.addToken(req, this.authService.getToken())))
+      );
+    }
   }
 }
