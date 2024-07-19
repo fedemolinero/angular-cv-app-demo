@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         .subscribe(
           {
             next: (response: any) => {
-              console.log('login successfull', response);
               this.router.navigate(['/cv']);
             },
             error: (e) => {

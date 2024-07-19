@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -9,21 +9,26 @@ import { tap } from 'rxjs/operators';
 })
 export class AuthService {
 
-  private tokenKey = 'authToken';
+  private tokenKey = 'fedeKpo';
   private apiUrl = 'http://localhost:3000'; // Cambia esto por la URL de tu servidor
+
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
+  
 
   constructor(private http: HttpClient, private router: Router) { }
 
   register(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, { username, password });
+    return this.http.post(`${this.apiUrl}/api/auth/register`, { username, password });
   }
 
   login(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, { username, password })
+    return this.http.post(`${this.apiUrl}/api/auth/login`, { username, password })
       .pipe(
         tap((response: any) => {
           if (response.token) {
             this.setToken(response.token);
+            this.isAuthenticatedSubject.next(true);
           }
         })
       );
@@ -31,6 +36,7 @@ export class AuthService {
 
   logout(): void {
     this.removeToken();
+    this.isAuthenticatedSubject.next(false);
     this.router.navigate(['']);
   }
 

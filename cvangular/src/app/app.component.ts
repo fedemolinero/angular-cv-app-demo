@@ -17,12 +17,11 @@ export class AppComponent implements OnInit {
   constructor(
     private templateService: TemplateService,
     private authService: AuthService
-
   ) { }
 
   ngOnInit(): void {
 
-    this.isAuthenticated$ = of(this.authService.isAuthenticated());
+    this.isAuthenticated$ = this.authService.isAuthenticated$;
 
     this.templateService.color$
       .subscribe(state => {
