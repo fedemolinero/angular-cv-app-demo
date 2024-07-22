@@ -26,7 +26,8 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<ResponseModel> {
-    return this.http.post<ResponseModel>(`${this.apiUrl}/api/auth/login`, { username, password })
+    return this.http
+      .post<ResponseModel>(`${this.apiUrl}/api/auth/login`, { username, password })
       .pipe(
         tap((response: ResponseModel) => {
           if (response.token) {
