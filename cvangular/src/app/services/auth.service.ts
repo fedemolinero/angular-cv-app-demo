@@ -77,7 +77,7 @@ export class AuthService {
         catchError(error => {
           // Manejar errores de la solicitud
           console.error('Error al renovar el token:', error);
-          return throwError('Error al renovar el token');
+          return throwError(() => 'Error al renovar el token');
         }),
         tap((response: ResponseModel) => {
           if (response.token) {
@@ -93,13 +93,13 @@ export class AuthService {
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'An error occurred';
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = `Client-side error: ${error.error.message}`;
+    if (error instanceof ErrorEvent) {
+      errorMessage = `Client-side error: ${error}`;
     } else {
-      errorMessage = `Server-side error: ${error.status} - ${error.error.message}`;
+      errorMessage = `Server-side error: ${error}`;
     }
     console.error(errorMessage);
-    return throwError(errorMessage);
+    return throwError(() => errorMessage);
   }
 
   private isLocalStorageAvailable(): boolean {
