@@ -13,8 +13,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   private registerSubscription: Subscription | undefined;
   registerForm: FormGroup;
-  isLoading = false; // Para mostrar un indicador de carga si es necesario
-  errorMessage = ''; // Mensaje de error para mostrar errores de servidor
+  isLoading = false;
+  errorMessage: string | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -41,29 +41,28 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   register() {
     if (this.registerForm.invalid) {
-      return; // Evitar envío de formulario si es inválido
+      return;
     }
 
     const username = this.username?.value;
     const password = this.password?.value;
 
-    this.isLoading = true; // Mostrar indicador de carga
+    this.isLoading = true;
+    this.errorMessage = undefined;
 
     this.registerSubscription = this.authService.register(username, password)
-      .subscribe(
-        {
-          next: (response: any) => {
-            console.log('Registration successful', response);
-            this.isLoading = false; // Ocultar indicador de carga
-            this.router.navigate(['/login']);
-          },
-          error: (err) => {
-            console.error('Registration error', err);
-            this.isLoading = false; // Ocultar indicador de carga
-            this.errorMessage = err.message || 'Registration failed. Please try again.'; // Mostrar mensaje de error
-          }
+      .subscribe({
+        next: (response: any) => {
+          console.log('Registration successful', response);
+          this.isLoading = false;
+          this.router.navigate(['/login']);
+        },
+        error: (e) => {
+          console.error('Registration error', e);
+          this.errorMessage = 'Registration failed. Please try again.'; // Mostrar mensaje de error
+          this.isLoading = false;
         }
-      );
+      });
   }
 
 }

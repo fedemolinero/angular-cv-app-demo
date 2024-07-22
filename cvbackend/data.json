@@ -2,11 +2,7 @@
   "users": [
     {
       "username": "fede",
-      "password": "$2a$08$HqXukHbbofRa2mneCz6Heemzxipm08M9JsFeoMniWhlDEILysWzJ2"
-    },
-    {
-      "username": "fedex",
-      "password": "$2a$08$TJy.D8a99oK/1nNKENcIYO9dzxEbtrY7YUsRevt0tf7IDhG8.YqL."
+      "password": "$2a$08$hW2u1tab0J6x2/UK.fRLgu2fHyzfR9ssMTJDnbHpKGha/wEZ4IocS"
     }
   ]
 }
