@@ -1,5 +1,10 @@
-<div class="loading-spinner">
-  <div class="spinner-border text-white" role="status">
-    <span class="visually-hidden">Loading...</span>
+<div class="background">
+  <div class="loading-spinner">
+    <div class="spinner-border text-white" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    @if(message){
+    <span class="p-3 m-3 text-white">{{message}}</span>
+    }
   </div>
 </div>
