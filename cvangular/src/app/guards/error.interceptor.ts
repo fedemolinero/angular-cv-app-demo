@@ -32,7 +32,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (error.error instanceof ErrorEvent) {
           // Error de cliente, como un error de red
           errorMessage = `Error: ${error.error.message}`;
-        
+
         } else {
           // Error del servidor
           errorMessage = this.getServerErrorMessage(error);
@@ -40,7 +40,6 @@ export class ErrorInterceptor implements HttpInterceptor {
           if (error.status === 401) {
             // En este ejemplo, mostramos un mensaje usando el PopupService
             errorMessage = 'Session expired. Please log in again.';
-            
           }
 
         }
@@ -49,7 +48,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         this.popupService.addErrorMessage(errorMessage);
 
         // Retornar un error observable con un mensaje útil para el manejo en otros lugares
-        return throwError(() => errorMessage);
+        return throwError(() => error );
       })
     );
   }

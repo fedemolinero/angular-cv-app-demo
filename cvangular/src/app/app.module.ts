@@ -25,6 +25,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TooltipDirective } from './directives/tooltip.directive';
 import { ButtontogglerComponent } from './components/buttontoggler/buttontoggler.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { LoginTimeoutComponent } from './components/login-timeout/login-timeout.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     FooterComponent,
     TooltipDirective,
     ButtontogglerComponent,
-    LoadingComponent
+    LoadingComponent,
+    LoginTimeoutComponent
   ],
   imports: [
     CommonModule,

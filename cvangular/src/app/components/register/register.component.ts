@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   private registerSubscription: Subscription | undefined;
   registerForm: FormGroup;
-  isLoading = false;
+  isLoading: boolean = false;
   errorMessage: string | undefined;
 
   constructor(

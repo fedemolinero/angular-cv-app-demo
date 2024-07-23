@@ -7,11 +7,10 @@
     <div class="input-group mt-5 mb-3">
       <span id="usernameLabel" class="input-group-text">Username</span>
       <input id="username" type="text" class="form-control form-control-lg" formControlName="username" [ngClass]="{
-        'is-valid': username?.valid && (username?.dirty || username?.touched),
-        'is-invalid': username?.invalid && (username?.dirty || username?.touched)
-      }">
-
-      @if (loginForm.invalid && (username?.dirty || username?.touched)){
+          'is-valid': username?.valid && (username?.dirty || username?.touched),
+          'is-invalid': username?.invalid && (username?.dirty || username?.touched)
+        }">
+      @if (loginForm.invalid && (username?.dirty || username?.touched)) {
       <div id="validationUsernameFeedback" class="invalid-feedback">
         Please choose a username.
       </div>
@@ -21,22 +20,25 @@
     <div class="input-group mt-5 mb-3">
       <span id="passwordLabel" class="input-group-text">Password</span>
       <input id="password" type="password" class="form-control form-control-lg" formControlName="password" [ngClass]="{
-        'is-valid': password?.valid && (password?.dirty || password?.touched),
-        'is-invalid': password?.invalid && (password?.dirty || password?.touched)
-      }">
-
-      @if (loginForm.invalid && (password?.dirty || password?.touched)){
+          'is-valid': password?.valid && (password?.dirty || password?.touched),
+          'is-invalid': password?.invalid && (password?.dirty || password?.touched)
+        }">
+      @if (loginForm.invalid && (password?.dirty || password?.touched)) {
       <div id="validationPasswordFeedback" class="invalid-feedback">
         Please choose a password.
       </div>
       }
     </div>
 
+    <app-login-timeout *ngIf="disabledLogin" [timeoutMinutes]="1"></app-login-timeout>
+
     <button type="submit" class="btn btn-primary btn-lg w-100 btn-block mt-3 mb-3"
-      [disabled]="loginForm.invalid">LOGIN</button>
+      [disabled]="loginForm.invalid || disabledLogin">LOGIN</button>
+
 
     <button routerLink="/register" class="btn btn-outline-primary btn-lg w-100 btn-block mt-3 mb-3">
       REGISTER</button>
+
 
   </form>
 
