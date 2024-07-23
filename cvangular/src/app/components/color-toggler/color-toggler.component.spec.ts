@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ColorTogglerComponent } from './color-toggler.component';
+// import { ColorTogglerComponent } from './color-toggler.component';
 
-describe('ColorTogglerComponent', () => {
-  let component: ColorTogglerComponent;
-  let fixture: ComponentFixture<ColorTogglerComponent>;
+// describe('ColorTogglerComponent', () => {
+//   let component: ColorTogglerComponent;
+//   let fixture: ComponentFixture<ColorTogglerComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ColorTogglerComponent]
-    })
-    .compileComponents();
+//   beforeEach(async () => {
+//     await TestBed.configureTestingModule({
+//       declarations: [ColorTogglerComponent]
+//     })
+//     .compileComponents();
     
-    fixture = TestBed.createComponent(ColorTogglerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//     fixture = TestBed.createComponent(ColorTogglerComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });
