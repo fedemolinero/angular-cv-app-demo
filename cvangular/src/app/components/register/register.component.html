@@ -7,8 +7,8 @@
     <div class="input-group mt-5 mb-3">
       <label for="username" class="input-group-text">Username</label>
       <input id="username" type="text" class="form-control form-control-lg" formControlName="username" [ngClass]="{
-               'is-valid': username?.valid && (username?.dirty || username?.touched),
-               'is-invalid': username?.invalid && (username?.dirty || username?.touched)
+          'is-valid': username?.valid && (username?.dirty || username?.touched),
+          'is-invalid': username?.invalid && (username?.dirty || username?.touched)
              }" aria-labelledby="usernameLabel" aria-describedby="validationUsernameFeedback" required
         (blur)="username?.markAsTouched()">
 
@@ -30,9 +30,10 @@
 
     <div class="input-group mt-5 mb-3">
       <label for="password" class="input-group-text">Password</label>
+
       <input id="password" type="password" class="form-control form-control-lg" formControlName="password" [ngClass]="{
-               'is-valid': password?.valid && (password?.dirty || password?.touched),
-               'is-invalid': password?.invalid && (password?.dirty || password?.touched)
+          'is-valid': password?.valid && (password?.dirty || password?.touched),
+          'is-invalid': password?.invalid && (password?.dirty || password?.touched)
              }" aria-labelledby="passwordLabel" aria-describedby="validationPasswordFeedback" required
         (blur)="password?.markAsTouched()">
 
@@ -49,23 +50,22 @@
         Password must have less than 20 characters long.
       </div>
       }
-
     </div>
 
-    @if(isLoading){
-    <app-loading></app-loading> <!-- Componente de carga -->
+    <!-- {{password?.errors | json}} -->
+    @if (disabledRegister) {
+    <app-login-timeout [timeoutMinutes]="1"></app-login-timeout>
     }
 
+    @if(!loading){
     <button type="submit" class="btn btn-primary btn-lg w-100 btn-block mt-3 mb-3"
-      [disabled]="registerForm.invalid || isLoading">
-      {{ isLoading ? 'Loading...' : 'REGISTER' }}
+      [disabled]="registerForm.invalid || disabledRegister">
+      <span>REGISTER</span>
     </button>
-
-    @if(errorMessage){
-    <div class="alert alert-danger mt-3">
-      {{ errorMessage }}
-    </div>
+    }@else{
+    <app-loading [message]="'Loading'"></app-loading>
     }
+
 
   </form>
 
