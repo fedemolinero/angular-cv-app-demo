@@ -38,15 +38,15 @@
         (blur)="password?.markAsTouched()">
 
       @if(password?.errors?.['required'] && password?.touched){
-      <div id="validationPasswordFeedback" class="invalid-feedback" role="alert">
+      <div id="validationRequiredPasswordFeedback" class="invalid-feedback" role="alert">
         Password is required.
       </div>
       }@else if(password?.errors?.['minlength'] && password?.touched){
-      <div id="validationPasswordFeedback" class="invalid-feedback" role="alert">
+      <div id="validationMinPasswordFeedback" class="invalid-feedback" role="alert">
         Password must be at least 6 characters long.
       </div>
       }@else if(password?.errors?.['maxlength'] && password?.touched){
-      <div id="validationPasswordFeedback" class="invalid-feedback" role="alert">
+      <div id="validationMaxPasswordFeedback" class="invalid-feedback" role="alert">
         Password must have less than 20 characters long.
       </div>
       }
