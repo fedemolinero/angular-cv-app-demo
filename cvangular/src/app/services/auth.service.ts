@@ -16,7 +16,10 @@ export class AuthService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
   register(username: string, password: string): Observable<ResponseModel> {
     return this.http.post<ResponseModel>(`${this.apiUrl}/api/auth/register`, { username, password })
@@ -93,14 +96,9 @@ export class AuthService {
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
-    let errorMessage = 'An error occurred';
-    if (error instanceof ErrorEvent) {
-      errorMessage = `Client-side error: ${error}`;
-    } else {
-      errorMessage = `Server-side error: ${error}`;
-    }
-    console.error(errorMessage);
-    return throwError(() => errorMessage);
+
+    return throwError(() => error);
+
   }
 
   private isLocalStorageAvailable(): boolean {

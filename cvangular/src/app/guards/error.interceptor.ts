@@ -26,21 +26,23 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error('Interceptor Error:', error);
+
         let errorMessage = 'An unknown error occurred';
 
         if (error.error instanceof ErrorEvent) {
           // Error de cliente, como un error de red
           errorMessage = `Error: ${error.error.message}`;
+        
         } else {
           // Error del servidor
           errorMessage = this.getServerErrorMessage(error);
-          // Si el error es Unauthorized (401), redirecciona a la página de login
+
           if (error.status === 401) {
-            // this.authService.logout(); // Llama al método logout del AuthService
-            // Puedes redirigir a la página de login o mostrar un mensaje al usuario
             // En este ejemplo, mostramos un mensaje usando el PopupService
             errorMessage = 'Session expired. Please log in again.';
+            
           }
+
         }
 
         // Mostrar mensaje de error al usuario
@@ -54,6 +56,8 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   private getServerErrorMessage(error: HttpErrorResponse): string {
     switch (error.status) {
+      case 0:
+        return 'Server Offline. Try Again in a few minutes';
       case 401:
         return 'Unauthorized';
       case 404:

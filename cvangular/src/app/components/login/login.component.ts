@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         error: (error) => {
           if (error === 'Unauthorized') {
             // Mostrar mensaje de contraseña incorrecta y enfocar el campo de password
-            this.loginForm.controls['password'].setErrors({ 'incorrect': true });
+            this.loginForm.controls['password'].setErrors({ 'is-invalid': true });
           } else {
             console.error(error);
           }

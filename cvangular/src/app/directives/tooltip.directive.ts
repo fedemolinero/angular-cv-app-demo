@@ -27,9 +27,9 @@ export class TooltipDirective {
   }
 
   hide() {
-    this.renderer?.removeClass(this.tooltip, 'customTooltip-show');
+    this.renderer.removeClass(this.tooltip, 'customTooltip-show');
     window.setTimeout(() => {
-      this.renderer.removeChild(document.body, this.tooltip);
+      this.tooltip ? this.renderer.removeChild(document.body, this.tooltip) : '';
       this.tooltip = null;
     }, parseInt(this.delay));
   }
