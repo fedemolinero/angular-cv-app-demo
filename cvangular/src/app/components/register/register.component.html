@@ -2,63 +2,60 @@
 
   <h1>REGISTER</h1>
 
-  <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
 
     <div class="input-group mt-5 mb-3">
       <label for="username" class="input-group-text">Username</label>
-      <input id="username"
-             type="text"
-             class="form-control form-control-lg"
-             formControlName="username"
-             [ngClass]="{
+      <input id="username" type="text" class="form-control form-control-lg" formControlName="username" [ngClass]="{
                'is-valid': username?.valid && (username?.dirty || username?.touched),
                'is-invalid': username?.invalid && (username?.dirty || username?.touched)
-             }"
-             aria-labelledby="usernameLabel"
-             aria-describedby="validationUsernameFeedback"
-             required
-             (blur)="username?.markAsTouched()">
+             }" aria-labelledby="usernameLabel" aria-describedby="validationUsernameFeedback" required
+        (blur)="username?.markAsTouched()">
 
-      <div id="validationUsernameFeedback" class="invalid-feedback" role="alert"
-           *ngIf="username?.errors?.['required'] && username?.touched">
+      @if(username?.errors?.['required'] && username?.touched){
+      <div id="validationUsernameFeedback" class="invalid-feedback" role="alert">
         Username is required.
       </div>
-      <div id="validationUsernameFeedback" class="invalid-feedback" role="alert"
-           *ngIf="username?.errors?.['minlength'] && username?.touched">
+      }@else if(username?.errors?.['minlength'] && username?.touched){
+      <div id="validationUsernameFeedback" class="invalid-feedback" role="alert">
         Username must be at least 4 characters long.
       </div>
+      }@else if(username?.errors?.['maxlength'] && username?.touched){
+      <div id="validationUsernameFeedback" class="invalid-feedback" role="alert">
+        Username must have less than 20 characters long.
+      </div>
+      }
+
     </div>
 
     <div class="input-group mt-5 mb-3">
       <label for="password" class="input-group-text">Password</label>
-      <input id="password"
-             type="password"
-             class="form-control form-control-lg"
-             formControlName="password"
-             [ngClass]="{
+      <input id="password" type="password" class="form-control form-control-lg" formControlName="password" [ngClass]="{
                'is-valid': password?.valid && (password?.dirty || password?.touched),
                'is-invalid': password?.invalid && (password?.dirty || password?.touched)
-             }"
-             aria-labelledby="passwordLabel"
-             aria-describedby="validationPasswordFeedback"
-             required
-             (blur)="password?.markAsTouched()">
+             }" aria-labelledby="passwordLabel" aria-describedby="validationPasswordFeedback" required
+        (blur)="password?.markAsTouched()">
 
-      <div id="validationPasswordFeedback" class="invalid-feedback" role="alert"
-           *ngIf="password?.errors?.['required'] && password?.touched">
+      @if(password?.errors?.['required'] && password?.touched){
+      <div id="validationPasswordFeedback" class="invalid-feedback" role="alert">
         Password is required.
       </div>
-      <div id="validationPasswordFeedback" class="invalid-feedback" role="alert"
-           *ngIf="password?.errors?.['minlength'] && password?.touched">
+      }@else if(password?.errors?.['minlength'] && password?.touched){
+      <div id="validationPasswordFeedback" class="invalid-feedback" role="alert">
         Password must be at least 6 characters long.
       </div>
+      }@else if(password?.errors?.['maxlength'] && password?.touched){
+      <div id="validationPasswordFeedback" class="invalid-feedback" role="alert">
+        Password must have less than 20 characters long.
+      </div>
+      }
+
     </div>
 
     <app-loading *ngIf="isLoading"></app-loading> <!-- Componente de carga -->
 
-    <button type="submit"
-            class="btn btn-primary btn-lg w-100 btn-block mt-3 mb-3"
-            [disabled]="registerForm.invalid || isLoading">
+    <button type="submit" class="btn btn-primary btn-lg w-100 btn-block mt-3 mb-3"
+      [disabled]="registerForm.invalid || isLoading">
       {{ isLoading ? 'Loading...' : 'REGISTER' }}
     </button>
 

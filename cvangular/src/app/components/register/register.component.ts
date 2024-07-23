@@ -22,8 +22,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private router: Router
   ) {
     this.registerForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(4)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      username: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
     });
   }
 
