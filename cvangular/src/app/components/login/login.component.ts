@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   private loginSubscription!: Subscription;
   loginForm!: FormGroup;
 
+  loading: boolean = false;
+
   // Attempt control FE
   maxAttempts: number = 3;
   attempts: number = 0;
@@ -61,9 +63,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   get password() { return this.loginForm.get('password'); }
 
   login() {
-    if (this.disabledLogin) {
+
+    if (this.disabledLogin || this.loading) {
       return;
     }
+
+    this.loading = true; // Establecer estado de carga
 
     if (this.attempts >= this.maxAttempts) {
       this.disabledLogin = true;
@@ -71,6 +76,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.attempts = 0;
         this.disabledLogin = false;
         this.clearAttemptsFromStorage(); // Limpiar intentos en el almacenamiento
+        this.loading = false; // Restaurar estado de carga
       }, 60000); // Bloquea el inicio de sesión durante 1 minuto
       return;
     }
@@ -92,7 +98,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           if (error.status == 401) {
             this.loginForm.controls['password'].setErrors({ 'is-invalid': true });
           }
-
+          this.loading = false; // Restaurar estado de carga en caso de error
         }
       }
     );

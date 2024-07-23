@@ -33,7 +33,13 @@
     <app-login-timeout *ngIf="disabledLogin" [timeoutMinutes]="1"></app-login-timeout>
 
     <button type="submit" class="btn btn-primary btn-lg w-100 btn-block mt-3 mb-3"
-      [disabled]="loginForm.invalid || disabledLogin">LOGIN</button>
+      [disabled]="loginForm.invalid || disabledLogin || loading">
+      @if(!loading){
+      <span>LOGIN</span>
+      }@else{
+      <app-loading></app-loading>
+      }
+    </button>
 
 
     <button routerLink="/register" class="btn btn-outline-primary btn-lg w-100 btn-block mt-3 mb-3">
