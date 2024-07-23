@@ -12,14 +12,20 @@
              }" aria-labelledby="usernameLabel" aria-describedby="validationUsernameFeedback" required
         (blur)="username?.markAsTouched()">
 
-      <div id="validationUsernameFeedback" class="invalid-feedback" role="alert"
-        *ngIf="username?.errors?.['required'] && username?.touched">
+      @if(username?.errors?.['required'] && username?.touched){
+      <div id="validationUsernameFeedback" class="invalid-feedback" role="alert">
         Username is required.
       </div>
-      <div id="validationUsernameFeedback" class="invalid-feedback" role="alert"
-        *ngIf="username?.errors?.['minlength'] && username?.touched">
+      }@else if(username?.errors?.['minlength'] && username?.touched){
+      <div id="validationUsernameFeedback" class="invalid-feedback" role="alert">
         Username must be at least 4 characters long.
       </div>
+      }@else if(username?.errors?.['maxlength'] && username?.touched){
+      <div id="validationUsernameFeedback" class="invalid-feedback" role="alert">
+        Username must have less than 20 characters long.
+      </div>
+      }
+
     </div>
 
     <div class="input-group mt-5 mb-3">
