@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-interface PopupMessage {
+export interface PopupMessage {
   id: number;
   message: string;
 }
@@ -13,7 +13,7 @@ export class PopupService {
   private showPopupSubject: BehaviorSubject<{ show: boolean, messages: PopupMessage[] }> = new BehaviorSubject<{ show: boolean, messages: PopupMessage[] }>({ show: false, messages: [] });
   private idCounter: number = 0;
 
-  constructor() {}
+  constructor() { }
 
   get showPopup$(): Observable<{ show: boolean, messages: PopupMessage[] }> {
     return this.showPopupSubject.asObservable();
