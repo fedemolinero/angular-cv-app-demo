@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.saveAttemptsToStorage(); // Guardar intentos en el almacenamiento
           // Mostrar mensaje de contraseña incorrecta y enfocar el campo de password
           if (error.status == 401) {
-            this.loginForm.controls['password'].setErrors({ 'is-invalid': true });
+            this.loginForm.controls['password'].setErrors({ 'is-incorrect': true });
           }
           this.loading = false; // Restaurar estado de carga en caso de error
         }

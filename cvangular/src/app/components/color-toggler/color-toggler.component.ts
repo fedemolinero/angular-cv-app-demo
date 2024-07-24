@@ -1,8 +1,8 @@
-// toggler.component.ts
-import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { TemplateService } from '@services/template.service';
-import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-toggler',
@@ -21,10 +21,11 @@ import { Subject, takeUntil } from 'rxjs';
     ])
   ]
 })
-
 export class ColorTogglerComponent implements OnInit, OnDestroy {
 
+  // Inicialización aquí
   flipState: string = 'inactive';
+
   private destroy$ = new Subject<void>();
 
   constructor(
@@ -39,14 +40,15 @@ export class ColorTogglerComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
 
-  toggleFlip() {
-    this.flipState = (this.flipState == 'inactive') ? 'active' : 'inactive';
+  toggleFlip(): void {
+    this.flipState = this.flipState === 'inactive' ? 'active' : 'inactive';
     this.templateService.setColorMode(this.flipState);
+    // Asegúrate de que setColorMode se llama con this.flipState
   }
 
 }

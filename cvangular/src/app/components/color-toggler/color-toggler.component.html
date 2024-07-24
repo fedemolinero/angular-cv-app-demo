@@ -1,6 +1,6 @@
 <div class="tp-wrapper">
     <div class="tp-box" (click)="toggleFlip()" [@flipState]="flipState">
-        <div class="tp-box__side tp-box__front">
+        <div class="tp-box__side tp-box__front" *ngIf="flipState === 'active'">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-lightbulb"
                 viewBox="0 0 16 16">
                 <path
@@ -8,7 +8,7 @@
             </svg>
         </div>
 
-        <div class="tp-box__side tp-box__back">
+        <div class="tp-box__side tp-box__back" *ngIf="flipState === 'inactive'">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                 class="bi bi-lightbulb-fill" viewBox="0 0 16 16">
                 <path

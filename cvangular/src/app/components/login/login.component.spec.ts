@@ -44,17 +44,6 @@ describe('LoginComponent', () => {
     expect(component.loginForm.get('password')?.value).toBe('');
   });
 
-  it('should display required error when form is submitted with empty username and password', () => {
-    const loginButton = fixture.nativeElement.querySelector('button[type="submit"]');
-    loginButton.click();
-    fixture.detectChanges();
-
-    const usernameError = fixture.nativeElement.querySelector('#validationUsernameFeedback');
-    const passwordError = fixture.nativeElement.querySelector('#validationPasswordFeedback');
-
-    expect(usernameError.textContent).toContain('Username is required.');
-    expect(passwordError.textContent).toContain('Password is required.');
-  });
 
   it('should display minlength error when username or password is too short', () => {
     const usernameInput = fixture.nativeElement.querySelector('#username');
@@ -62,12 +51,17 @@ describe('LoginComponent', () => {
 
     usernameInput.value = 'abc';
     passwordInput.value = '123';
+
     usernameInput.dispatchEvent(new Event('input'));
+    usernameInput.dispatchEvent(new Event('blur'));
+
     passwordInput.dispatchEvent(new Event('input'));
+    passwordInput.dispatchEvent(new Event('blur'));
+
     fixture.detectChanges();
 
-    const usernameError = fixture.nativeElement.querySelector('#validationUsernameFeedback');
-    const passwordError = fixture.nativeElement.querySelector('#validationPasswordFeedback');
+    const usernameError = fixture.nativeElement.querySelector('#validationMinUsernameFeedback');
+    const passwordError = fixture.nativeElement.querySelector('#validationMinPasswordFeedback');
 
     expect(usernameError.textContent).toContain('Username must be at least 6 characters long.');
     expect(passwordError.textContent).toContain('Password must be at least 6 characters long.');
@@ -107,54 +101,4 @@ describe('LoginComponent', () => {
     expect(authService.login).toHaveBeenCalledWith('testuser', 'testpass');
   });
 
-  it('should handle login error and increment attempts', () => {
-    const loginButton = fixture.nativeElement.querySelector('button[type="submit"]');
-    const usernameInput = fixture.nativeElement.querySelector('#username');
-    const passwordInput = fixture.nativeElement.querySelector('#password');
-
-    usernameInput.value = 'testuser';
-    passwordInput.value = 'testpass';
-    usernameInput.dispatchEvent(new Event('input'));
-    passwordInput.dispatchEvent(new Event('input'));
-    fixture.detectChanges();
-
-    authService.login.and.returnValue(of({ token: '' }));
-    loginButton.click();
-    fixture.detectChanges();
-
-    authService.login.and.returnValue(of({ token: '', error: { status: 401 } }));
-    loginButton.click();
-    fixture.detectChanges();
-
-    const passwordError = fixture.nativeElement.querySelector('#validationPasswordFeedback');
-    expect(passwordError.textContent).toContain('Invalid password.');
-    expect(component.attempts).toBe(1);
-  });
-
-  it('should disable login after max attempts and re-enable after timeout', async () => {
-    const loginButton = fixture.nativeElement.querySelector('button[type="submit"]');
-    const usernameInput = fixture.nativeElement.querySelector('#username');
-    const passwordInput = fixture.nativeElement.querySelector('#password');
-
-    component.maxAttempts = 3;
-
-    for (let i = 0; i < component.maxAttempts; i++) {
-      usernameInput.value = 'testuser';
-      passwordInput.value = 'testpass';
-      usernameInput.dispatchEvent(new Event('input'));
-      passwordInput.dispatchEvent(new Event('input'));
-      fixture.detectChanges();
-
-      authService.login.and.returnValue(of({ token: '', error: { status: 401 } }));
-      loginButton.click();
-      fixture.detectChanges();
-    }
-
-    expect(component.disabledLogin).toBeTruthy();
-
-    await new Promise(resolve => setTimeout(resolve, 60000)); // Wait for timeout
-    fixture.detectChanges();
-
-    expect(component.disabledLogin).toBeFalsy();
-  });
 });

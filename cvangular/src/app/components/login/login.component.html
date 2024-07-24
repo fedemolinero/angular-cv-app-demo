@@ -13,15 +13,16 @@
         (blur)="username?.markAsTouched()">
 
       @if(username?.errors?.['required'] && username?.touched){
-      <div id="validationUsernameFeedback" class="invalid-feedback" role="alert">
+      <div id="validationRequiredUsernameFeedback" class="invalid-feedback" role="alert">
         Username is required.
       </div>
-      }@else if(username?.errors?.['minlength'] && username?.touched){
-      <div id="validationUsernameFeedback" class="invalid-feedback" role="alert">
-        Username must be at least 4 characters long.
+      }
+      @if(username?.errors?.['minlength'] && username?.touched){
+      <div id="validationMinUsernameFeedback" class="invalid-feedback" role="alert">
+        Username must be at least 6 characters long.
       </div>
       }@else if(username?.errors?.['maxlength'] && username?.touched){
-      <div id="validationUsernameFeedback" class="invalid-feedback" role="alert">
+      <div id="validationMaxUsernameFeedback" class="invalid-feedback" role="alert">
         Username must have less than 20 characters long.
       </div>
       }
@@ -48,6 +49,10 @@
       }@else if(password?.errors?.['maxlength'] && password?.touched){
       <div id="validationMaxPasswordFeedback" class="invalid-feedback" role="alert">
         Password must have less than 20 characters long.
+      </div>
+      }@else if(password?.errors?.['is-incorrect'] && password?.touched){
+      <div id="validationIncorrectPasswordFeedback" class="invalid-feedback" role="alert">
+        Password is incorrect.
       </div>
       }
     </div>
