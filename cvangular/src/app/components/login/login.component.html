@@ -1,87 +1,99 @@
 <div class="container-fluid">
 
-  <h1>LOGIN</h1>
+  <div class="row">
 
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="col-6">
 
-    <div class="input-group mt-1 mb-5">
-      <label for="username" class="input-group-text">Username</label>
-      <input autofocus id="username" type="text" class="form-control form-control-lg" formControlName="username"
-        [ngClass]="{
+      <h1>LOGIN</h1>
+
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+        <div class="input-group mt-1 mb-5">
+          <label for="username" class="input-group-text">Username</label>
+          <input autofocus id="username" type="text" class="form-control form-control-lg" formControlName="username"
+            [ngClass]="{
           'is-valid': username?.valid && (username?.dirty || username?.touched),
           'is-invalid': username?.invalid && (username?.dirty || username?.touched)
-             }" aria-labelledby="usernameLabel"
-        aria-describedby="validationRequiredUsernameFeedback validationMinUsernameFeedback validationMaxUsernameFeedback"
-        (blur)="username?.markAsTouched()">
+        }" aria-labelledby="usernameLabel"
+            aria-describedby="validationRequiredUsernameFeedback validationMinUsernameFeedback validationMaxUsernameFeedback"
+            (blur)="username?.markAsTouched()">
 
-      @if(username?.errors?.['required'] && username?.touched){
-      <div id="validationRequiredUsernameFeedback" class="invalid-feedback" role="alert">
-        Username is required.
-      </div>
-      }@else if(username?.errors?.['minlength'] && username?.touched){
-      <div id="validationMinUsernameFeedback" class="invalid-feedback" role="alert">
-        Username must be at least 6 characters long.
-      </div>
-      }@else if(username?.errors?.['maxlength'] && username?.touched){
-      <div id="validationMaxUsernameFeedback" class="invalid-feedback" role="alert">
-        Username must have less than 20 characters long.
-      </div>
-      }
+          @if(username?.errors?.['required'] && username?.touched){
+          <div id="validationRequiredUsernameFeedback" class="invalid-feedback" role="alert">
+            Username is required.
+          </div>
+          }@else if(username?.errors?.['minlength'] && username?.touched){
+          <div id="validationMinUsernameFeedback" class="invalid-feedback" role="alert">
+            Username must be at least 6 characters long.
+          </div>
+          }@else if(username?.errors?.['maxlength'] && username?.touched){
+          <div id="validationMaxUsernameFeedback" class="invalid-feedback" role="alert">
+            Username must have less than 20 characters long.
+          </div>
+          }
+
+        </div>
+
+        <div class="input-group mt-1 mb-5">
+          <label for="password" class="input-group-text">Password</label>
+          <input id="password" type="password" class="form-control form-control-lg" formControlName="password"
+            [ngClass]="{
+      'is-valid': password?.valid && (password?.dirty || password?.touched),
+      'is-invalid': password?.invalid && (password?.dirty || password?.touched)
+    }" aria-labelledby="passwordLabel"
+            aria-describedby="validationRequiredPasswordFeedback validationPasswordRequirementsFeedback validationIncorrectPasswordFeedback validationMinPasswordFeedback"
+            required (blur)="password?.markAsTouched()">
+
+          @if(password?.errors?.['required'] && password?.touched){
+          <div id="validationRequiredPasswordFeedback" class="invalid-feedback" role="alert">
+            Password is required.
+          </div>
+          }@else if(password?.errors?.['minlength'] && password?.touched){
+          <div id="validationMinPasswordFeedback" class="invalid-feedback" role="alert">
+            Password must be at least 6 characters long.
+          </div>
+          }@else if(password?.errors?.['maxlength'] && password?.touched){
+          <div id="validationMaxPasswordFeedback" class="invalid-feedback" role="alert">
+            Password must have less than 20 characters long.
+          </div>
+          }@else if(password?.errors?.['is-incorrect'] && password?.touched){
+          <div id="validationIncorrectPasswordFeedback" class="invalid-feedback" role="alert">
+            Password is incorrect.
+          </div>
+          }@else if(password?.errors?.['passwordRequirements'] && username?.touched){
+          <div id="validationPasswordRequirementsFeedback" class="invalid-feedback" role="alert">
+            Password must contain at least one uppercase letter and one number.
+          </div>
+          }
+
+        </div>
+
+        @if (disabledLogin) {
+        <app-login-timeout [timeoutMinutes]="1"></app-login-timeout>
+        }
+
+        @if(!loading){
+        <button type="submit" class="btn btn-primary btn-lg w-100 btn-block mt-3 mb-3"
+          [disabled]="loginForm.invalid || disabledLogin">
+          <span>LOGIN</span>
+        </button>
+        <a routerLink="/forgot-password" class="forgot-password-link">Forgot password?</a>
+        }@else{
+        <app-loading [message]="'Loading'" [backgroundColor]="'#f0ad4e'"></app-loading>
+        }
+
+        <button routerLink="/register" class="btn btn-outline-primary btn-lg w-100 btn-block mt-3 mb-3">
+          REGISTER
+        </button>
+
+
+      </form>
 
     </div>
 
-    <div class="input-group mt-1 mb-5">
-      <label for="password" class="input-group-text">Password</label>
-      <input id="password" type="password" class="form-control form-control-lg" formControlName="password" [ngClass]="{
-          'is-valid': password?.valid && (password?.dirty || password?.touched),
-          'is-invalid': password?.invalid && (password?.dirty || password?.touched)
-             }" aria-labelledby="passwordLabel"
-        aria-describedby="validationRequiredPasswordFeedback validationPasswordRequirementsFeedback validationIncorrectPasswordFeedback validationMinPasswordFeedback"
-        required (blur)="password?.markAsTouched()">
-
-      @if(password?.errors?.['required'] && password?.touched){
-      <div id="validationRequiredPasswordFeedback" class="invalid-feedback" role="alert">
-        Password is required.
-      </div>
-      }@else if(password?.errors?.['minlength'] && password?.touched){
-      <div id="validationMinPasswordFeedback" class="invalid-feedback" role="alert">
-        Password must be at least 6 characters long.
-      </div>
-      }@else if(password?.errors?.['maxlength'] && password?.touched){
-      <div id="validationMaxPasswordFeedback" class="invalid-feedback" role="alert">
-        Password must have less than 20 characters long.
-      </div>
-      }@else if(password?.errors?.['is-incorrect'] && password?.touched){
-      <div id="validationIncorrectPasswordFeedback" class="invalid-feedback" role="alert">
-        Password is incorrect.
-      </div>
-      }@else if(password?.errors?.['passwordRequirements'] && username?.touched){
-      <div id="validationPasswordRequirementsFeedback" class="invalid-feedback" role="alert">
-        Password must contain at least one uppercase letter and one number.
-      </div>
-      }
-
+    <div class="col-6">
+      <img src="assets/svg/websiteLogin.svg">
     </div>
-
-    @if (disabledLogin) {
-    <app-login-timeout [timeoutMinutes]="1"></app-login-timeout>
-    }
-
-    @if(!loading){
-    <button type="submit" class="btn btn-primary btn-lg w-100 btn-block mt-3 mb-3"
-      [disabled]="loginForm.invalid || disabledLogin">
-      <span>LOGIN</span>
-    </button>
-    <a routerLink="/forgot-password" class="forgot-password-link">Forgot password?</a>
-    }@else{
-    <app-loading [message]="'Loading'" [backgroundColor]="'#f0ad4e'"></app-loading>
-    }
-
-    <button routerLink="/register" class="btn btn-outline-primary btn-lg w-100 btn-block mt-3 mb-3">
-      REGISTER
-    </button>
-
-
-  </form>
+  </div>
 
 </div>
