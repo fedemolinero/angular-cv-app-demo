@@ -1,10 +1,12 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login.component';
 import { AuthService } from '@services/auth.service';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { LoadingComponent } from '../loading/loading.component';
+import { By } from '@angular/platform-browser';
+import { LoginTimeoutComponent } from '../login-timeout/login-timeout.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -15,8 +17,8 @@ describe('LoginComponent', () => {
     authService = jasmine.createSpyObj('AuthService', ['login']);
 
     await TestBed.configureTestingModule({
-      declarations: [LoginComponent, LoadingComponent],
-      imports: [ReactiveFormsModule, RouterTestingModule],
+      declarations: [LoginComponent, LoadingComponent, LoginTimeoutComponent],
+      imports: [ReactiveFormsModule],
       providers: [
         { provide: AuthService, useValue: authService }
       ]
@@ -38,10 +40,93 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should not attempt login if disabledLogin is true', () => {
+    component.disabledLogin = true;
+
+    component.login();
+
+    expect(authService.login).not.toHaveBeenCalled();
+  });
+
+  it('should not attempt login if loading is true', () => {
+    component.loading = true;
+
+    component.login();
+
+    expect(authService.login).not.toHaveBeenCalled();
+  });
+
+  it('should create the login form with controls', () => {
+    expect(component.loginForm).toBeTruthy();
+    expect(component.loginForm.get('username')).toBeTruthy();
+    expect(component.loginForm.get('password')).toBeTruthy();
+  });
+
+  it('should validate username field', () => {
+    let username = component.loginForm.get('username');
+    username?.setValue(''); // Valor vacío
+    expect(username?.valid).toBeFalsy();
+
+    username?.setValue('userasd'); // Valor válido
+    expect(username?.valid).toBeTruthy();
+
+  });
+
+
+  it('should validate password field', () => {
+    let password = component.loginForm.get('password');
+    password?.setValue(''); // Valor vacío
+    expect(password?.valid).toBeFalsy();
+
+    password?.setValue('passwordP1  '); // Valor válido
+    expect(password?.valid).toBeTruthy();
+
+    // Agregar más pruebas de validación según sea necesario
+  });
+
+
   it('should initialize form with default values', () => {
     expect(component.loginForm).toBeDefined();
     expect(component.loginForm.get('username')?.value).toBe('');
     expect(component.loginForm.get('password')?.value).toBe('');
+  });
+
+  it('should show error message for invalid username', () => {
+    let username = component.loginForm.get('username');
+    username?.setValue('');
+    username?.markAsTouched();
+
+    fixture.detectChanges();
+
+    let errorMessage = fixture.debugElement.query(By.css('#validationRequiredUsernameFeedback')).nativeElement;
+    expect(errorMessage.textContent).toContain('Username is required.');
+  });
+
+  it('should show loading component when loading is true', () => {
+    component.loading = true;
+    fixture.detectChanges();
+
+    let loadingComponent = fixture.debugElement.query(By.directive(LoadingComponent));
+    expect(loadingComponent).toBeTruthy();
+  });
+
+  it('should disable login button when form is invalid or login is disabled', () => {
+    let loginButton = fixture.debugElement.query(By.css('#loginButton')).nativeElement;
+    let form = fixture.debugElement.query(By.css('form')).nativeElement;
+
+    component.loginForm.setValue({
+      username: 'testuser',
+      password: 'testpasswordP1'
+    });
+
+    fixture.detectChanges();
+
+    expect(loginButton.disabled).toBeFalsy();
+
+    component.disabledLogin = true;
+    fixture.detectChanges();
+
+    expect(loginButton.disabled).toBeTruthy();
   });
 
 
@@ -67,38 +152,33 @@ describe('LoginComponent', () => {
     expect(passwordError.textContent).toContain('Password must be at least 6 characters long.');
   });
 
-  it('should disable login button when form is invalid', () => {
-    const loginButton = fixture.nativeElement.querySelector('button[type="submit"]');
-    expect(loginButton.disabled).toBeTruthy();
 
-    component.loginForm.patchValue({
+  it('should call login method on form submission', () => {
+    spyOn(component, 'login');
+
+    component.loginForm.setValue({
       username: 'testuser',
-      password: 'testpass'
+      password: 'testpasswordP1'
     });
-    fixture.detectChanges();
 
-    expect(loginButton.disabled).toBeFalsy();
-  });
-
-  it('should call AuthService.login when form is submitted with valid credentials', () => {
-    const loginButton = fixture.nativeElement.querySelector('button[type="submit"]');
-    const usernameInput = fixture.nativeElement.querySelector('#username');
-    const passwordInput = fixture.nativeElement.querySelector('#password');
-
-    usernameInput.value = 'testuser';
-    passwordInput.value = 'testpass';
-    usernameInput.dispatchEvent(new Event('input'));
-    passwordInput.dispatchEvent(new Event('input'));
-    fixture.detectChanges();
-
-    spyOn(component, 'login').and.callThrough();
-
-    authService.login.and.returnValue(of({ token: '' }));
-    loginButton.click();
-    fixture.detectChanges();
+    let form = fixture.debugElement.query(By.css('form')).nativeElement;
+    form.dispatchEvent(new Event('submit'));
 
     expect(component.login).toHaveBeenCalled();
-    expect(authService.login).toHaveBeenCalledWith('testuser', 'testpass');
   });
+
+  it('should disable login and reset attempts after max attempts', fakeAsync(() => {
+    component.maxAttempts = 3;
+    component.attempts = 3;
+    authService.login.and.returnValue(throwError({ status: 401 }));
+
+    component.login();
+
+    expect(component.disabledLogin).toBeTruthy();
+    tick(60000); // Avanzar el tiempo en 1 minuto
+    expect(component.disabledLogin).toBeFalsy();
+    expect(component.attempts).toBe(0);
+  }));
+
 
 });

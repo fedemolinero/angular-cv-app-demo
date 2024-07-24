@@ -1,5 +1,7 @@
-.mainMenu{
-    padding-left:1rem;
-    display:flex;
+.navbar {
+    display: flex;
     flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1rem;
 }

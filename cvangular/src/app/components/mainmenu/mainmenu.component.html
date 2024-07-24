@@ -1,29 +1,24 @@
-<nav class="navbar">
-
-    <div class="mainMenu">
-        @if(isAuthenticated){
-        <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goLogout()">
+<nav id="main-navbar" class="navbar" [ngStyle]="{'background-color': backgroundColor}">
+    <ng-container *ngIf="isAuthenticated; else notAuthenticated" aria-labelledby="authenticated-nav">
+        <button id="logout-btn" type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goLogout()">
             LOGOUT
         </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goLayout()">
+
+        <button id="cv-btn" type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goLayout()">
             CV
         </button>
-        } @else {
-        <button type="button" class="btn btn-outline-success me-2" (click)="goHome()">
+    </ng-container>
+
+    <ng-template #notAuthenticated aria-labelledby="not-authenticated-nav">
+        <button id="home-btn" type="button" class="btn btn-outline-success me-2" (click)="goHome()">
             HOME
         </button>
+
         <div class="tooltip-wrapper">
-            <button type="button" tooltip="Login or Register" placement="bottom" delay="500"
+            <button id="login-btn" type="button" tooltip="Login or Register" placement="bottom" delay="500"
                 class="btn btn-sm btn-outline-secondary m-1" (click)="goLogin()">
                 LOGIN
             </button>
         </div>
-        <!-- <button type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goRegister()">
-            REGISTER
-        </button> -->
-        }
-    </div>
-
-    <app-toggler></app-toggler>
-
+    </ng-template>
 </nav>

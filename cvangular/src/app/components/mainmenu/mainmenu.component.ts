@@ -10,6 +10,7 @@ import { AuthService } from '@services/auth.service';
 export class MainmenuComponent {
 
   @Input() isAuthenticated!: boolean | null;
+  @Input() backgroundColor: string = '';
 
   constructor(
     private router: Router,
