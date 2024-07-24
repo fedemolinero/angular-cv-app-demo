@@ -2,7 +2,7 @@
 
   <div class="left-side">
 
-    <h1 id="loginTitle">LOGIN</h1>
+    <h1 id="loginTitle" class="login-title">LOGIN</h1>
 
     <form [formGroup]="loginForm" (ngSubmit)="login()" id="loginForm">
 
@@ -74,7 +74,9 @@
         [disabled]="loginForm.invalid || disabledLogin">
         <span>LOGIN</span>
       </button>
-      <a routerLink="/forgot-password" class="forgot-password-link" id="forgotPasswordLink">Forgot password?</a>
+      <div class="text-center">
+        <a routerLink="/forgot-password" class="forgot-password-link" id="forgotPasswordLink">Forgot password?</a>
+      </div>
       }@else{
       <app-loading [message]="'Loading'" [backgroundColor]="'#f0ad4e'"></app-loading>
       }
