@@ -1,15 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrl: 'register.component.scss'
 })
-
 export class RegisterComponent implements OnInit, OnDestroy {
 
   private registerSubscription!: Subscription;
@@ -29,7 +28,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.initregisterForm();
+    this.initRegisterForm();
     this.loadAttemptsFromStorage();
   }
 
@@ -39,26 +38,35 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
   }
 
-  initregisterForm() {
+  initRegisterForm() {
     this.registerForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20), this.passwordValidator]],
     });
   }
 
+  // Ejemplo de validador personalizado para contraseña que requiere al menos una letra mayúscula y un número
+  passwordValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,20}$/;
+    if (!passwordRegex.test(control.value)) {
+      return { 'passwordRequirements': true };
+    }
+    return null;
+  }
+
   loadAttemptsFromStorage() {
-    const storedAttempts = localStorage.getItem('loginAttempts');
+    const storedAttempts = localStorage.getItem('registerAttempts');
     if (storedAttempts) {
       this.attempts = parseInt(storedAttempts, 10);
     }
   }
 
   saveAttemptsToStorage() {
-    localStorage.setItem('loginAttempts', this.attempts.toString());
+    localStorage.setItem('registerAttempts', this.attempts.toString());
   }
 
   clearAttemptsFromStorage() {
-    localStorage.removeItem('loginAttempts');
+    localStorage.removeItem('registerAttempts');
   }
 
   get username() { return this.registerForm.get('username'); }
@@ -83,7 +91,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.registerSubscription = this.authService.login(
+    this.registerSubscription = this.authService.register(
       this.registerForm.controls['username'].value,
       this.registerForm.controls['password'].value
     ).subscribe(
@@ -100,7 +108,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
           this.saveAttemptsToStorage(); // Guardar intentos en el almacenamiento
           // Mostrar mensaje de contraseña incorrecta y enfocar el campo de password
           if (error.status == 401) {
-            this.registerForm.controls['password'].setErrors({ 'is-invalid': true });
+            this.registerForm.controls['password'].setErrors({ 'is-incorrect': true });
           }
           this.loading = false; // Restaurar estado de carga en caso de error
         }
