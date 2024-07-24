@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.isAuthenticated$ = this.authService.isAuthenticated$;
+    this.isAuthenticated$ = this.authService.isAuthenticatedUser$;
 
     this.templateService.color$
       .subscribe(state => {

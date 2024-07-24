@@ -54,10 +54,14 @@
       <div id="validationIncorrectPasswordFeedback" class="invalid-feedback" role="alert">
         Password is incorrect.
       </div>
+      }@else if(password?.errors?.['passwordRequirements'] && username?.touched){
+      <div id="validationPasswordRequirementsFeedback" class="invalid-feedback" role="alert">
+        Password must contain at least one uppercase letter and one number.
+      </div>
       }
+
     </div>
 
-    <!-- {{password?.errors | json}} -->
     @if (disabledLogin) {
     <app-login-timeout [timeoutMinutes]="1"></app-login-timeout>
     }

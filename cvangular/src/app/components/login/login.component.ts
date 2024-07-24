@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthService } from '@services/auth.service';
 
@@ -40,8 +40,17 @@ export class LoginComponent implements OnInit, OnDestroy {
   initLoginForm() {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20), this.passwordValidator]],
     });
+  }
+
+  // Ejemplo de validador personalizado para contraseña que requiere al menos una letra mayúscula y un número
+  passwordValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{6,20}$/;
+    if (!passwordRegex.test(control.value)) {
+      return { 'passwordRequirements': true };
+    }
+    return null;
   }
 
   loadAttemptsFromStorage() {

@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-loading',
   template: `
-<div class="loading-spinner">
+<div class="loading-spinner" [style.background-color]="backgroundColor">
   <div class="spinner-border text-white" role="status">
     <span id="loading-status" class="visually-hidden"></span>
   </div>
