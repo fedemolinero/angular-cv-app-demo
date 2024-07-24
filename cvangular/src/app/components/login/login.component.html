@@ -4,20 +4,21 @@
 
   <form [formGroup]="loginForm" (ngSubmit)="login()">
 
-    <div class="input-group mt-5 mb-3">
+    <div class="input-group mt-1 mb-5">
       <label for="username" class="input-group-text">Username</label>
-      <input id="username" type="text" class="form-control form-control-lg" formControlName="username" [ngClass]="{
+      <input autofocus id="username" type="text" class="form-control form-control-lg" formControlName="username"
+        [ngClass]="{
           'is-valid': username?.valid && (username?.dirty || username?.touched),
           'is-invalid': username?.invalid && (username?.dirty || username?.touched)
-             }" aria-labelledby="usernameLabel" aria-describedby="validationUsernameFeedback" required
+             }" aria-labelledby="usernameLabel"
+        aria-describedby="validationRequiredUsernameFeedback validationMinUsernameFeedback validationMaxUsernameFeedback"
         (blur)="username?.markAsTouched()">
 
       @if(username?.errors?.['required'] && username?.touched){
       <div id="validationRequiredUsernameFeedback" class="invalid-feedback" role="alert">
         Username is required.
       </div>
-      }
-      @if(username?.errors?.['minlength'] && username?.touched){
+      }@else if(username?.errors?.['minlength'] && username?.touched){
       <div id="validationMinUsernameFeedback" class="invalid-feedback" role="alert">
         Username must be at least 6 characters long.
       </div>
@@ -29,14 +30,14 @@
 
     </div>
 
-    <div class="input-group mt-5 mb-3">
+    <div class="input-group mt-1 mb-5">
       <label for="password" class="input-group-text">Password</label>
-
       <input id="password" type="password" class="form-control form-control-lg" formControlName="password" [ngClass]="{
           'is-valid': password?.valid && (password?.dirty || password?.touched),
           'is-invalid': password?.invalid && (password?.dirty || password?.touched)
-             }" aria-labelledby="passwordLabel" aria-describedby="validationPasswordFeedback" required
-        (blur)="password?.markAsTouched()">
+             }" aria-labelledby="passwordLabel"
+        aria-describedby="validationRequiredPasswordFeedback validationPasswordRequirementsFeedback validationIncorrectPasswordFeedback validationMinPasswordFeedback"
+        required (blur)="password?.markAsTouched()">
 
       @if(password?.errors?.['required'] && password?.touched){
       <div id="validationRequiredPasswordFeedback" class="invalid-feedback" role="alert">
@@ -71,6 +72,7 @@
       [disabled]="loginForm.invalid || disabledLogin">
       <span>LOGIN</span>
     </button>
+    <a routerLink="/forgot-password" class="forgot-password-link">Forgot password?</a>
     }@else{
     <app-loading [message]="'Loading'" [backgroundColor]="'#f0ad4e'"></app-loading>
     }
