@@ -1,16 +1,116 @@
-// import { TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
+import { ResponseModel } from '@app/models/response.model';
 
-// import { AuthService } from './auth.service';
+describe('AuthService', () => {
+    let authService: AuthService;
+    let httpMock: HttpTestingController;
+    let router: Router;
 
-// describe('AuthService', () => {
-//   let service: AuthService;
+    const apiUrl = 'http://localhost:3000'; // Mock apiUrl for testing
 
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({});
-//     service = TestBed.inject(AuthService);
-//   });
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                HttpClientTestingModule // Import HttpClientTestingModule for mocking HTTP requests
+            ],
+            providers: [
+                AuthService,
+                { provide: 'API_URL', useValue: apiUrl } // Provide apiUrl as a mock value
+            ]
+        });
 
-//   it('should be created', () => {
-//     expect(service).toBeTruthy();
-//   });
-// });
+        authService = TestBed.inject(AuthService);
+        httpMock = TestBed.inject(HttpTestingController);
+        router = TestBed.inject(Router); // You can inject Router if needed
+    });
+
+    afterEach(() => {
+        httpMock.verify(); // Verify that there are no outstanding HTTP requests after each test
+    });
+
+    it('should be created', () => {
+        expect(authService).toBeTruthy();
+    });
+
+    it('should register user successfully', () => {
+        const mockResponse: ResponseModel = { token: 'mockToken' };
+
+        authService.register('testuser', 'password').subscribe(response => {
+            expect(response).toEqual(mockResponse);
+        });
+
+        const req = httpMock.expectOne(`${apiUrl}/api/auth/register`);
+        expect(req.request.method).toBe('POST');
+        req.flush(mockResponse);
+    });
+
+    it('should login user successfully', () => {
+        const mockResponse: ResponseModel = { token: 'mockToken' };
+
+        authService.login('testuser', 'password').subscribe(response => {
+            expect(response).toEqual(mockResponse);
+            expect(authService.isAuthenticated()).toBe(true);
+        });
+
+        const req = httpMock.expectOne(`${apiUrl}/api/auth/login`);
+        expect(req.request.method).toBe('POST');
+        req.flush(mockResponse);
+    });
+
+
+    it('should logout user successfully', () => {
+        // Ensure isAuthenticated$ is false before logout
+        authService.removeToken();
+        expect(authService.isAuthenticated()).toBe(false);
+
+        // Perform logout
+        authService.logout();
+
+        // Expect isAuthenticated$ to be false after logout
+        authService.isAuthenticatedUser$.subscribe(isAuthenticatedUser => {
+            expect(isAuthenticatedUser).toBe(false);
+        });
+    });
+
+    it('should set and get token successfully', () => {
+        const mockToken = 'mockToken';
+
+        // Set token
+        authService.setToken(mockToken);
+
+        // Get token
+        const retrievedToken = authService.getToken();
+
+        // Expect retrieved token to match set token
+        expect(retrievedToken).toBe(mockToken);
+
+        // Remove token
+        authService.removeToken();
+
+        // Expect token to be null after removal
+        expect(authService.getToken()).toBeNull();
+    });
+
+    it('should check authentication status correctly', () => {
+        // Initially, there should be no token
+        authService.removeToken();
+        expect(authService.isAuthenticated()).toBe(false);
+    
+        // Set a token
+        authService.setToken('mockToken');
+    
+        // After setting a token, isAuthenticated should return true
+        expect(authService.isAuthenticated()).toBe(true);
+    
+        // Remove token
+        authService.removeToken();
+    
+        // After removing the token, isAuthenticated should return false again
+        expect(authService.isAuthenticated()).toBe(false);
+    });
+   
+    
+});

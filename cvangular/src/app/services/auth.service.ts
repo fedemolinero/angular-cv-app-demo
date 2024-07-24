@@ -14,11 +14,11 @@ export class AuthService {
   private apiUrl = 'http://localhost:3000';
 
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
+  public isAuthenticatedUser$ = this.isAuthenticatedSubject.asObservable();
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
   ) { }
 
   register(username: string, password: string): Observable<ResponseModel> {
