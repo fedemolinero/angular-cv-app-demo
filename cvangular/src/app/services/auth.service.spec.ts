@@ -98,19 +98,86 @@ describe('AuthService', () => {
         // Initially, there should be no token
         authService.removeToken();
         expect(authService.isAuthenticated()).toBe(false);
-    
+
         // Set a token
         authService.setToken('mockToken');
-    
+
         // After setting a token, isAuthenticated should return true
         expect(authService.isAuthenticated()).toBe(true);
-    
+
         // Remove token
         authService.removeToken();
-    
+
         // After removing the token, isAuthenticated should return false again
         expect(authService.isAuthenticated()).toBe(false);
     });
-   
-    
+
+
+
+    it('should refresh token successfully', () => {
+        const mockResponse: ResponseModel = { token: 'refreshedToken' };
+        const mockRefreshToken = 'mockRefreshToken';
+
+        spyOn(authService, 'getToken').and.returnValue(mockRefreshToken);
+        spyOn(authService, 'setToken');
+
+        authService.refreshToken().subscribe(token => {
+            expect(token).toBe(mockResponse.token);
+            expect(authService.isAuthenticated()).toBe(true); // Verificar estado de autenticación
+        });
+
+        const req = httpMock.expectOne(`${apiUrl}/api/auth/refresh-token`);
+        expect(req.request.method).toBe('POST');
+        req.flush(mockResponse);
+    });
+
+    it('should handle case when no refresh token is available', () => {
+        spyOn(authService, 'getToken').and.returnValue(null);
+
+        authService.refreshToken().subscribe({
+            error: error => {
+                expect(error).toBe('No hay refresh token disponible');
+            }
+        });
+
+        httpMock.expectNone(`${apiUrl}/api/auth/refresh-token`);
+    });
+
+    it('should handle error during token refresh', () => {
+        const errorMessage = 'Unauthorized';
+        const errorResponse = { status: 401, statusText: errorMessage };
+
+        const mockRefreshToken = 'mockRefreshToken';
+        spyOn(authService, 'getToken').and.returnValue(mockRefreshToken);
+
+        authService.refreshToken().subscribe({
+            error: error => {
+                expect(error).toBe('Error al renovar el token');
+            }
+        });
+
+        const req = httpMock.expectOne(`${apiUrl}/api/auth/refresh-token`);
+        expect(req.request.method).toBe('POST');
+        req.flush({}, errorResponse);
+    });
+
+    it('should handle unexpected error during token refresh', () => {
+        const errorMessage = 'Internal Server Error';
+        const errorResponse = { status: 500, statusText: errorMessage };
+
+        const mockRefreshToken = 'mockRefreshToken';
+        spyOn(authService, 'getToken').and.returnValue(mockRefreshToken);
+
+        authService.refreshToken().subscribe({
+            error: error => {
+                expect(error).toBe('Error al renovar el token');
+            }
+        });
+
+        const req = httpMock.expectOne(`${apiUrl}/api/auth/refresh-token`);
+        expect(req.request.method).toBe('POST');
+        req.flush({}, errorResponse);
+    });
+
+
 });
