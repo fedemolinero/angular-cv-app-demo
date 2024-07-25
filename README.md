@@ -1,22 +1,38 @@
-# Mi CV en Angular 17 con Bootstrap
+# Angular 17 CV Generator
 
-Este proyecto es una aplicación web desarrollada con Angular 17 y estilizada con Bootstrap. 
-Contiene mi currículum vitae completo y está diseñado para ser fácilmente personalizable y desplegable.
+This project is a Curriculum Vitae generator developed in Angular 17, leveraging Bootstrap for responsive design and Reactive Forms for dynamic form handling.
 
-## Características
+## Key Features:
 
-- Diseño moderno y responsive gracias a Bootstrap.
-- Estructura modular con Angular para una fácil expansión y mantenimiento.
-- CV completo incluyendo experiencia laboral, educación, habilidades, y más.
-- Sección de contacto con información para comunicarse conmigo.
+- **Technologies used**: Angular 17, Bootstrap, Reactive Forms.
+- **Advanced Components**: Implementation of various component techniques for efficient code modularization and reuse.
+- **Custom Pipes and Directives**: Use of pipes for data transformation and custom directives to control DOM behavior.
+- **Frontend Authentication and Authorization**: Integration of a frontend login system and authorization management to ensure data privacy.
+- **Template-based CV Generation**: Allows users to generate their Curriculum Vitae using different predefined templates.
 
-## Requisitos
+## Installation
 
-- Node.js y npm instalados en tu sistema.
+To run this project locally, follow these steps:
 
-## Instalación
+1. Clone this repository: `git clone https://github.com/your_username/your_project.git`
+2. Install dependencies: `npm install`
+3. Start the application: `ng serve`
+4. Open your browser and visit: `http://localhost:4200`
 
-1. Clona este repositorio en tu máquina local utilizando Git:
+## Usage
 
-   ```bash
-   git clone https://github.com/tu_usuario/mi-cv-angular-bootstrap.git
+Once the application is running, you can create, edit, and download your Curriculum Vitae in various template formats. Make sure to be authenticated to access all functionalities.
+
+## Contributions
+
+Contributions are welcome. If you want to improve this project, please follow these steps:
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/improvement`)
+3. Make your changes and commit them (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature/improvement`)
+5. Create a new Pull Request
+
+---
+
+This description covers the key aspects of your Angular 17 project, highlighting the technologies used, main features, and how to get started with the project. Make sure to adjust the details as needed to accurately reflect your specific implementation.
