@@ -12,13 +12,15 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'layout', component: LayoutComponent,
-    canActivate: [authGuard] 
+    canActivate: [authGuard]
   },
   { path: "**", redirectTo: "", pathMatch: "full" }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true }),
+
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
