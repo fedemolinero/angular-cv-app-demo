@@ -9,6 +9,12 @@ This project is a Curriculum Vitae generator developed in Angular 17, leveraging
 - **Custom Pipes and Directives**: Use of pipes for data transformation and custom directives to control DOM behavior.
 - **Frontend Authentication and Authorization**: Integration of a frontend login system and authorization management to ensure data privacy.
 - **Template-based CV Generation**: Allows users to generate their Curriculum Vitae using different predefined templates.
+- **Unit Tests**: Includes comprehensive unit tests to ensure robustness and reliability of the application.
+
+## Documentation and Usage:
+
+- **Component Documentation**: Detailed documentation files explaining each component's functionality and usage are provided.
+- **Unit Tests**: Complete unit tests are available to validate the functionality of each component and service.
 
 ## Installation
 
@@ -35,4 +41,4 @@ Contributions are welcome. If you want to improve this project, please follow th
 
 ---
 
-This description covers the key aspects of your Angular 17 project, highlighting the technologies used, main features, and how to get started with the project. Make sure to adjust the details as needed to accurately reflect your specific implementation.
+This description now includes information about unit tests and documentation files, ensuring potential contributors understand the project's testing coverage and how to access detailed component functionality descriptions. Adjust as needed to fit your specific project details and structure.
