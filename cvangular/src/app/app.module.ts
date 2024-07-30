@@ -26,6 +26,7 @@ import { TooltipDirective } from './directives/tooltip.directive';
 import { ButtontogglerComponent } from './components/buttontoggler/buttontoggler.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoginTimeoutComponent } from './components/login-timeout/login-timeout.component';
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { LoginTimeoutComponent } from './components/login-timeout/login-timeout.
     TooltipDirective,
     ButtontogglerComponent,
     LoadingComponent,
-    LoginTimeoutComponent
+    LoginTimeoutComponent,
+    TestComponent
   ],
   imports: [
     CommonModule,

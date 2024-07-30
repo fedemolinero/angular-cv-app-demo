@@ -1,30 +1,6 @@
-.login-container {
-    display: flex;
-    justify-content: center;
-    /* Centra horizontalmente los elementos */
-    align-items: center;
-    /* Centra verticalmente los elementos */
-}
 
 .login-title {
     padding-bottom: 1rem;
-}
-
-.left-side,
-.right-side {
-    flex: 1;
-    /* Cada sección ocupa el mismo espacio */
-}
-
-.left-side {
-    padding: 20px;
-    /* Añade espacio interno para separación */
-}
-
-.right-side {
-    display: flex;
-    justify-content: center;
-    /* Centra horizontalmente el contenido */
 }
 
 .login-form {
