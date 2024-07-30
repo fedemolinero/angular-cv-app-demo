@@ -30,6 +30,8 @@ import { TestComponent } from './components/shared/test/test.component';
 import { NotfoundComponent } from './components/layout/notfound/notfound.component';
 import { TridimensionComponent } from './components/shared/tridimension/tridimension.component';
 import { YesnotogglerComponent } from './components/shared/yesnotoggler/yesnotoggler.component';
+import { InputGameComponent } from './components/shared/input-game/input-game.component';
+import { RedbuttonComponent } from './components/shared/redbutton/redbutton.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { YesnotogglerComponent } from './components/shared/yesnotoggler/yesnotog
     TestComponent,
     NotfoundComponent,
     TridimensionComponent,
-    YesnotogglerComponent
+    YesnotogglerComponent,
+    InputGameComponent,
+    RedbuttonComponent,
   ],
   imports: [
     CommonModule,
