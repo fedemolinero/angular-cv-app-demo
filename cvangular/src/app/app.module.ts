@@ -29,6 +29,7 @@ import { LoginTimeoutComponent } from './components/shared/login-timeout/login-t
 import { TestComponent } from './components/shared/test/test.component';
 import { NotfoundComponent } from './components/layout/notfound/notfound.component';
 import { TridimensionComponent } from './components/shared/tridimension/tridimension.component';
+import { YesnotogglerComponent } from './components/shared/yesnotoggler/yesnotoggler.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { TridimensionComponent } from './components/shared/tridimension/tridimen
     LoginTimeoutComponent,
     TestComponent,
     NotfoundComponent,
-    TridimensionComponent
+    TridimensionComponent,
+    YesnotogglerComponent
   ],
   imports: [
     CommonModule,
