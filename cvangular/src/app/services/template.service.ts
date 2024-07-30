@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class TemplateService {
 
-  private colorSubject = new BehaviorSubject<string>('');
+  private colorSubject = new BehaviorSubject<string>('inactive');
 
   color$ = this.colorSubject.asObservable();
   

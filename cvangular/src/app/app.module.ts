@@ -27,6 +27,8 @@ import { ButtontogglerComponent } from './components/buttontoggler/buttontoggler
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoginTimeoutComponent } from './components/login-timeout/login-timeout.component';
 import { TestComponent } from './components/test/test.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
+import { TridimensionComponent } from './components/tridimension/tridimension.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { TestComponent } from './components/test/test.component';
     ButtontogglerComponent,
     LoadingComponent,
     LoginTimeoutComponent,
-    TestComponent
+    TestComponent,
+    NotfoundComponent,
+    TridimensionComponent
   ],
   imports: [
     CommonModule,
