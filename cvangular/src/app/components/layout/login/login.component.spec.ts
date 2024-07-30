@@ -4,9 +4,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login.component';
 import { AuthService } from '@services/auth.service';
 import { of, throwError } from 'rxjs';
-import { LoadingComponent } from '../loading/loading.component';
+import { LoadingComponent } from '../../shared/loading/loading.component';
 import { By } from '@angular/platform-browser';
-import { LoginTimeoutComponent } from '../login-timeout/login-timeout.component';
+import { LoginTimeoutComponent } from '../../shared/login-timeout/login-timeout.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
