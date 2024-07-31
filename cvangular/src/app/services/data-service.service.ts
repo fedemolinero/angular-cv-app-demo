@@ -7,6 +7,7 @@ import { Person } from '@models/person.model';
   providedIn: 'root'
 })
 export class DataService {
+  
   private apiUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
@@ -17,5 +18,9 @@ export class DataService {
 
   getCv(): Observable<Person> {
     return this.http.get<Person>(`${this.apiUrl}/api/cv/get-cv`);
+  }
+
+  getCvList() {
+    return this.http.get<any>(`${this.apiUrl}/api/cv/get-cv`);
   }
 }

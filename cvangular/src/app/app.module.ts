@@ -32,6 +32,8 @@ import { TridimensionComponent } from './components/shared/tridimension/tridimen
 import { YesnotogglerComponent } from './components/shared/yesnotoggler/yesnotoggler.component';
 import { InputGameComponent } from './components/shared/input-game/input-game.component';
 import { RedbuttonComponent } from './components/shared/redbutton/redbutton.component';
+import { CvlistComponent } from './components/layout/cvlist/cvlist.component';
+import { CardComponent } from './components/shared/card/card.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { RedbuttonComponent } from './components/shared/redbutton/redbutton.comp
     YesnotogglerComponent,
     InputGameComponent,
     RedbuttonComponent,
+    CvlistComponent,
+    CardComponent,
   ],
   imports: [
     CommonModule,

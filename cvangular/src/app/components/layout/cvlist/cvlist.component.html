@@ -1,0 +1,30 @@
+<main class="main">
+    <!-- NEW WAY IN ANGULAR 17 TO SHOW NGIFS -->
+    @if (!cvList){
+    <div class="container-fluid">
+        <div class="row">
+            <div> SERVER OFFLINE </div>
+        </div>
+    </div>
+    }@else{
+
+    <div class="container-fluid" id="contentToConvert">
+        <div class="card">
+            <div class="tools">
+                <div class="circle">
+                    <span class="red box"></span>
+                </div>
+                <div class="circle">
+                    <span class="yellow box"></span>
+                </div>
+                <div class="circle">
+                    <span class="green box"></span>
+                </div>
+            </div>
+            <div class="card__content text-white text-center">
+                {{cvList.cvName}}
+            </div>
+        </div>
+    </div>
+    }
+</main>

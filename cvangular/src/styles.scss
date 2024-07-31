@@ -57,6 +57,7 @@ $dark-bg: #0d1b2a;
     flex: 1;
     /* Cada sección ocupa el mismo espacio */
 }
+
 .left-side {
     padding: 20px;
     /* Añade espacio interno para separación */
@@ -161,9 +162,9 @@ $dark-bg: #0d1b2a;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-  }
-  
-  .bracketbutton::after {
+}
+
+.bracketbutton::after {
     content: "";
     position: absolute;
     top: -10px;
@@ -173,9 +174,9 @@ $dark-bg: #0d1b2a;
     background-color: $clear-bg;
     transition: 0.5s;
     transform-origin: center;
-  }
-  
-  .bracketbutton::before {
+}
+
+.bracketbutton::before {
     content: "";
     transform-origin: center;
     position: absolute;
@@ -185,12 +186,58 @@ $dark-bg: #0d1b2a;
     height: 40%;
     background-color: $clear-bg;
     transition: 0.5s;
-  }
-  
-  .bracketbutton:hover::before, .bracketbutton:hover::after {
+}
+
+.bracketbutton:hover::before,
+.bracketbutton:hover::after {
     transform: scale(0)
+}
+
+.bracketbutton:hover {
+    box-shadow: inset 0px 0px 25px #1479EA;
+}
+
+
+
+
+
+.card {
+    width: 190px;
+    height: 254px;
+    margin: 0 auto;
+    background: linear-gradient(0deg, #000, #272727);
+    border-radius: 8px;
+    z-index: 1;
   }
   
-  .bracketbutton:hover {
-    box-shadow: inset 0px 0px 25px #1479EA;
+  .tools {
+    display: flex;
+    align-items: center;
+    padding: 9px;
   }
+  
+  .circle {
+    padding: 0 4px;
+  }
+  
+  .box {
+    display: inline-block;
+    align-items: center;
+    width: 10px;
+    height: 10px;
+    padding: 1px;
+    border-radius: 50%;
+  }
+  
+  .red {
+    background-color: #ff605c;
+  }
+  
+  .yellow {
+    background-color: #ffbd44;
+  }
+  
+  .green {
+    background-color: #00ca4e;
+  }
+  
