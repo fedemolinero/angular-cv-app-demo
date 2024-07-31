@@ -1,15 +1,15 @@
 <nav id="main-navbar" class="navbar" [ngStyle]="{'background-color': backgroundColor}">
 
     <div class="menuItemsWrapper">
-        <button id="home-btn" type="button" class="btn btn-outline-success me-2" (click)="goHome()">
+        <button id="home-btn" type="button" class="btn btnColor m-1" (click)="goHome()">
             HOME
         </button>
 
         <ng-container *ngIf="isAuthenticated; else notAuthenticated" aria-labelledby="authenticated-nav">
-            <button id="logout-btn" type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goLogout()">
+            <button id="logout-btn" type="button" class="btn btnColor m-1" (click)="goLogout()">
                 LOGOUT
             </button>
-            <button id="cv-btn" type="button" class="btn btn-sm btn-outline-secondary m-1" (click)="goLayout()">
+            <button id="cv-btn" type="button" class="btn btnColor m-1" (click)="goLayout()">
                 CV
             </button>
         </ng-container>
@@ -17,7 +17,7 @@
         <ng-template #notAuthenticated aria-labelledby="not-authenticated-nav">
             <div class="tooltip-wrapper">
                 <button id="login-btn" type="button" tooltip="Login or Register" placement="bottom" delay="500"
-                    class="btn btn-sm btn-outline-secondary m-1" (click)="goLogin()">
+                    class="btn btnColor m-1" (click)="goLogin()">
                     LOGIN
                 </button>
             </div>

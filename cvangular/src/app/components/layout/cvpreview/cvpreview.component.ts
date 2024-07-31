@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from '@services/data-service.service';
 import { Person } from '@models/person.model';
+import { resumeDataModel } from '@app/models/cv.model';
 
 @Component({
   selector: 'app-cv-preview',
@@ -10,7 +11,7 @@ import { Person } from '@models/person.model';
 })
 export class CvPreviewComponent implements OnInit, OnDestroy {
 
-  @Input() personalData!: Person;
+  @Input() personalData!: resumeDataModel;
 
   private personalDataSubscription: Subscription | undefined;
 
@@ -29,11 +30,11 @@ export class CvPreviewComponent implements OnInit, OnDestroy {
     }
   }
 
-  getpersonalDataList() {
-    this.personalDataSubscription = this.personalDataService.getCv()
+  getpersonalDataList(id: string) {
+    this.personalDataSubscription = this.personalDataService.getCv(id)
       .subscribe(
         {
-          next: (personalDataResponse: Person) => {
+          next: (personalDataResponse: resumeDataModel) => {
             this.personalData = personalDataResponse;
           },
           error: (e) => {

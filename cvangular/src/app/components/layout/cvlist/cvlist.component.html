@@ -9,6 +9,7 @@
     }@else{
 
     <div class="container-fluid" id="contentToConvert">
+
         <div class="card">
             <div class="tools">
                 <div class="circle">
@@ -22,7 +23,9 @@
                 </div>
             </div>
             <div class="card__content text-white text-center">
-                {{cvList.cvName}}
+                <button class="btn btnColor" (click)="gotoEditor(cvList.resumeId)">
+                    {{cvList.cvName}}
+                </button>
             </div>
         </div>
     </div>

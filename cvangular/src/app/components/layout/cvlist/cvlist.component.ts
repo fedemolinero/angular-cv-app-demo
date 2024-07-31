@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { ResumeModel } from '@app/models/response.model';
 import { DataService } from '@app/services/data-service.service';
 import { Subscription } from 'rxjs';
@@ -12,10 +12,12 @@ export class CvlistComponent implements OnInit, OnDestroy {
 
   cvList!: ResumeModel;
   private cvListSubscription: Subscription = new Subscription;
+  @Output() idSelected = new EventEmitter<string>();
 
   constructor(
     private personalDataService: DataService
   ) { }
+
 
   ngOnInit(): void {
     this.getCVList();
@@ -25,6 +27,10 @@ export class CvlistComponent implements OnInit, OnDestroy {
     if (this.cvListSubscription) {
       this.cvListSubscription.unsubscribe();
     }
+  }
+
+  gotoEditor(id: any) {
+    this.idSelected.emit(id);
   }
 
   getCVList() {

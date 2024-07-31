@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from '@services/data-service.service';
-import { Person } from '@models/person.model';
+import { resumeDataModel } from '@app/models/cv.model';
 
 @Component({
   selector: 'app-layout',
@@ -10,34 +10,26 @@ import { Person } from '@models/person.model';
 })
 export class LayoutComponent implements OnInit, OnDestroy {
 
-  personalData: any;
+  personalData!: resumeDataModel;
   private personalDataSubscription: Subscription | undefined;
+  dataRetrieved: boolean = false;
 
-  formData: Person = {
-    name: '',
-    secondName: '',
-    lastName: '',
-    city: '',
-    position: '',
-    aboutDescriptions: [],
-    jobs: [],
-    studies: [],
-    languages: [],
-    courses: []
-  };
+  formData!: resumeDataModel;
 
-  onFormChanged(data: Person) {
+  manejarEvento(id: string) {
+    console.log('Evento recibido del hijo:', id);
+    this.getpersonalDataList(id);
+  }
+
+  onFormChanged(data: resumeDataModel) {
     this.formData = data;
   }
 
-
   constructor(
     private personalDataService: DataService
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
-    // this.getpersonalDataList()
   }
 
   ngOnDestroy(): void {
@@ -46,12 +38,14 @@ export class LayoutComponent implements OnInit, OnDestroy {
     }
   }
 
-  getpersonalDataList() {
-    this.personalDataSubscription = this.personalDataService.getCv()
+  getpersonalDataList(id: string) {
+    this.personalDataSubscription = this.personalDataService.getCv(id)
       .subscribe(
         {
-          next: (personalDataResponse: any) => {
+          next: (personalDataResponse: resumeDataModel) => {
+            console.log(personalDataResponse)
             this.personalData = personalDataResponse;
+            this.dataRetrieved = true;
           },
           error: (e) => console.error(e)
         }
