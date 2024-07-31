@@ -4,7 +4,8 @@ const getAllCvIds = (req, res) => {
   try {
     const data = readData();
     const resumeId = data.id;
-    res.status(200).json({ resumeId });
+    const cvName = data.cvName
+    res.status(200).json({ resumeId, cvName });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { readData, writeData } = require('../utils/fileHandler');
+const { readUsers, writeUsers } = require('../utils/fileHandler');
 
 const secretKey = 'fedeKpo';
 
@@ -11,7 +11,7 @@ const register = (req, res) => {
     return res.status(400).send({ message: 'Username and password are required!' });
   }
 
-  const users = readData().users || [];
+  const users = readUsers().users || [];
 
   const existingUser = users.find(u => u.username === username);
   if (existingUser) {
@@ -20,14 +20,14 @@ const register = (req, res) => {
 
   const hashedPassword = bcrypt.hashSync(password, 8);
   users.push({ username, password: hashedPassword });
-  writeData({ users });
+  writeUsers({ users });
 
   res.status(201).send({ message: 'User registered successfully!' });
 };
 
 const login = (req, res) => {
   const { username, password } = req.body;
-  const users = readData().users || [];
+  const users = readUsers().users || [];
 
   const user = users.find(u => u.username === username);
 
