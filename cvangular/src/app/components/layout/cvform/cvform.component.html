@@ -59,9 +59,9 @@
     </div>
 
     <div formArrayName="aboutDescriptions">
-        <button class="btn btn-secondary" type="button" (click)="addAboutDescription()">Add Description</button>
+        <!-- <button class="btn btn-secondary" type="button" (click)="addAboutDescription()">Add Description</button> -->
 
-        @for (about of aboutDescriptions.controls; track about){
+        <!-- @for (about of aboutDescriptions.controls; track about){
         <div class="input-group mb-3">
             <span id="about-{{$index}}" class="input-group-text">About</span>
             <input id="input-{{$index}}" class="form-control" type="text" [formControlName]="$index">
@@ -73,7 +73,7 @@
         </div>
         } @empty {
         <div>ABOUT</div>
-        }
+        } -->
     </div>
 
     <div class="d-grid gap-2">

@@ -58,15 +58,15 @@ export class CvformComponent implements OnInit, OnDestroy {
   get lastName() { return this.personForm.get('lastName'); }
   get city() { return this.personForm.get('city'); }
   get position() { return this.personForm.get('position'); }
-  get aboutDescriptions() { return this.personForm.get('aboutDescriptions') as FormArray; }
+  // get aboutDescriptions() { return this.personForm.get('aboutDescriptions') as FormArray; }
 
-  addAboutDescription() {
-    this.aboutDescriptions.push(this.fb.control(''));
-  }
+  // addAboutDescription() {
+  //   this.aboutDescriptions.push(this.fb.control(''));
+  // }
 
-  removeAboutDescription(index: number) {
-    this.aboutDescriptions.removeAt(index);
-  }
+  // removeAboutDescription(index: number) {
+  //   this.aboutDescriptions.removeAt(index);
+  // }
 
   postPersonalDataList(personalData: Person) {
     this.personalDataSubscription = this.personalDataService.createCv(personalData)

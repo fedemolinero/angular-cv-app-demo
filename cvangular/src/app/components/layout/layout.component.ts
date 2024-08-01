@@ -10,26 +10,28 @@ import { resumeDataModel } from '@app/models/cv.model';
 })
 export class LayoutComponent implements OnInit, OnDestroy {
 
+  private personalDataSubscription: Subscription = new Subscription();
   personalData!: resumeDataModel;
-  private personalDataSubscription: Subscription | undefined;
-  dataRetrieved: boolean = false;
-
   formData!: resumeDataModel;
-
-  manejarEvento(id: string) {
-    console.log('Evento recibido del hijo:', id);
-    this.getpersonalDataList(id);
-  }
-
-  onFormChanged(data: resumeDataModel) {
-    this.formData = data;
-  }
 
   constructor(
     private personalDataService: DataService
   ) { }
 
   ngOnInit(): void {
+    this.getpersonalDataList()
+  }
+
+  getpersonalDataList() {
+    this.personalDataSubscription = this.personalDataService.getCvList()
+      .subscribe(
+        {
+          next: (personalDataResponse: resumeDataModel) => {
+            this.personalData = personalDataResponse;
+          },
+          error: (e) => console.error(e)
+        }
+      );
   }
 
   ngOnDestroy(): void {
@@ -38,18 +40,5 @@ export class LayoutComponent implements OnInit, OnDestroy {
     }
   }
 
-  getpersonalDataList(id: string) {
-    this.personalDataSubscription = this.personalDataService.getCv(id)
-      .subscribe(
-        {
-          next: (personalDataResponse: resumeDataModel) => {
-            console.log(personalDataResponse)
-            this.personalData = personalDataResponse;
-            this.dataRetrieved = true;
-          },
-          error: (e) => console.error(e)
-        }
-      );
-  }
 }
 

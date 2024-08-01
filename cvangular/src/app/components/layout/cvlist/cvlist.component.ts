@@ -18,7 +18,6 @@ export class CvlistComponent implements OnInit, OnDestroy {
     private personalDataService: DataService
   ) { }
 
-
   ngOnInit(): void {
     this.getCVList();
   }
@@ -38,7 +37,6 @@ export class CvlistComponent implements OnInit, OnDestroy {
       .subscribe(
         {
           next: (cvListResponse: ResumeModel) => {
-            console.log(cvListResponse)
             this.cvList = cvListResponse;
           },
           error: (e) => {
