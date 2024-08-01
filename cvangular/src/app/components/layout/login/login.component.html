@@ -3,7 +3,7 @@
   <div class="row">
     <!-- <h1 id="loginTitle" class="login-title">LOGIN</h1> -->
 
-    <div class="col-md-8">
+    <div class="col-12">
 
       <form [formGroup]="loginForm" (ngSubmit)="login()" id="loginForm">
 
@@ -33,42 +33,12 @@
                 Username must have less than 20 characters long.
               </div>
               }
-
             </div>
-
           </div>
 
-
-          <!-- <div class="input-group mt-1 mb-5">
-        <label for="username" class="input-group-text">Username</label>
-        <input autofocus id="username" type="text" class="form-control form-control-lg" formControlName="username"
-          [ngClass]="{
-          'is-valid': username?.valid && (username?.dirty || username?.touched),
-          'is-invalid': username?.invalid && (username?.dirty || username?.touched)
-        }" aria-labelledby="usernameLabel"
-          aria-describedby="validationRequiredUsernameFeedback validationMinUsernameFeedback validationMaxUsernameFeedback"
-          (blur)="username?.markAsTouched()">
-
-        @if(username?.errors?.['required'] && username?.touched){
-        <div id="validationRequiredUsernameFeedback" class="invalid-feedback" role="alert">
-          Username is required.
-        </div>
-        }@else if(username?.errors?.['minlength'] && username?.touched){
-        <div id="validationMinUsernameFeedback" class="invalid-feedback" role="alert">
-          Username must be at least 6 characters long.
-        </div>
-        }@else if(username?.errors?.['maxlength'] && username?.touched){
-        <div id="validationMaxUsernameFeedback" class="invalid-feedback" role="alert">
-          Username must have less than 20 characters long.
-        </div>
-        }
-
-      </div> -->
-
           <div class="col-md-6 col-xs-12">
-
             <div class="brutalist-container mt-5 mb-5">
-              <input placeholder="PASSWORD" class="brutalist-input smooth-type" type="password"
+              <input placeholder="Password" class="brutalist-input smooth-type" type="password"
                 formControlName="password" [ngClass]="{
               'is-valid': password?.valid && (password?.dirty || password?.touched),
               'is-invalid': password?.invalid && (password?.dirty || password?.touched)
@@ -98,18 +68,7 @@
               </div>
               }
             </div>
-
-
-            <!-- <label for="password" class="input-group-text">Password</label> -->
-            <!-- <input id="password" type="password" class="form-control form-control-lg" formControlName="password" [ngClass]="{
-      'is-valid': password?.valid && (password?.dirty || password?.touched),
-      'is-invalid': password?.invalid && (password?.dirty || password?.touched)
-    }" aria-labelledby="passwordLabel"
-          aria-describedby="validationRequiredPasswordFeedback validationPasswordRequirementsFeedback validationIncorrectPasswordFeedback validationMinPasswordFeedback"
-          required (blur)="password?.markAsTouched()"> -->
-
           </div>
-
         </div>
 
         @if (disabledLogin) {
@@ -118,10 +77,20 @@
 
         @if(!loading){
 
-        <button type="submit" class="btn btn-primary btn-lg w-100 btn-block mt-3 mb-3" id="loginButton"
+        <button [disabled]="loginForm.invalid || disabledLogin" type="submit" class="btn w-100  mt-3 mb-3 buttonF"
+          alt="NOPE!" id="loginButton">
+          <i>L</i>
+          <i>O</i>
+          <i>G</i>
+          <i>I</i>
+          <i>N</i>
+        </button>
+
+        <!-- <button type="submit" class="btn btn-primary btn-lg w-100 btn-block mt-3 mb-3" id="loginButton"
           [disabled]="loginForm.invalid || disabledLogin">
           <span>LOGIN</span>
         </button>
+         -->
         <div class="text-center">
           <a routerLink="/forgot-password" class="forgot-password-link" id="forgotPasswordLink">Forgot password?</a>
         </div>
@@ -137,10 +106,10 @@
 
       </form>
     </div>
-
+    <!-- 
     <div class="col-md-4">
       <img src="assets/svg/websiteLogin.svg">
-    </div>
+    </div> -->
   </div>
 
 </div>
