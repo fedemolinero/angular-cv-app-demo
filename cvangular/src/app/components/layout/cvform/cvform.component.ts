@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '@services/data-service.service';
 import { resumeDataModel } from '@app/models/cv.model';
 import { Subscription } from 'rxjs';
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './cvform.component.html',
   styleUrls: ['./cvform.component.scss']
 })
-export class CvformComponent implements OnDestroy, OnChanges {
+export class CvformComponent implements OnInit, OnChanges, OnDestroy {
 
   @Output() formChanged = new EventEmitter<any>();
   @Input() cvData!: resumeDataModel;
@@ -22,70 +22,22 @@ export class CvformComponent implements OnDestroy, OnChanges {
   constructor(
     private fb: FormBuilder,
     private personalDataService: DataService
-  ) {
-    this.personForm = this.fb.group({
-      id: [{ value: '', disabled: true }],
-      userFirstName: ['', Validators.required],
-      userLastName: [''],
-      userHeading: [''],
-      userEmail: ['', [Validators.required, Validators.email]],
-      userAddress: [''],
-      userPhoneNumber: [''],
-      resumeId: [0],
-      uuid: [''],
-      templateId: [0],
-      cvName: [''],
-      inReview: [false],
-      isShared: [false],
-      updatedAfterReview: [false],
-      createdAt: [''],
-      updatedAt: [''],
-      templateUrl: [''],
-      activeReviewId: [0],
-      inAiReview: [false],
-      reviewDone: [false],
-      userReviewFeedbackDone: [false],
-      awards: this.fb.array([]),
-      certifications: this.fb.array([]),
-      education: this.fb.array([]),
-      work: this.fb.array([]),
-      projects: this.fb.array([]),
-      skills: this.fb.array([]),
-      links: this.fb.array([]),
-      user: this.fb.group({
-        id: [0],
-        uid: [0],
-        name: [''],
-        role: [''],
-        companyName: [''],
-        lastActiveToken: [''],
-        createdAt: [''],
-        updatedAt: [''],
-        lastNotificationCheck: [''],
-        incompleteResumeEmailCount: [0],
-        reviewer: [false],
-        reviewCredits: [0],
-        uploadCredits: [0],
-        reviewOnboardingDone: [false],
-        hacker_id: [0],
-        username: [''],
-        email: [''],
-        secondary_emails: this.fb.array([]),
-        banners: this.fb.group({}),
-        credits: this.fb.group({
-          uploadCredits: [0],
-          reviewCredits: [0]
-        }),
-        existingResume: this.fb.group({})
-      }),
-      userId: [0],
-      review: [null]
-    });
-  }
+  ) { }
 
+  
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['cvData'] && this.cvData) {
       this.personForm.patchValue(this.cvData);
+    }
+  }
+
+
+  ngOnInit(): void {
+    this.initForm();
+
+    if (this.cvData) {
+      this.personForm.patchValue(this.cvData);
+      this.setFormArrays(this.cvData);
     }
   }
 
@@ -95,8 +47,121 @@ export class CvformComponent implements OnDestroy, OnChanges {
     }
   }
 
-  onInputChange() {
-    this.formChanged.emit(this.personForm);
+  initForm() {
+    this.personForm = this.fb.group({
+      userFirstName: ['', Validators.required],
+      userLastName: [''],
+      userHeading: [''],
+      userEmail: ['', [Validators.required, Validators.email]],
+      userAddress: [''],
+      userPhoneNumber: [''],
+      awards: this.fb.array([]),
+      certifications: this.fb.array([]),
+      education: this.fb.array([]),
+      work: this.fb.array([]),
+      projects: this.fb.array([]),
+      skills: this.fb.array([]),
+      links: this.fb.array([]),
+    });
+  }
+
+  get awards() { return this.personForm.get('awards') as FormArray; }
+  get certifications() { return this.personForm.get('certifications') as FormArray; }
+  get education() { return this.personForm.get('education') as FormArray; }
+  get work() { return this.personForm.get('work') as FormArray; }
+  get projects() { return this.personForm.get('projects') as FormArray; }
+  get skills() { return this.personForm.get('skills') as FormArray; }
+  get links() { return this.personForm.get('links') as FormArray; }
+
+  // Set form arrays with existing data
+  private setFormArrays(data: resumeDataModel) {
+    this.setArrayValues(this.awards, data.awards);
+    this.setArrayValues(this.certifications, data.certifications);
+    this.setArrayValues(this.education, data.education);
+    this.setArrayValues(this.work, data.work);
+    this.setArrayValues(this.projects, data.projects);
+    this.setArrayValues(this.skills, data.skills);
+    this.setArrayValues(this.links, data.links);
+  }
+
+  // Helper method to set array values
+  private setArrayValues(formArray: FormArray, values: any[], isComplex = false) {
+    values.forEach(value => {
+      if (isComplex) {
+        formArray.push(this.fb.group({
+          id: [value.id],
+          description: [value.description],
+          issuedBy: [value.issuedBy],
+          url: [value.url],
+          sortOrderId: [value.sortOrderId]
+        }));
+      } else {
+        formArray.push(this.fb.control(value));
+      }
+    });
+  }
+
+  addAward() {
+    this.awards.push(this.fb.control(''));
+  }
+
+  removeAward(index: number) {
+    this.awards.removeAt(index);
+  }
+
+
+  addCertification() {
+    this.certifications.push(this.fb.group({
+      id: [null],
+      description: [''],
+      issuedBy: [''],
+      url: [''],
+      sortOrderId: [0]
+    }));
+  }
+
+  removeCertification(index: number) {
+    this.certifications.removeAt(index);
+  }
+
+  addEducation() {
+    this.education.push(this.fb.control(''));
+  }
+
+  removeEducation(index: number) {
+    this.education.removeAt(index);
+  }
+
+  addWork() {
+    this.work.push(this.fb.control(''));
+  }
+
+  removeWork(index: number) {
+    this.work.removeAt(index);
+  }
+
+  addProject() {
+    this.projects.push(this.fb.control(''));
+  }
+
+  removeProject(index: number) {
+    this.projects.removeAt(index);
+  }
+
+  addSkill() {
+    this.skills.push(this.fb.control(''));
+  }
+
+  removeSkill(index: number) {
+    this.skills.removeAt(index);
+  }
+
+  addLink() {
+    this.links.push(this.fb.control(''));
+  }
+
+  removeLink(index: number) {
+    this.links.removeAt(index);
   }
 
   saveChanges() {
@@ -122,6 +187,7 @@ export class CvformComponent implements OnDestroy, OnChanges {
       });
   }
 
-  get userFirstName() { return this.personForm.get('userFirstName'); }
-
+  onInputChange() {
+    this.formChanged.emit(this.personForm);
+  }
 }

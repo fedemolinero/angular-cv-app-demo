@@ -1,14 +1,8 @@
 <form [formGroup]="personForm" (ngSubmit)="saveChanges()">
     <!-- User First Name -->
     <div class="input-group mt-3 mb-3">
-        <span id="nameLabel" class="input-group-text">First Name</span>
-        <input id="userFirstName" type="text" class="form-control" formControlName="userFirstName" [ngClass]="{
-            'is-valid': userFirstName?.valid && (userFirstName?.dirty || userFirstName?.touched),
-            'is-invalid': userFirstName?.invalid && (userFirstName?.dirty || userFirstName?.touched)
-        }">
-        <div *ngIf="personForm.invalid && (userFirstName?.dirty || userFirstName?.touched)" class="invalid-feedback">
-            Please choose a first name.
-        </div>
+        <span id="firstNameLabel" class="input-group-text">First Name</span>
+        <input id="userFirstName" type="text" class="form-control" formControlName="userFirstName">
     </div>
 
     <!-- User Last Name -->
@@ -39,6 +33,94 @@
     <div class="input-group mt-3 mb-3">
         <span id="phoneNumberLabel" class="input-group-text">Phone Number</span>
         <input id="userPhoneNumber" type="text" class="form-control" formControlName="userPhoneNumber">
+    </div>
+
+    <!-- Awards -->
+    <div class="mb-3">
+        <label for="awards" class="form-label">Awards</label>
+        <div formArrayName="awards">
+            <div *ngFor="let award of awards.controls; let i = index">
+                <input [formControlName]="i" type="text" class="form-control mb-2" placeholder="Enter award">
+                <button type="button" (click)="removeAward(i)" class="btn btn-danger btn-sm">Remove</button>
+            </div>
+            <button type="button" (click)="addAward()" class="btn btn-primary">Add Award</button>
+        </div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="mb-3">
+        <label for="certifications" class="form-label">Certifications</label>
+        <div formArrayName="certifications">
+            <div *ngFor="let cert of certifications.controls; let i = index" [formGroupName]="i" class="mb-3">
+                <input formControlName="description" type="text" class="form-control mb-2" placeholder="Description">
+                <input formControlName="issuedBy" type="text" class="form-control mb-2" placeholder="Issued By">
+                <input formControlName="url" type="text" class="form-control mb-2" placeholder="URL">
+                <input formControlName="sortOrderId" type="number" class="form-control mb-2" placeholder="Sort Order">
+                <button type="button" (click)="removeCertification(i)" class="btn btn-danger btn-sm">Remove</button>
+            </div>
+            <button type="button" (click)="addCertification()" class="btn btn-primary">Add Certification</button>
+        </div>
+    </div>
+
+
+    <!-- Education -->
+    <div class="mb-3">
+        <label for="education" class="form-label">Education</label>
+        <div formArrayName="education">
+            <div *ngFor="let edu of education.controls; let i = index">
+                <input [formControlName]="i" type="text" class="form-control mb-2" placeholder="Enter education">
+                <button type="button" (click)="removeEducation(i)" class="btn btn-danger btn-sm">Remove</button>
+            </div>
+            <button type="button" (click)="addEducation()" class="btn btn-primary">Add Education</button>
+        </div>
+    </div>
+
+    <!-- Work -->
+    <div class="mb-3">
+        <label for="work" class="form-label">Work</label>
+        <div formArrayName="work">
+            <div *ngFor="let work of work.controls; let i = index">
+                <input [formControlName]="i" type="text" class="form-control mb-2" placeholder="Enter work experience">
+                <button type="button" (click)="removeWork(i)" class="btn btn-danger btn-sm">Remove</button>
+            </div>
+            <button type="button" (click)="addWork()" class="btn btn-primary">Add Work</button>
+        </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="mb-3">
+        <label for="projects" class="form-label">Projects</label>
+        <div formArrayName="projects">
+            <div *ngFor="let project of projects.controls; let i = index">
+                <input [formControlName]="i" type="text" class="form-control mb-2" placeholder="Enter project">
+                <button type="button" (click)="removeProject(i)" class="btn btn-danger btn-sm">Remove</button>
+            </div>
+            <button type="button" (click)="addProject()" class="btn btn-primary">Add Project</button>
+        </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="mb-3">
+        <label for="skills" class="form-label">Skills</label>
+        <div formArrayName="skills">
+            <div *ngFor="let skill of skills.controls; let i = index">
+                <input [formControlName]="i" type="text" class="form-control mb-2" placeholder="Enter skill">
+                <button type="button" (click)="removeSkill(i)" class="btn btn-danger btn-sm">Remove</button>
+            </div>
+            <button type="button" (click)="addSkill()" class="btn btn-primary">Add Skill</button>
+        </div>
+    </div>
+
+    <!-- Links -->
+    <div class="mb-3">
+        <label for="links" class="form-label">Links</label>
+        <div formArrayName="links">
+            <div *ngFor="let link of links.controls; let i = index">
+                <input [formControlName]="i" type="text" class="form-control mb-2" placeholder="Enter link">
+                <button type="button" (click)="removeLink(i)" class="btn btn-danger btn-sm">Remove</button>
+            </div>
+            <button type="button" (click)="addLink()" class="btn btn-primary">Add Link</button>
+        </div>
     </div>
 
     <!-- Save Button -->

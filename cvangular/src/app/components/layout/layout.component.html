@@ -1,20 +1,20 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-md-6">
-            <!-- @if(dataRetrieved == false){ -->
+        <div class="col-md-3">
             <app-cvlist (idSelected)="inputEvent($event)"></app-cvlist>
         </div>
+
+        <!-- @if(dataRetrieved == false){ -->
+
         <div class="col-md-6">
-
             <app-cvform [cvData]="cvData"></app-cvform>
-
-            <!-- }@else{
         </div>
 
+        <!-- }@else{
         <div class="col-8">
             <app-cv-preview [personalData]="formData"></app-cv-preview>
         </div>
         } -->
-        </div>
+
     </div>
