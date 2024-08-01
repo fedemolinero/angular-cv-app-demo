@@ -27,6 +27,10 @@ body {
     font-family: 'Dosis', sans-serif;
 }
 
+.container-bubble{
+    position: absolute;
+}
+
 // THEMING: DARK OR LIGHT MODE
 $clear-bg: #e9ecef;
 $dark-bg: #0d1b2a;
