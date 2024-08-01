@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from '@services/data-service.service';
 import { resumeDataModel } from '@app/models/cv.model';
@@ -11,33 +11,31 @@ import { resumeDataModel } from '@app/models/cv.model';
 export class LayoutComponent implements OnInit, OnDestroy {
 
   private personalDataSubscription: Subscription = new Subscription();
-  personalData!: resumeDataModel;
-  formData!: resumeDataModel;
+  cvData!: resumeDataModel;
 
   constructor(
     private personalDataService: DataService
   ) { }
 
-  ngOnInit(): void {
-    this.getpersonalDataList()
-  }
-
-  getpersonalDataList() {
-    this.personalDataSubscription = this.personalDataService.getCvList()
+  inputEvent(id: string) {
+    this.personalDataSubscription = this.personalDataService.getCv(id)
       .subscribe(
         {
-          next: (personalDataResponse: resumeDataModel) => {
-            this.personalData = personalDataResponse;
+          next: (cvListResponse: resumeDataModel) => {
+            console.log('cvData', cvListResponse)
+            this.cvData = cvListResponse;
           },
-          error: (e) => console.error(e)
+          error: (e) => {
+            console.error(e);
+          }
         }
       );
   }
 
+  ngOnInit(): void {
+  }
+
   ngOnDestroy(): void {
-    if (this.personalDataSubscription) {
-      this.personalDataSubscription.unsubscribe();
-    }
   }
 
 }

@@ -1,3 +1,38 @@
+export interface resumeDataModel {
+    userFirstName: string;
+    userLastName: string;
+    userHeading: string;
+    userEmail: string;
+    userAddress: string;
+    userPhoneNumber: string;
+    id: number;
+    resumeId: number;
+    uuid: string;
+    templateId: number;
+    cvName: string;
+    inReview: boolean;
+    isShared: boolean;
+    updatedAfterReview: boolean;
+    createdAt: string;
+    updatedAt: string;
+    templateUrl: string;
+    activeReviewId: number;
+    inAiReview: boolean;
+    reviewDone: boolean;
+    userReviewFeedbackDone: boolean;
+    awards: [],
+    certifications: Certifications[],
+    education: Education[],
+    work: Work[],
+    projects: [],
+    skills: Skills[],
+    links: Links[],
+    user: UserCV
+    userId: number;
+    review: null
+}
+
+
 export interface Certifications {
     id: number
     description: string;
@@ -57,40 +92,6 @@ export interface Links {
     resumeId: number;
     createdAt: string;
     updatedAt: string;
-}
-
-export interface resumeDataModel {
-    userFirstName: string;
-    userLastName: string;
-    userHeading: string;
-    userEmail: string;
-    userAddress: string;
-    userPhoneNumber: string;
-    id: number;
-    resumeId: number;
-    uuid: string;
-    templateId: number;
-    cvName: string;
-    inReview: boolean;
-    isShared: boolean;
-    updatedAfterReview: boolean;
-    createdAt: string;
-    updatedAt: string;
-    templateUrl: string;
-    activeReviewId: number;
-    inAiReview: boolean;
-    reviewDone: boolean;
-    userReviewFeedbackDone: boolean;
-    awards: [],
-    certifications: Certifications[],
-    education: Education[],
-    work: Work[],
-    projects: [],
-    skills: Skills[],
-    links: Links[],
-    user: UserCV
-    userId: number;
-    review: null
 }
 
 

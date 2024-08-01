@@ -28,7 +28,7 @@ export class CvlistComponent implements OnInit, OnDestroy {
     }
   }
 
-  gotoEditor(id: any) {
+  openEditor(id: any) {
     this.idSelected.emit(id);
   }
 

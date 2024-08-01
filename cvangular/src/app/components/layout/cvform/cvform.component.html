@@ -1,85 +1,50 @@
 <form [formGroup]="personForm" (ngSubmit)="saveChanges()">
-
+    <!-- User First Name -->
     <div class="input-group mt-3 mb-3">
-        <span id="nameLabel" class="input-group-text">Name</span>
-        <input id="name" type="text" class="form-control" formControlName="name" [ngClass]="{
-            'is-valid': name!.valid && (name!.dirty || name!.touched),
-            'is-invalid': name!.invalid && (name!.dirty || name!.touched)
-          }">
-        <!-- NOTE: implementation of ngif directive in new angular 17 feature -->
-        @if(personForm.invalid && (name!.dirty || name!.touched)) {
-        <div id="validationNameFeedback" class="invalid-feedback">
-            Please choose a username.
+        <span id="nameLabel" class="input-group-text">First Name</span>
+        <input id="userFirstName" type="text" class="form-control" formControlName="userFirstName" [ngClass]="{
+            'is-valid': userFirstName?.valid && (userFirstName?.dirty || userFirstName?.touched),
+            'is-invalid': userFirstName?.invalid && (userFirstName?.dirty || userFirstName?.touched)
+        }">
+        <div *ngIf="personForm.invalid && (userFirstName?.dirty || userFirstName?.touched)" class="invalid-feedback">
+            Please choose a first name.
         </div>
-        }
     </div>
 
-    <div class="input-group mb-3">
-        <span id="secondNameLabel" class="input-group-text">Second Name</span>
-        <input id="secondName" type="text" class="form-control" formControlName="secondName">
-    </div>
-
-    <div class="input-group mb-3">
+    <!-- User Last Name -->
+    <div class="input-group mt-3 mb-3">
         <span id="lastNameLabel" class="input-group-text">Last Name</span>
-        <input id="lastName" class="form-control" formControlName="lastName" [ngClass]="{
-            'is-valid': lastName!.valid && (lastName!.dirty || lastName!.touched),
-            'is-invalid': lastName!.invalid && (lastName!.dirty || lastName!.touched)
-          }">
-        @if(personForm.invalid && (lastName!.dirty || lastName!.touched)) {
-        <div id="validationLastNameFeedback" class="invalid-feedback">
-            Please choose a last name.
-        </div>
-        }
+        <input id="userLastName" type="text" class="form-control" formControlName="userLastName">
     </div>
 
-    <div class="input-group mb-3">
-        <span class="input-group-text" id="cityLabel">City</span>
-        <input id="city" class="form-control" formControlName="city" [ngClass]="{
-            'is-valid': city!.valid && (city!.dirty || city!.touched),
-            'is-invalid': city!.invalid && (city!.dirty || city!.touched)
-          }">
-        @if(personForm.invalid && (city!.dirty || city!.touched)) {
-        <div id="validationCityFeedback" class="invalid-feedback">
-            Please choose a city.
-        </div>
-        }
+    <!-- User Heading -->
+    <div class="input-group mt-3 mb-3">
+        <span id="headingLabel" class="input-group-text">Heading</span>
+        <input id="userHeading" type="text" class="form-control" formControlName="userHeading">
     </div>
 
-    <div class="input-group mb-3">
-        <span id="positionLabel" class="input-group-text">Position</span>
-        <input id="position" class="form-control" formControlName="position" [ngClass]="{
-            'is-valid': position!.valid && (position!.dirty || position!.touched),
-            'is-invalid': position!.invalid && (position!.dirty || position!.touched)
-          }">
-        @if(personForm.invalid && (position!.dirty || position!.touched)) {
-        <div id="validationPositionFeedback" class="invalid-feedback">
-            Please choose a position.
-        </div>
-        }
+    <!-- User Email -->
+    <div class="input-group mt-3 mb-3">
+        <span id="emailLabel" class="input-group-text">Email</span>
+        <input id="userEmail" type="email" class="form-control" formControlName="userEmail">
     </div>
 
-    <div formArrayName="aboutDescriptions">
-        <!-- <button class="btn btn-secondary" type="button" (click)="addAboutDescription()">Add Description</button> -->
-
-        <!-- @for (about of aboutDescriptions.controls; track about){
-        <div class="input-group mb-3">
-            <span id="about-{{$index}}" class="input-group-text">About</span>
-            <input id="input-{{$index}}" class="form-control" type="text" [formControlName]="$index">
-
-            <button class="btn btn-secondary" type="button" [disabled]="$index === 0"
-                (click)="removeAboutDescription($index)">
-                <i class="bi bi-trash"></i>
-            </button>
-        </div>
-        } @empty {
-        <div>ABOUT</div>
-        } -->
+    <!-- User Address -->
+    <div class="input-group mt-3 mb-3">
+        <span id="addressLabel" class="input-group-text">Address</span>
+        <input id="userAddress" type="text" class="form-control" formControlName="userAddress">
     </div>
 
+    <!-- User Phone Number -->
+    <div class="input-group mt-3 mb-3">
+        <span id="phoneNumberLabel" class="input-group-text">Phone Number</span>
+        <input id="userPhoneNumber" type="text" class="form-control" formControlName="userPhoneNumber">
+    </div>
+
+    <!-- Save Button -->
     <div class="d-grid gap-2">
-        <button class="btn btn-primary mt-2 mt-2" type="submit">Save</button>
+        <button class="btn btn-primary mt-2" type="submit">Save</button>
     </div>
-
 </form>
 
 <div class="msg">{{savedSuccess}}</div>
