@@ -34,6 +34,7 @@ import { InputGameComponent } from './components/shared/input-game/input-game.co
 import { RedbuttonComponent } from './components/shared/redbutton/redbutton.component';
 import { CvlistComponent } from './components/layout/cvlist/cvlist.component';
 import { CardComponent } from './components/shared/card/card.component';
+import { PatternCrazyComponent } from './components/shared/pattern-crazy/pattern-crazy.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { CardComponent } from './components/shared/card/card.component';
     RedbuttonComponent,
     CvlistComponent,
     CardComponent,
+    PatternCrazyComponent,
   ],
   imports: [
     CommonModule,
