@@ -7,7 +7,7 @@
   - Se muestran mensajes de error personalizados según las validaciones (`required`, `minlength`, `maxlength`) cuando el campo respectivo está tocado (`touched`).
 
 - **Control de Intentos y Estado de Carga:**
-  - Se muestra un componente de `app-login-timeout` si el inicio de sesión está deshabilitado (`disabledLogin` es verdadero).
+  - Se muestra un componente de `app-submit-timeout` si el inicio de sesión está deshabilitado (`disabledLogin` es verdadero).
   - Se muestra un componente de `app-loading` mientras se está cargando (`loading` es verdadero).
 
 - **Botones:**

@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
 
 @Component({
-  selector: 'app-login-timeout',
+  selector: 'app-submit-timeout',
   templateUrl: './login-timeout.component.html',
   styleUrls: ['./login-timeout.component.scss']
 })

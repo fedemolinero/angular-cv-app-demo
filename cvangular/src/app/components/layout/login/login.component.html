@@ -7,16 +7,16 @@
         <div class="row ">
           <div class="col-md-6 col-xs-12">
 
-            <div class="brutalist-container mt-5 mb-5">
+            <div class="inputSmoosh-container mt-5 mb-5">
 
               <input formControlName="username" id="usernameInput" placeholder="Enter Username"
-                class="brutalist-input smooth-type" type="text" aria-labelledby="usernameLabel"
+                class="inputSmoosh-input smooth-type" type="text" aria-labelledby="usernameLabel"
                 aria-describedby="validationRequiredUsernameFeedback validationMinUsernameFeedback validationMaxUsernameFeedback"
                 (blur)="username?.markAsTouched()" [ngClass]="{
                   'is-valid': username?.valid && (username?.dirty || username?.touched),
                   'is-invalid': username?.invalid && (username?.dirty || username?.touched)
                 }" />
-              <label class="brutalist-label">USERNAME</label>
+              <label class="inputSmoosh-label">USERNAME</label>
 
               @if(username?.errors?.['required'] && username?.touched){
               <div id="validationRequiredUsernameFeedback" class="invalid-feedback" role="alert">
@@ -32,15 +32,16 @@
               </div>
               }
             </div>
-            <div class="brutalist-container mt-5 mb-5">
-              <input placeholder="Password" class="brutalist-input smooth-type" type="password"
+
+            <div class="inputSmoosh-container mt-5 mb-5">
+              <input placeholder="Password" class="inputSmoosh-input smooth-type" type="password"
                 formControlName="password" aria-labelledby="passwordLabel"
                 aria-describedby="validationRequiredPasswordFeedback validationPasswordRequirementsFeedback validationIncorrectPasswordFeedback validationMinPasswordFeedback"
                 required (blur)="password?.markAsTouched()" [ngClass]="{
                   'is-valid': password?.valid && (password?.dirty || password?.touched),
                   'is-invalid': password?.invalid && (password?.dirty || password?.touched)
                 }" />
-              <label for="password" class="brutalist-label">PASSWORD</label>
+              <label for="password" class="inputSmoosh-label">PASSWORD</label>
 
               @if(password?.errors?.['required'] && password?.touched){
               <div id="validationRequiredPasswordFeedback" class="invalid-feedback" role="alert">
@@ -72,12 +73,12 @@
         </div>
 
         @if (disabledLogin) {
-        <app-login-timeout [timeoutMinutes]="1"></app-login-timeout>
+        <app-submit-timeout [timeoutMinutes]="1"></app-submit-timeout>
         }
 
         @if(!loading){
 
-        <button [disabled]="loginForm.invalid || disabledLogin" class="cta-inverted" type="submit">
+        <button [disabled]="loginForm.invalid || disabledLogin" class="arrowsButton-inverted" type="submit">
           <span class="span dosis-font">LOGIN</span>
           <span class="second">
             <svg width="50px" height="20px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +103,7 @@
         }
 
 
-        <button id="registerButton" routerLink="/register" class="cta m-3" type="submit">
+        <button id="registerButton" routerLink="/register" class="arrowsButton m-3" type="submit">
           <span class="span dosis-font">REGISTER</span>
           <span class="second">
             <svg width="50px" height="20px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg"
