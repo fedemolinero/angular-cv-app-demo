@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { resumeDataModel } from '@app/models/cv.model';
+import { ResumeModel } from '@app/models/response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  createCv(cvData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/api/cv/create-cv`, cvData);
+  createCv(cvData: resumeDataModel): Observable<any> {
+    return this.http.post(`${this.apiUrl}/api/cv/get-cv`, cvData);
   }
 
   getCv(id: string): Observable<resumeDataModel> {
@@ -21,6 +22,6 @@ export class DataService {
   }
 
   getCvList() {
-    return this.http.get<any>(`${this.apiUrl}/api/cv/get-cv`);
+    return this.http.get<ResumeModel>(`${this.apiUrl}/api/cv/get-cv`);
   }
 }
