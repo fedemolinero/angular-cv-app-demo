@@ -26,8 +26,13 @@ export class CvformComponent implements OnChanges, OnDestroy {
 
 
   ngOnChanges(changes: SimpleChanges): void {
+
     if (changes['cvData'] && this.cvData) {
+      this.personForm.reset();
+
+      console.log(this.personForm.value)
       this.setFormArrays(this.cvData);
+
       this.personForm.patchValue(this.cvData);
     }
   }
@@ -248,8 +253,7 @@ export class CvformComponent implements OnChanges, OnDestroy {
   postPersonalDataList(personalData: resumeDataModel) {
     this.personalDataSubscription = this.personalDataService.saveCv(personalData)
       .subscribe({
-        next: (response: any) => {
-          
+        next: (response: string) => {
           console.log('saved', response);
         },
         error: (e) => {

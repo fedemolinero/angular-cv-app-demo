@@ -1,34 +1,34 @@
 @import 'bootstrap/scss/bootstrap';
 
 @font-face {
-    font-family: 'Ubuntu';
-    src: url('assets/fonts/Ubuntu-Medium.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Ubuntu';
+  src: url('assets/fonts/Ubuntu-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: 'Dosis';
-    src: url('assets/fonts/Dosis-Medium.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Dosis';
+  src: url('assets/fonts/Dosis-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
-    margin: 0;
-    font-family: "Ubuntu", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    height: 100%;
-    width: 100%;
+  margin: 0;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  height: 100%;
+  width: 100%;
 }
 
 .dosis-font {
-    font-family: 'Dosis', sans-serif;
+  font-family: 'Dosis', sans-serif;
 }
 
 .container-bubble {
-    position: absolute;
+  position: absolute;
 }
 
 // THEMING: DARK OR LIGHT MODE
@@ -36,116 +36,116 @@ $clear-bg: #e9ecef;
 $dark-bg: #0d1b2a;
 
 .clear {
-    background-color: $clear-bg;
-    color: black;
-    transition: background-color 0.3s;
+  background-color: $clear-bg;
+  color: black;
+  transition: background-color 0.3s;
 }
 
 .dark {
-    background-color: $dark-bg;
-    color: white;
-    transition: background-color 0.3s;
+  background-color: $dark-bg;
+  color: white;
+  transition: background-color 0.3s;
 }
 
 
 .component-flex-container {
-    display: flex;
-    justify-content: center;
-    /* Centra horizontalmente los elementos */
-    align-items: center;
-    /* Centra verticalmente los elementos */
+  display: flex;
+  justify-content: center;
+  /* Centra horizontalmente los elementos */
+  align-items: center;
+  /* Centra verticalmente los elementos */
 }
 
 .left-side,
 .right-side {
-    flex: 1;
-    /* Cada sección ocupa el mismo espacio */
+  flex: 1;
+  /* Cada sección ocupa el mismo espacio */
 }
 
 .left-side {
-    padding: 20px;
-    /* Añade espacio interno para separación */
+  padding: 20px;
+  /* Añade espacio interno para separación */
 }
 
 .right-side {
-    display: flex;
-    justify-content: center;
-    /* Centra horizontalmente el contenido */
+  display: flex;
+  justify-content: center;
+  /* Centra horizontalmente el contenido */
 }
 
 
 .ptvh-5 {
-    padding-top: 5vh;
+  padding-top: 5vh;
 }
 
 .pbvh-5 {
-    padding-bottom: 5vh;
+  padding-bottom: 5vh;
 }
 
 
 // Tooltip
 .tooltip-wrapper [tooltip] {
-    display: inline-block;
+  display: inline-block;
 }
 
 .customTooltip {
-    position: absolute;
-    max-width: 150px;
-    font-size: 14px;
-    text-align: center;
-    color: #f8f8f2;
-    padding: 3px 8px;
-    background: #282a36;
-    border-radius: 4px;
-    z-index: 1000;
-    opacity: 0;
+  position: absolute;
+  max-width: 150px;
+  font-size: 14px;
+  text-align: center;
+  color: #f8f8f2;
+  padding: 3px 8px;
+  background: #282a36;
+  border-radius: 4px;
+  z-index: 1000;
+  opacity: 0;
 }
 
 .customTooltip:after {
-    content: "";
-    position: absolute;
-    border-style: solid;
+  content: "";
+  position: absolute;
+  border-style: solid;
 }
 
 .customTooltip-top:after {
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-color: black transparent transparent transparent;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-color: black transparent transparent transparent;
 }
 
 .customTooltip-bottom:after {
-    bottom: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-color: transparent transparent black transparent;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-color: transparent transparent black transparent;
 }
 
 .customTooltip-left:after {
-    top: 50%;
-    left: 100%;
-    margin-top: -5px;
-    border-width: 5px;
-    border-color: transparent transparent transparent black;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-color: transparent transparent transparent black;
 }
 
 .customTooltip-right:after {
-    top: 50%;
-    right: 100%;
-    margin-top: -5px;
-    border-width: 5px;
-    border-color: transparent black transparent transparent;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-color: transparent black transparent transparent;
 }
 
 .customTooltip-show {
-    opacity: 1;
+  opacity: 1;
 }
 
 //FORMS
 .input-group-text {
-    font-size: 1em;
+  font-size: 1em;
 }
 
 
@@ -153,143 +153,141 @@ $dark-bg: #0d1b2a;
 
 // HOVERBUTTON
 .bracketbutton {
-    width: 10em;
-    position: relative;
-    height: 3.5em;
-    border: 3px ridge #149CEA;
-    outline: none;
-    background-color: transparent;
-    color: white;
-    transition: 1s;
-    border-radius: 0.3em;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+  width: 10em;
+  position: relative;
+  height: 3.5em;
+  border: 3px ridge #149CEA;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  transition: 1s;
+  border-radius: 0.3em;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .bracketbutton::after {
-    content: "";
-    position: absolute;
-    top: -10px;
-    left: 3%;
-    width: 95%;
-    height: 40%;
-    background-color: $clear-bg;
-    transition: 0.5s;
-    transform-origin: center;
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 3%;
+  width: 95%;
+  height: 40%;
+  background-color: $clear-bg;
+  transition: 0.5s;
+  transform-origin: center;
 }
 
 .bracketbutton::before {
-    content: "";
-    transform-origin: center;
-    position: absolute;
-    top: 80%;
-    left: 3%;
-    width: 95%;
-    height: 40%;
-    background-color: $clear-bg;
-    transition: 0.5s;
+  content: "";
+  transform-origin: center;
+  position: absolute;
+  top: 80%;
+  left: 3%;
+  width: 95%;
+  height: 40%;
+  background-color: $clear-bg;
+  transition: 0.5s;
 }
 
 .bracketbutton:hover::before,
 .bracketbutton:hover::after {
-    transform: scale(0)
+  transform: scale(0)
 }
 
 .bracketbutton:hover {
-    box-shadow: inset 0px 0px 25px #1479EA;
+  box-shadow: inset 0px 0px 25px #1479EA;
 }
-
-
-
 
 
 .card {
-    width: 190px;
-    height: 254px;
-    margin: 0 auto;
-    background: linear-gradient(0deg, #000, #272727);
-    border-radius: 8px;
-    z-index: 1;
+  // width: 190px;
+  // height: 254px;
+  padding: 1rem;
+  margin: 0 auto;
+  background: linear-gradient(0deg, #000, #272727);
+  border-radius: 8px;
+  z-index: 1;
 }
 
 .tools {
-    display: flex;
-    align-items: center;
-    padding: 9px;
+  display: flex;
+  align-items: center;
+  padding: 9px;
 }
 
 .circle {
-    padding: 0 4px;
+  padding: 0 4px;
 }
 
 .box {
-    display: inline-block;
-    align-items: center;
-    width: 10px;
-    height: 10px;
-    padding: 1px;
-    border-radius: 50%;
+  display: inline-block;
+  align-items: center;
+  width: 10px;
+  height: 10px;
+  padding: 1px;
+  border-radius: 50%;
 }
 
 .red {
-    background-color: #ff605c;
+  background-color: #ff605c;
 }
 
 .yellow {
-    background-color: #ffbd44;
+  background-color: #ffbd44;
 }
 
 .green {
-    background-color: #00ca4e;
+  background-color: #00ca4e;
 }
 
 
 
 .btnColor {
-    padding: 1.1em 2em;
-    background: none;
-    border: 2px solid #fff;
-    font-size: 15px;
-    color: #131313;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s;
-    border-radius: 12px;
-    background-color: #ecd448;
-    font-weight: bolder;
-    box-shadow: 0 2px 0 2px #000;
+  padding: 1.1em 2em;
+  background: none;
+  border: 2px solid #fff;
+  font-size: 15px;
+  color: #131313;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+  border-radius: 12px;
+  background-color: #ecd448;
+  font-weight: bolder;
+  box-shadow: 0 2px 0 2px #000;
 }
 
 .btnColor:before {
-    content: "";
-    position: absolute;
-    width: 100px;
-    height: 120%;
-    background-color: #ff6700;
-    top: 50%;
-    transform: skewX(30deg) translate(-150%, -50%);
-    transition: all 0.5s;
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 120%;
+  background-color: #ff6700;
+  top: 50%;
+  transform: skewX(30deg) translate(-150%, -50%);
+  transition: all 0.5s;
 }
 
 .btnColor:hover {
-    background-color: #4cc9f0;
-    color: #fff;
-    box-shadow: 0 2px 0 2px #0d3b66;
+  background-color: #4cc9f0;
+  color: #fff;
+  box-shadow: 0 2px 0 2px #0d3b66;
 }
 
 .btnColor:hover::before {
-    transform: skewX(30deg) translate(150%, -50%);
-    transition-delay: 0.1s;
+  transform: skewX(30deg) translate(150%, -50%);
+  transition-delay: 0.1s;
 }
 
 .btnColor:active {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .invalid-feedback {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 // .is-valid{
@@ -297,7 +295,7 @@ $dark-bg: #0d1b2a;
 // }
 
 .is-invalid {
-    border: 4px solid red !important;
+  border: 4px solid red !important;
 }
 
 
@@ -305,137 +303,137 @@ $dark-bg: #0d1b2a;
 
 
 .arrowsButton {
-    display: flex;
-    padding: 11px 33px;
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
-    font-size: 25px;
-    color: black;
-    background: #FBC638;
-    transition: 1s;
-    box-shadow: 6px 6px 0 black;
-    transform: skewX(-15deg);
-    border: none;
+  display: flex;
+  padding: 11px 33px;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 25px;
+  color: black;
+  background: #FBC638;
+  transition: 1s;
+  box-shadow: 6px 6px 0 black;
+  transform: skewX(-15deg);
+  border: none;
 }
 
 
 .arrowsButton-inverted {
-    display: flex;
-    padding: 11px 33px;
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
-    font-size: 25px;
-    color: white;
-    background: #4a90e2;
-    transition: 1s;
-    box-shadow: 6px 6px 0 black;
-    transform: skewX(-15deg);
-    border: none;
+  display: flex;
+  padding: 11px 33px;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 25px;
+  color: white;
+  background: #4a90e2;
+  transition: 1s;
+  box-shadow: 6px 6px 0 black;
+  transform: skewX(-15deg);
+  border: none;
 }
 
 .arrowsButton:focus {
-    outline: none;
+  outline: none;
 }
 
 .arrowsButton-inverted:focus {
-    outline: none;
+  outline: none;
 }
 
 .arrowsButton:hover {
-    transition: 0.5s;
-    box-shadow: 10px 10px 0 #4a90e2;
+  transition: 0.5s;
+  box-shadow: 10px 10px 0 #4a90e2;
 }
 
 .arrowsButton-inverted:hover {
-    transition: 0.5s;
-    box-shadow: 10px 10px 0 #FBC638;
+  transition: 0.5s;
+  box-shadow: 10px 10px 0 #FBC638;
 }
 
 
 
 .arrowsButton .second {
-    transition: 0.5s;
-    margin-right: 0px;
+  transition: 0.5s;
+  margin-right: 0px;
 }
 
 
 .arrowsButton-inverted .second {
-    transition: 0.5s;
-    margin-right: 0px;
+  transition: 0.5s;
+  margin-right: 0px;
 }
 
 .arrowsButton:hover .second {
-    transition: 0.5s;
-    margin-right: 45px;
+  transition: 0.5s;
+  margin-right: 45px;
 }
 
 .arrowsButton-inverted:hover .second {
-    transition: 0.5s;
-    margin-right: 45px;
+  transition: 0.5s;
+  margin-right: 45px;
 }
 
 .span {
-    transform: skewX(15deg)
+  transform: skewX(15deg)
 }
 
 .second {
-    width: 20px;
-    margin-left: 30px;
-    position: relative;
-    top: 12%;
+  width: 20px;
+  margin-left: 30px;
+  position: relative;
+  top: 12%;
 }
 
 .one {
-    transition: 0.4s;
-    transform: translateX(-60%);
+  transition: 0.4s;
+  transform: translateX(-60%);
 }
 
 .two {
-    transition: 0.5s;
-    transform: translateX(-30%);
+  transition: 0.5s;
+  transform: translateX(-30%);
 }
 
 .arrowsButton:hover .three {
-    animation: color_anim 1s infinite 0.2s;
+  animation: color_anim 1s infinite 0.2s;
 }
 
 .arrowsButton-inverted:hover .three {
-    animation: color_anim 1s infinite 0.2s;
+  animation: color_anim 1s infinite 0.2s;
 }
 
 .arrowsButton:hover .one {
-    transform: translateX(0%);
-    animation: color_anim 1s infinite 0.6s;
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.6s;
 }
 
 .arrowsButton-inverted:hover .one {
-    transform: translateX(0%);
-    animation: color_anim 1s infinite 0.6s;
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.6s;
 }
 
 .arrowsButton:hover .two {
-    transform: translateX(0%);
-    animation: color_anim 1s infinite 0.4s;
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.4s;
 }
 
 .arrowsButton-inverted:hover .two {
-    transform: translateX(0%);
-    animation: color_anim 1s infinite 0.4s;
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.4s;
 }
 
 
 @keyframes color_anim {
-    0% {
-        fill: white;
-    }
+  0% {
+    fill: white;
+  }
 
-    50% {
-        fill: #FBC638;
-    }
+  50% {
+    fill: #FBC638;
+  }
 
-    100% {
-        fill: white;
-    }
+  100% {
+    fill: white;
+  }
 }
 
 
@@ -448,201 +446,201 @@ $dark-bg: #0d1b2a;
 
 
 .inputSmoosh-container {
-    position: relative;
-    // width: 250px;
-    font-family: monospace;
+  position: relative;
+  // width: 250px;
+  font-family: monospace;
+}
+
+.inputSmoosh-input {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+  background-color: #fff;
+  border: 4px solid #000;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 5px 5px 0 #000, 10px 10px 0 #4a90e2;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
   }
-  
-  .inputSmoosh-input {
-    width: 100%;
-    padding: 15px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #000;
-    background-color: #fff;
-    border: 4px solid #000;
-    position: relative;
-    overflow: hidden;
-    border-radius: 0;
-    outline: none;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 5px 5px 0 #000, 10px 10px 0 #4a90e2;
+
+  20% {
+    transform: translate(-2px, 2px);
   }
-  
-  @keyframes glitch {
-    0% {
-      transform: translate(0);
-    }
-  
-    20% {
-      transform: translate(-2px, 2px);
-    }
-  
-    40% {
-      transform: translate(-2px, -2px);
-    }
-  
-    60% {
-      transform: translate(2px, 2px);
-    }
-  
-    80% {
-      transform: translate(2px, -2px);
-    }
-  
-    100% {
-      transform: translate(0);
-    }
+
+  40% {
+    transform: translate(-2px, -2px);
   }
-  
-  .inputSmoosh-input:focus {
-    animation: focus-pulse 4s cubic-bezier(0.25, 0.8, 0.25, 1) infinite,
-      glitch 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+
+  60% {
+    transform: translate(2px, 2px);
   }
-  
-  .inputSmoosh-input:focus::after {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: white;
-    z-index: -1;
+
+  80% {
+    transform: translate(2px, -2px);
   }
-  
-  .inputSmoosh-input:focus::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
-    z-index: -2;
+
+  100% {
+    transform: translate(0);
+  }
+}
+
+.inputSmoosh-input:focus {
+  animation: focus-pulse 4s cubic-bezier(0.25, 0.8, 0.25, 1) infinite,
+    glitch 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+}
+
+.inputSmoosh-input:focus::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: white;
+  z-index: -1;
+}
+
+.inputSmoosh-input:focus::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: -2;
+  clip-path: inset(0 100% 0 0);
+  animation: glitch-slice 4s steps(2, end) infinite;
+}
+
+@keyframes glitch-slice {
+  0% {
     clip-path: inset(0 100% 0 0);
-    animation: glitch-slice 4s steps(2, end) infinite;
   }
-  
-  @keyframes glitch-slice {
-    0% {
-      clip-path: inset(0 100% 0 0);
-    }
-  
-    10% {
-      clip-path: inset(0 5% 0 0);
-    }
-  
-    20% {
-      clip-path: inset(0 80% 0 0);
-    }
-  
-    30% {
-      clip-path: inset(0 10% 0 0);
-    }
-  
-    40% {
-      clip-path: inset(0 50% 0 0);
-    }
-  
-    50% {
-      clip-path: inset(0 30% 0 0);
-    }
-  
-    60% {
-      clip-path: inset(0 70% 0 0);
-    }
-  
-    70% {
-      clip-path: inset(0 15% 0 0);
-    }
-  
-    80% {
-      clip-path: inset(0 90% 0 0);
-    }
-  
-    90% {
-      clip-path: inset(0 5% 0 0);
-    }
-  
-    100% {
-      clip-path: inset(0 100% 0 0);
-    }
+
+  10% {
+    clip-path: inset(0 5% 0 0);
   }
-  
-  .inputSmoosh-label {
-    position: absolute;
-    left: -3px;
-    top: -35px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #000;
-    padding: 5px 10px;
-    transform: rotate(-1deg);
-    z-index: 1;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  20% {
+    clip-path: inset(0 80% 0 0);
   }
-  
-  .inputSmoosh-input:focus+.inputSmoosh-label {
-    transform: rotate(0deg) scale(1.05);
-    background-color: #4a90e2;
+
+  30% {
+    clip-path: inset(0 10% 0 0);
   }
-  
-  .smooth-type {
-    position: relative;
-    overflow: hidden;
+
+  40% {
+    clip-path: inset(0 50% 0 0);
   }
-  
-  .smooth-type::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+
+  50% {
+    clip-path: inset(0 30% 0 0);
   }
-  
-  .smooth-type:focus::before {
-    opacity: 1;
-    animation: type-gradient 2s linear infinite;
+
+  60% {
+    clip-path: inset(0 70% 0 0);
   }
-  
-  @keyframes type-gradient {
-    0% {
-      background-position: 300px 0;
-    }
-  
-    100% {
-      background-position: 0 0;
-    }
+
+  70% {
+    clip-path: inset(0 15% 0 0);
   }
-  
-  .inputSmoosh-input::placeholder {
-    color: #888;
-    transition: color 0.3s ease;
+
+  80% {
+    clip-path: inset(0 90% 0 0);
   }
-  
-  .inputSmoosh-input:focus::placeholder {
-    color: transparent;
+
+  90% {
+    clip-path: inset(0 5% 0 0);
   }
-  
-  .inputSmoosh-input:focus {
-    animation: focus-pulse 4s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+
+  100% {
+    clip-path: inset(0 100% 0 0);
   }
-  
-  @keyframes focus-pulse {
-  
-    0%,
-    100% {
-      border-color: #000;
-    }
-  
-    50% {
-      border-color: #4a90e2;
-    }
+}
+
+.inputSmoosh-label {
+  position: absolute;
+  left: -3px;
+  top: -35px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #000;
+  padding: 5px 10px;
+  transform: rotate(-1deg);
+  z-index: 1;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.inputSmoosh-input:focus+.inputSmoosh-label {
+  transform: rotate(0deg) scale(1.05);
+  background-color: #4a90e2;
+}
+
+.smooth-type {
+  position: relative;
+  overflow: hidden;
+}
+
+.smooth-type::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.smooth-type:focus::before {
+  opacity: 1;
+  animation: type-gradient 2s linear infinite;
+}
+
+@keyframes type-gradient {
+  0% {
+    background-position: 300px 0;
   }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.inputSmoosh-input::placeholder {
+  color: #888;
+  transition: color 0.3s ease;
+}
+
+.inputSmoosh-input:focus::placeholder {
+  color: transparent;
+}
+
+.inputSmoosh-input:focus {
+  animation: focus-pulse 4s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+}
+
+@keyframes focus-pulse {
+
+  0%,
+  100% {
+    border-color: #000;
+  }
+
+  50% {
+    border-color: #4a90e2;
+  }
+}

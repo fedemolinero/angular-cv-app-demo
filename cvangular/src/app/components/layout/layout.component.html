@@ -1,13 +1,12 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-
-        <div class="col-md-3">
+        <div class="col-md-4">
             <app-cvlist (idSelected)="inputEvent($event)"></app-cvlist>
         </div>
 
         <!-- @if(dataRetrieved == false){ -->
 
-        <div class="col-md-6">
+        <div class="col-md-8">
             <app-cvform [cvData]="cvData"></app-cvform>
         </div>
 
