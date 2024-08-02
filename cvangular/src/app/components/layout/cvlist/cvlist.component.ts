@@ -47,8 +47,22 @@ export class CvlistComponent implements OnInit, OnDestroy {
     this.idSelected.emit(id);
   }
 
-  removeCV(index: number) {
-    this.cvList.cvIds.splice(index, 1);
+  removeCV(name: string) {
+    console.log('name', name.toString())
+
+    this.personalDataService.deleteCv(name)
+      .subscribe(
+        {
+          next: (response: any) => {
+            this.getCVList();
+            console.log('response', response)
+          },
+          error: (e) => {
+            console.error(e);
+          }
+        }
+      );
+
   }
 
   createNewCV() {
@@ -57,6 +71,7 @@ export class CvlistComponent implements OnInit, OnDestroy {
         {
           next: (response: createNewCVModel) => {
             this.newID = response.newId;
+            this.getCVList();
           },
           error: (e) => {
             console.error(e);

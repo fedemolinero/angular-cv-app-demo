@@ -29,4 +29,8 @@ export class DataService {
     return this.http.post<createNewCVModel>(`${this.apiUrl}/api/cv/create-cv`, cvname);
   }
 
+  deleteCv(name: string): Observable<string> {
+    return this.http.delete<string>(`${this.apiUrl}/api/cv/${name}`);
+  }
+
 }
