@@ -36,7 +36,7 @@
     </div>
 
     <!-- Certifications -->
-    <div class="mb-3">
+    <!-- <div class="mb-3">
         <label for="certifications" class="form-label">Certifications</label>
         <div formArrayName="certifications">
             <div *ngFor="let cert of certifications.controls; let i = index" [formGroupName]="i" class="mb-3">
@@ -48,11 +48,11 @@
             </div>
             <button type="button" (click)="addCertification()" class="btn btn-primary">Add Certification</button>
         </div>
-    </div>
+    </div> -->
 
 
     <!-- Education -->
-    <div class="mb-3">
+    <!-- <div class="mb-3">
         <label for="education" class="form-label">Education</label>
         <div formArrayName="education">
             <div *ngFor="let edu of education.controls; let i = index" [formGroupName]="i" class="mb-3">
@@ -69,11 +69,10 @@
             </div>
             <button type="button" (click)="addEducation()" class="btn btn-primary">Add Education</button>
         </div>
-
-    </div>
+    </div> -->
 
     <!-- Work -->
-    <div class="mb-3">
+    <!-- <div class="mb-3">
         <label for="work" class="form-label">Work</label>
         <div formArrayName="work">
             <div *ngFor="let work of work.controls; let i = index" [formGroupName]="i" class="mb-3">
@@ -88,31 +87,21 @@
             </div>
             <button type="button" (click)="addWork()" class="btn btn-primary">Add Work</button>
         </div>
-    </div>
-
-    <!-- Projects -->
-    <!-- <div class="mb-3">
-        <label for="projects" class="form-label">Projects</label>
-        <div formArrayName="projects">
-            <div *ngFor="let project of projects.controls; let i = index">
-                <input [formControlName]="i" type="text" class="form-control mb-2" placeholder="Enter project">
-                <button type="button" (click)="removeProject(i)" class="btn btn-danger btn-sm">Remove</button>
-            </div>
-            <button type="button" (click)="addProject()" class="btn btn-primary">Add Project</button>
-        </div>
     </div> -->
 
     <!-- Skills -->
-    <!-- <div class="mb-3">
-        <label for="skills" class="form-label">Skills</label>
+    <div class="mb-3">
+        <!-- skillValues: Array(3) [ "Javascript", "typescript", "PHP" ] -->
         <div formArrayName="skills">
-            <div *ngFor="let skill of skills.controls; let i = index">
-                <input [formControlName]="i" type="text" class="form-control mb-2" placeholder="Enter skill">
+            <div *ngFor="let skill of skills.controls; let i = index" [formGroupName]="i" class="mb-3">
+                <input formControlName="skillType" type="text" class="form-control mb-2" placeholder="skillType">
+                <input formControlName="skillValues" type="text" class="form-control mb-2" placeholder="skillValues">
                 <button type="button" (click)="removeSkill(i)" class="btn btn-danger btn-sm">Remove</button>
             </div>
             <button type="button" (click)="addSkill()" class="btn btn-primary">Add Skill</button>
         </div>
-    </div> -->
+
+    </div>
 
     <!-- Links -->
     <!-- <div class="mb-3">
@@ -123,6 +112,19 @@
                 <button type="button" (click)="removeLink(i)" class="btn btn-danger btn-sm">Remove</button>
             </div>
             <button type="button" (click)="addLink()" class="btn btn-primary">Add Link</button>
+        </div>
+    </div> -->
+
+
+    <!-- Projects -->
+    <!-- <div class="mb-3">
+        <label for="projects" class="form-label">Projects</label>
+        <div formArrayName="projects">
+            <div *ngFor="let project of projects.controls; let i = index">
+                <input [formControlName]="i" type="text" class="form-control mb-2" placeholder="Enter project">
+                <button type="button" (click)="removeProject(i)" class="btn btn-danger btn-sm">Remove</button>
+            </div>
+            <button type="button" (click)="addProject()" class="btn btn-primary">Add Project</button>
         </div>
     </div> -->
 

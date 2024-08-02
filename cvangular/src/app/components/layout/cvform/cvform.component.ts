@@ -56,17 +56,17 @@ export class CvformComponent implements OnChanges, OnDestroy {
   get certifications() { return this.personForm.get('certifications') as FormArray; }
   get education() { return this.personForm.get('education') as FormArray; }
   get work() { return this.personForm.get('work') as FormArray; }
+  get skills() { return this.personForm.get('skills') as FormArray; }
   // get projects() { return this.personForm.get('projects') as FormArray; }
-  // get skills() { return this.personForm.get('skills') as FormArray; }
   // get links() { return this.personForm.get('links') as FormArray; }
 
   // Set form arrays with existing data
   private setFormArrays(data: resumeDataModel) {
     this.setArrayValues(this.certifications, data.certifications, 'certifications');
     this.setArrayValues(this.education, data.education, 'education');
-    this.setArrayValues(this.work, data.work,'work');
+    this.setArrayValues(this.work, data.work, 'work');
+    this.setArrayValues(this.skills, data.skills, 'skills');
     // this.setArrayValues(this.projects, data.projects);
-    // this.setArrayValues(this.skills, data.skills);
     // this.setArrayValues(this.links, data.links);
     // this.setArrayValues(this.awards, data.awards);
   }
@@ -113,6 +113,11 @@ export class CvformComponent implements OnChanges, OnDestroy {
           resumeId: [value.resumeId],
           createdAt: [value.createdAt],
           updatedAt: [value.updatedAt],
+        }));
+      } else if (itemToUpdate == 'skills') {
+        formArray.push(this.fb.group({
+          skillType: [value.skillType],
+          skillValues: [value.skillValues],
         }));
       } else {
         formArray.push(this.fb.control(value));
@@ -194,13 +199,16 @@ export class CvformComponent implements OnChanges, OnDestroy {
   //   this.projects.removeAt(index);
   // }
 
-  // addSkill() {
-  //   this.skills.push(this.fb.control(''));
-  // }
+  addSkill() {
+    this.skills.push(this.fb.group({
+      skillType: [],
+      // skillValues: [],
+    }));
+  }
 
-  // removeSkill(index: number) {
-  //   this.skills.removeAt(index);
-  // }
+  removeSkill(index: number) {
+    this.skills.removeAt(index);
+  }
 
   // addLink() {
   //   this.links.push(this.fb.control(''));
