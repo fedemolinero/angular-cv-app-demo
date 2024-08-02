@@ -13,8 +13,8 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  saveCv(cvData: resumeDataModel): Observable<any> {
-    return this.http.post(`${this.apiUrl}/api/cv/save-cv`, cvData);
+  saveCv(cvData: resumeDataModel): Observable<string> {
+    return this.http.post<string>(`${this.apiUrl}/api/cv/save-cv`, cvData);
   }
 
   getCvById(id: string): Observable<resumeDataModel> {
@@ -25,7 +25,7 @@ export class DataService {
     return this.http.get<cvIdsModel>(`${this.apiUrl}/api/cv/get-cv`);
   }
 
-  createNewCv(cvname: string): Observable<any> {
+  createNewCv(cvname: string): Observable<createNewCVModel> {
     return this.http.post<createNewCVModel>(`${this.apiUrl}/api/cv/create-cv`, cvname);
   }
 

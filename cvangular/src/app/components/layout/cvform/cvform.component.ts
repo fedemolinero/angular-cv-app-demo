@@ -249,6 +249,7 @@ export class CvformComponent implements OnChanges, OnDestroy {
     this.personalDataSubscription = this.personalDataService.saveCv(personalData)
       .subscribe({
         next: (response: any) => {
+          
           console.log('saved', response);
         },
         error: (e) => {

@@ -42,7 +42,7 @@ const saveCv = (req, res) => {
   try {
 
     fs.writeFileSync(filePath, JSON.stringify(cvData, null, 2), 'utf8');
-    res.status(201).json({ message: 'CV saved successfully', cvData });
+    res.status(201).json({ message: 'CV saved successfully' });
 
   } catch (error) {
     res.status(500).json({ error: error.message });

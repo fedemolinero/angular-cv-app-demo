@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { createNewCVModel, cvIdsModel, ResumeModel } from '@app/models/response.model';
+import { createNewCVModel, cvIdsModel } from '@app/models/response.model';
 import { DataService } from '@app/services/data-service.service';
 import { Subscription } from 'rxjs';
 
@@ -28,7 +28,7 @@ export class CvlistComponent implements OnInit, OnDestroy {
     }
   }
 
-  openEditor(id: any) {
+  openEditor(id: string) {
     this.idSelected.emit(id);
   }
 
