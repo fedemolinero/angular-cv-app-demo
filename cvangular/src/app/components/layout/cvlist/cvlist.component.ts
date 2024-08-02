@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { cvIdsModel, ResumeModel } from '@app/models/response.model';
+import { createNewCVModel, cvIdsModel, ResumeModel } from '@app/models/response.model';
 import { DataService } from '@app/services/data-service.service';
 import { Subscription } from 'rxjs';
 
@@ -12,9 +12,9 @@ export class CvlistComponent implements OnInit, OnDestroy {
   private cvListSubscription: Subscription = new Subscription;
   @Output() idSelected = new EventEmitter<string>();
 
-  cvList!: any;
+  cvList!: cvIdsModel;
   name: string = 'new';
-  newID!: cvIdsModel;
+  newID!: string;
 
   constructor(private personalDataService: DataService) { }
 
@@ -36,8 +36,8 @@ export class CvlistComponent implements OnInit, OnDestroy {
     this.personalDataService.createNewCv(this.name)
       .subscribe(
         {
-          next: (response: cvIdsModel) => {
-            this.newID = response;
+          next: (response: createNewCVModel) => {
+            this.newID = response.newId;
           },
           error: (e) => {
             console.error(e);
@@ -50,8 +50,7 @@ export class CvlistComponent implements OnInit, OnDestroy {
     this.cvListSubscription = this.personalDataService.getCvList()
       .subscribe(
         {
-          next: (cvListResponse: any) => {
-            console.log('cvListResponse', cvListResponse)
+          next: (cvListResponse: cvIdsModel) => {
             this.cvList = cvListResponse;
           },
           error: (e) => {

@@ -16,9 +16,7 @@ const getAllCvIds = (req, res) => {
 
 const getCvById = (req, res) => {
   const { id } = req.params;
-  
   const filePath = path.join(dataPath, `${id}.json`);
-
   try {
     if (fs.existsSync(filePath)) {
       const data = fs.readFileSync(filePath, 'utf8');
@@ -65,7 +63,9 @@ const createNewCv = (req, res) => {
     const filePath = path.join(dataPath, `${newId}.json`);
 
     fs.writeFileSync(filePath, JSON.stringify(newCvData, null, 2), 'utf8');
+
     res.status(201).json({ message: 'New CV created successfully', newId });
+
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -11,5 +11,11 @@ export interface ResumeModel {
 }
 
 export interface cvIdsModel {
-  cvIds: number;
+  cvIds: string[];
+}
+
+
+export interface createNewCVModel {
+  message: string;
+  newId: string;
 }
