@@ -104,16 +104,15 @@
     </div>
 
     <!-- Links -->
-    <!-- <div class="mb-3">
-        <label for="links" class="form-label">Links</label>
-        <div formArrayName="links">
-            <div *ngFor="let link of links.controls; let i = index">
-                <input [formControlName]="i" type="text" class="form-control mb-2" placeholder="Enter link">
-                <button type="button" (click)="removeLink(i)" class="btn btn-danger btn-sm">Remove</button>
-            </div>
-            <button type="button" (click)="addLink()" class="btn btn-primary">Add Link</button>
+
+    <div formArrayName="links">
+        <div *ngFor="let link of links.controls; let i = index" [formGroupName]="i" class="mb-3">
+            <input formControlName="url" type="text" class="form-control mb-2" placeholder="url">
+            <input formControlName="network" type="text" class="form-control mb-2" placeholder="network">
+            <button type="button" (click)="removeLink(i)" class="btn btn-danger btn-sm">Remove</button>
         </div>
-    </div> -->
+        <button type="button" (click)="addLink()" class="btn btn-primary">Add link</button>
+    </div>
 
 
     <!-- Projects -->
@@ -130,7 +129,7 @@
 
 
     <!-- Awards -->
-    <div class="mb-3">
+    <!-- <div class="mb-3">
         <label for="awards" class="form-label">Awards</label>
         <div formArrayName="awards">
             <div *ngFor="let award of awards.controls; let i = index">
@@ -139,7 +138,7 @@
             </div>
             <button type="button" (click)="addAward()" class="btn btn-primary">Add Award</button>
         </div>
-    </div>
+    </div> -->
 
 
     <!-- Save Button -->
