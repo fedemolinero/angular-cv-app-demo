@@ -30,7 +30,7 @@ export class CvPreviewComponent implements OnInit, OnDestroy {
   }
 
   getpersonalDataList(id: string) {
-    this.personalDataSubscription = this.personalDataService.getCv(id)
+    this.personalDataSubscription = this.personalDataService.getCvById(id)
       .subscribe(
         {
           next: (personalDataResponse: resumeDataModel) => {

@@ -24,11 +24,18 @@
             </div>
             <div class="card__content text-white text-center">
 
+
                 <div *ngFor="let cvIds of cvList.cvIds; let i = index">
-                    <button class="btn btnColor" (click)="openEditor(cvList.cvIds)">
+                    <button class="btn btnColor" (click)="openEditor(cvList.cvIds[i])">
                         {{cvIds}}
                     </button>
+                    <!-- <input formControl="formName" /> -->
                 </div>
+
+                <button class="btn btnColor" (click)="createNewCV()">
+                    +
+                </button>
+
             </div>
         </div>
     </div>

@@ -10,3 +10,6 @@ export interface ResumeModel {
   cvName: string;
 }
 
+export interface cvIdsModel {
+  cvIds: number;
+}

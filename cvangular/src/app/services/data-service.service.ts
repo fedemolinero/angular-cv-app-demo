@@ -17,11 +17,18 @@ export class DataService {
     return this.http.post(`${this.apiUrl}/api/cv/save-cv`, cvData);
   }
 
-  getCv(id: string): Observable<resumeDataModel> {
+  getCvById(id: string): Observable<resumeDataModel> {
     return this.http.get<resumeDataModel>(`${this.apiUrl}/api/cv/get-cv/${id}`);
   }
 
   getCvList() {
     return this.http.get<any>(`${this.apiUrl}/api/cv/get-cv`);
   }
+
+  createNewCv(cvname: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/api/cv/create-cv`, cvname);
+  }
+
+  
+
 }

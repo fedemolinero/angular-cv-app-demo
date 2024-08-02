@@ -34,10 +34,9 @@ export class CvformComponent implements OnChanges, OnDestroy {
 
 
   initForm() {
-    console.log('has init form')
     this.personForm = this.fb.group({
       id: [],
-      resumeId:[],
+      resumeId: [],
       userFirstName: ['', Validators.required],
       userLastName: [''],
       userHeading: [''],
@@ -64,11 +63,21 @@ export class CvformComponent implements OnChanges, OnDestroy {
 
   // Set form arrays with existing data
   private setFormArrays(data: resumeDataModel) {
-    this.setArrayValues(this.certifications, data.certifications, 'certifications');
-    this.setArrayValues(this.education, data.education, 'education');
-    this.setArrayValues(this.work, data.work, 'work');
-    this.setArrayValues(this.skills, data.skills, 'skills');
-    this.setArrayValues(this.links, data.links, 'links');
+    if (data.certifications) {
+      this.setArrayValues(this.certifications, data.certifications, 'certifications');
+    }
+    if (data.education) {
+      this.setArrayValues(this.education, data.education, 'education');
+    }
+    if (data.work) {
+      this.setArrayValues(this.work, data.work, 'work');
+    }
+    if (data.skills) {
+      this.setArrayValues(this.skills, data.skills, 'skills');
+    }
+    if (data.links) {
+      this.setArrayValues(this.links, data.links, 'links');
+    }
     // this.setArrayValues(this.projects, data.projects);
     // this.setArrayValues(this.awards, data.awards);
   }
