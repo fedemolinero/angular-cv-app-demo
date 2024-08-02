@@ -36,6 +36,8 @@ export class CvformComponent implements OnChanges, OnDestroy {
   initForm() {
     console.log('has init form')
     this.personForm = this.fb.group({
+      id: [],
+      resumeId:[],
       userFirstName: ['', Validators.required],
       userLastName: [''],
       userHeading: [''],
@@ -235,10 +237,10 @@ export class CvformComponent implements OnChanges, OnDestroy {
   }
 
   postPersonalDataList(personalData: resumeDataModel) {
-    this.personalDataSubscription = this.personalDataService.createCv(personalData)
+    this.personalDataSubscription = this.personalDataService.saveCv(personalData)
       .subscribe({
         next: (response: any) => {
-          console.log('created', response);
+          console.log('saved', response);
         },
         error: (e) => {
           console.error(e);

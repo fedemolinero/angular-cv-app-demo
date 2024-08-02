@@ -1,142 +1,107 @@
 {
+  "id": 258139,
+  "resumeId": 258139,
   "userFirstName": "Federico Martin",
   "userLastName": "Molinero",
   "userHeading": "Frontend Developer",
   "userEmail": "fmmolinero@gmail.com",
   "userAddress": "",
   "userPhoneNumber": "",
-  "id": 258139,
-  "resumeId": 258139,
-  "uuid": "664c339d-9502-4412-8dcd-52dfc38f5f2e",
-  "templateId": 4,
-  "cvName": "Fede's Resume",
-  "inReview": false,
-  "isShared": false,
-  "updatedAfterReview": false,
-  "createdAt": "2024-07-01T05:08:40.824Z",
-  "updatedAt": "2024-07-15T15:28:48.180Z",
-  "templateUrl": "https://hackerresume-prod.s3.us-east-1.amazonaws.com/thumbnails/12019316/664c339d-9502-4412-8dcd-52dfc38f5f2e.png",
-  "activeReviewId": 0,
-  "inAiReview": false,
-  "reviewDone": false,
-  "userReviewFeedbackDone": false,
-  "awards": [],
   "certifications": [
     {
       "id": 300423,
       "description": "Node.js API Masterclass With Express & MongoDB",
       "issuedBy": "Udemy",
       "url": "https://www.udemy.com/certificate/UC-05d7ea88-9baa-43ab-86dc-8a175386a0f7/",
-      "sortOrderId": 0,
-      "resumeId": 258139,
-      "createdAt": "2024-07-01T20:25:59.685Z",
-      "updatedAt": "2024-07-04T15:37:29.393Z"
+      "sortOrderId": 0
     },
     {
       "id": 300424,
       "description": "Angular - The Complete Guide",
       "issuedBy": "Udemy",
       "url": "https://www.udemy.com/certificate/UC-84d0f9a1-b234-4fae-972e-cb4f6b37120f/",
-      "sortOrderId": 1,
-      "resumeId": 258139,
-      "createdAt": "2024-07-01T20:27:17.238Z",
-      "updatedAt": "2024-07-04T15:37:29.393Z"
+      "sortOrderId": 1
     },
     {
       "id": 300426,
       "description": "Css",
       "issuedBy": "HackerRank",
       "url": "https://www.hackerrank.com/certificates/c363f692ce06",
-      "sortOrderId": 3,
-      "resumeId": 258139,
-      "createdAt": "2024-07-01T20:29:44.243Z",
-      "updatedAt": "2024-07-04T15:37:29.393Z"
+      "sortOrderId": 3
     },
     {
       "id": 301060,
       "description": "Javascript",
       "issuedBy": "HackerRank",
       "url": "https://www.hackerrank.com/certificates/287702323a4c",
-      "sortOrderId": 4,
-      "resumeId": 258139,
-      "createdAt": "2024-07-02T18:43:16.229Z",
-      "updatedAt": "2024-07-04T15:37:29.393Z"
+      "sortOrderId": 4
     },
     {
       "id": 300843,
       "description": "Angular",
       "issuedBy": "HackerRank",
       "url": "https://www.hackerrank.com/certificates/69210d48a697",
-      "sortOrderId": 4,
-      "resumeId": 258139,
-      "createdAt": "2024-07-02T14:44:56.413Z",
-      "updatedAt": "2024-07-04T15:37:29.393Z"
+      "sortOrderId": 4
     },
     {
       "id": 302230,
       "description": "Rest API",
       "issuedBy": "HackerRank",
       "url": "https://www.hackerrank.com/certificates/0e3b9206d9b1",
-      "sortOrderId": 5,
-      "resumeId": 258139,
-      "createdAt": "2024-07-04T15:36:41.229Z",
-      "updatedAt": "2024-07-04T15:37:29.393Z"
+      "sortOrderId": 5
     },
     {
       "id": 302231,
       "description": "Node.js",
       "issuedBy": "HackerRank",
       "url": "https://www.hackerrank.com/certificates/b2830c76a7c5",
-      "sortOrderId": 6,
-      "resumeId": 258139,
-      "createdAt": "2024-07-04T15:37:05.878Z",
-      "updatedAt": "2024-07-04T15:37:29.393Z"
+      "sortOrderId": 6
     }
   ],
   "education": [
     {
       "id": 546080,
       "degree": "Higher education",
-      "startDate": "January 2002",
-      "completionDate": "December 2005",
-      "institution": "San Jose Institute",
       "location": "Rafaela, Santa Fe",
+      "resumeId": 258139,
+      "completionDate": "December 2005",
+      "createdAt": "2024-07-01T05:16:52.036Z",
+      "institution": "San Jose Institute",
       "score": "100",
       "scoreType": "Percentage",
-      "studyType": "Computer",
       "sortOrderId": 0,
-      "resumeId": 258139,
-      "createdAt": "2024-07-01T05:16:52.036Z",
+      "startDate": "January 2002",
+      "studyType": "Computer",
       "updatedAt": "2024-07-02T14:37:24.326Z"
     },
     {
       "id": 546655,
       "degree": "Bachelor",
-      "startDate": "January 2006",
-      "completionDate": "December 2010",
-      "institution": "Universidad nacional de Rosario",
       "location": "Rosario, Santa Fe",
+      "resumeId": 258139,
+      "completionDate": "December 2010",
+      "createdAt": "2024-07-02T03:13:36.848Z",
+      "institution": "Universidad nacional de Rosario",
       "score": "10",
       "scoreType": "Percentage",
-      "studyType": "Computer Science",
       "sortOrderId": 1,
-      "resumeId": 258139,
-      "createdAt": "2024-07-02T03:13:36.848Z",
+      "startDate": "January 2006",
+      "studyType": "Computer Science",
       "updatedAt": "2024-07-02T14:37:24.326Z"
     },
     {
       "id": 546083,
       "degree": "University",
-      "startDate": "January 2010",
-      "completionDate": "Present",
-      "institution": "Universidad Tecnologica Nacional",
       "location": "Rosario, Santa Fe",
+      "resumeId": 258139,
+      "completionDate": "Present",
+      "createdAt": "2024-07-01T05:18:48.657Z",
+      "institution": "Universidad Tecnologica Nacional",
       "score": "30",
       "scoreType": "Percentage",
-      "studyType": "Computer Systems Engineering",
       "sortOrderId": 2,
-      "resumeId": 258139,
-      "createdAt": "2024-07-01T05:18:48.657Z",
+      "startDate": "January 2010",
+      "studyType": "Computer Systems Engineering",
       "updatedAt": "2024-07-02T14:37:24.326Z"
     }
   ],
@@ -147,8 +112,8 @@
       "endDate": "September 2023",
       "currentJob": false,
       "role": "Web UI Developer",
-      "location": "Rosario, Argentina",
       "company": "Globant",
+      "location": "Rosario, Argentina",
       "startDate": "June 2019",
       "sortOrderId": 0,
       "resumeId": 258139,
@@ -161,8 +126,8 @@
       "endDate": "June 2019",
       "currentJob": false,
       "role": "Data Engineering Analyst",
-      "location": "Rosario, Argentina",
       "company": "Accenture",
+      "location": "Rosario, Argentina",
       "startDate": "June 2018",
       "sortOrderId": 1,
       "resumeId": 258139,
@@ -175,8 +140,8 @@
       "endDate": "November 2017",
       "currentJob": false,
       "role": "Implementation Analyst",
-      "location": "Rosario, Argentina",
       "company": "MundoIT",
+      "location": "Rosario, Argentina",
       "startDate": "June 2016",
       "sortOrderId": 2,
       "resumeId": 258139,
@@ -189,8 +154,8 @@
       "endDate": "April 2016",
       "currentJob": false,
       "role": "FullStack Developer",
-      "location": "Rosario, Argentina",
       "company": "Superintendencia de Riesgos del Trabajo",
+      "location": "Rosario, Argentina",
       "startDate": "May 2014",
       "sortOrderId": 3,
       "resumeId": 258139,
@@ -203,8 +168,8 @@
       "endDate": "September 2013",
       "currentJob": false,
       "role": "Sysadmin",
-      "location": "Rosario, Argentina",
       "company": "IRSA Corporation",
+      "location": "Rosario, Argentina",
       "startDate": "August 2011",
       "sortOrderId": 4,
       "resumeId": 258139,
@@ -212,22 +177,16 @@
       "updatedAt": "2024-07-02T03:22:41.535Z"
     }
   ],
-  "projects": [],
   "skills": [
     {
-      "id": 1032375,
       "skillType": "programming",
       "skillValues": [
         "Javascript",
         "typescript",
         "PHP"
-      ],
-      "resumeId": 258139,
-      "createdAt": "2024-07-01T05:08:40.824Z",
-      "updatedAt": "2024-07-15T15:28:09.643Z"
+      ]
     },
     {
-      "id": 1032377,
       "skillType": "database",
       "skillValues": [
         "SQL",
@@ -238,13 +197,9 @@
         "Redshift",
         "relational database",
         "MongoDB"
-      ],
-      "resumeId": 258139,
-      "createdAt": "2024-07-01T05:08:40.824Z",
-      "updatedAt": "2024-07-15T15:28:09.643Z"
+      ]
     },
     {
-      "id": 1032376,
       "skillType": "frameworks",
       "skillValues": [
         "Angular",
@@ -258,13 +213,9 @@
         "Angular js",
         "react native",
         "react"
-      ],
-      "resumeId": 258139,
-      "createdAt": "2024-07-01T05:08:40.824Z",
-      "updatedAt": "2024-07-15T15:28:09.643Z"
+      ]
     },
     {
-      "id": 1032378,
       "skillType": "tools",
       "skillValues": [
         "Git",
@@ -335,67 +286,21 @@
         "agile software development",
         "unit tests",
         "expo"
-      ],
-      "resumeId": 258139,
-      "createdAt": "2024-07-01T05:08:40.824Z",
-      "updatedAt": "2024-07-15T15:28:09.643Z"
+      ]
     }
   ],
   "links": [
     {
-      "id": 351081,
-      "network": "Portfolio",
-      "username": "",
       "url": "www.federicomolinero.com",
-      "resumeId": 258139,
-      "createdAt": "2024-07-01T05:09:41.724Z",
-      "updatedAt": "2024-07-02T03:09:33.645Z"
+      "network": "Portfolio"
     },
     {
-      "id": 351079,
-      "network": "GitHub",
-      "username": "",
       "url": "https://github.com/fedemolinero",
-      "resumeId": 258139,
-      "createdAt": "2024-07-01T05:09:05.007Z",
-      "updatedAt": "2024-07-02T03:09:33.645Z"
+      "network": "GitHub"
     },
     {
-      "id": 351080,
-      "network": "Linkedin",
-      "username": "",
       "url": "https://www.linkedin.com/in/fedemolinero/",
-      "resumeId": 258139,
-      "createdAt": "2024-07-01T05:09:27.791Z",
-      "updatedAt": "2024-07-02T03:09:33.645Z"
+      "network": "Linkedin"
     }
-  ],
-  "user": {
-    "id": 316514,
-    "uid": "12019316",
-    "name": "Fede Molinero",
-    "role": "",
-    "companyName": "",
-    "lastActiveToken": "",
-    "createdAt": "2024-07-01T05:08:22.819Z",
-    "updatedAt": "2024-07-01T05:08:23.567Z",
-    "lastNotificationCheck": "2024-07-01T05:08:22.819Z",
-    "incompleteResumeEmailCount": 0,
-    "reviewer": false,
-    "reviewCredits": 5,
-    "uploadCredits": 1,
-    "reviewOnboardingDone": false,
-    "hacker_id": "12019316",
-    "username": "fmmolinero",
-    "email": "fmmolinero@gmail.com",
-    "secondary_emails": [],
-    "banners": {},
-    "credits": {
-      "uploadCredits": 1,
-      "reviewCredits": 5
-    },
-    "existingResume": {}
-  },
-  "userId": 316514,
-  "review": null
+  ]
 }

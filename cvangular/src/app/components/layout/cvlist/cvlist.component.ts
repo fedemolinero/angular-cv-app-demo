@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class CvlistComponent implements OnInit, OnDestroy {
 
-  cvList!: ResumeModel;
+  cvList!: any;
   private cvListSubscription: Subscription = new Subscription;
   @Output() idSelected = new EventEmitter<string>();
 
@@ -36,7 +36,8 @@ export class CvlistComponent implements OnInit, OnDestroy {
     this.cvListSubscription = this.personalDataService.getCvList()
       .subscribe(
         {
-          next: (cvListResponse: ResumeModel) => {
+          next: (cvListResponse: any) => {
+          console.log('cvListResponse', cvListResponse)
             this.cvList = cvListResponse;
           },
           error: (e) => {

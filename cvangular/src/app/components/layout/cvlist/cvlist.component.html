@@ -23,9 +23,12 @@
                 </div>
             </div>
             <div class="card__content text-white text-center">
-                <button class="btn btnColor" (click)="openEditor(cvList.resumeId)">
-                    {{cvList.cvName}}
-                </button>
+
+                <div *ngFor="let cvIds of cvList.cvIds; let i = index">
+                    <button class="btn btnColor" (click)="openEditor(cvList.cvIds)">
+                        {{cvIds}}
+                    </button>
+                </div>
             </div>
         </div>
     </div>
