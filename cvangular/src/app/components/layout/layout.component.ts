@@ -17,8 +17,9 @@ export class LayoutComponent implements OnInit, OnDestroy {
     private personalDataService: DataService
   ) { }
 
-  inputEvent(id: string) {
+  inputEvent(id: number) {
     console.log(id)
+    
     this.personalDataSubscription = this.personalDataService.getCvById(id)
       .subscribe(
         {

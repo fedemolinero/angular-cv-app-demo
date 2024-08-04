@@ -29,7 +29,7 @@ export class CvPreviewComponent implements OnInit, OnDestroy {
     }
   }
 
-  getpersonalDataList(id: string) {
+  getpersonalDataList(id: number) {
     this.personalDataSubscription = this.personalDataService.getCvById(id)
       .subscribe(
         {

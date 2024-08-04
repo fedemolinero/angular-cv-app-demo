@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 export class CvlistComponent implements OnInit, OnDestroy {
 
   private cvListSubscription: Subscription = new Subscription;
-  @Output() idSelected = new EventEmitter<string>();
+  @Output() idSelected = new EventEmitter<number>();
 
   nameForm!: FormGroup;
   cvList!: cvIdsModel;
@@ -43,12 +43,11 @@ export class CvlistComponent implements OnInit, OnDestroy {
     }
   }
 
-  openEditor(id: string) {
+  openEditor(id: number) {
     this.idSelected.emit(id);
   }
 
-  removeCV(name: string) {
-    console.log('name', name.toString())
+  removeCV(name: number) {
 
     this.personalDataService.deleteCv(name)
       .subscribe(
