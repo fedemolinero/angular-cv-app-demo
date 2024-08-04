@@ -4,14 +4,19 @@ const { v4: uuidv4 } = require('uuid'); // Asegúrate de que 'uuid' esté instal
 
 const dataPath = path.resolve(__dirname, '../cv-saved');  // Asegúrate de que la ruta sea correcta
 
+
+
 const getAllCvIds = (req, res) => {
+
   try {
     const files = fs.readdirSync(dataPath);
     const cvIds = files.map(file => path.basename(file, '.json'));
     res.status(200).json({ cvIds });
+
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+
 };
 
 const getCvById = (req, res) => {
@@ -49,27 +54,77 @@ const saveCv = (req, res) => {
   }
 };
 
-// Nueva función para crear un nuevo CV si no existe ninguno
-const createNewCv = (req, res) => {
-  try {
-    const files = fs.readdirSync(dataPath);
 
-    if (files.length > 3) {
-      return res.status(400).json({ message: '3 CV already exists. Memory costs, buy me a beer' });
+
+// Nueva función para crear un nuevo CV si no existe ninguno
+
+/**
+* Valida el nombr
+* e del archivo.
+* @param {string} fileName - Nombre del archivo a validar.
+* @returns {boolean} - Retorna `true` si el nombre es válido, `false` en caso contrario.
+*/
+
+const createNewCv = (req, res) => {
+
+  const { filename } = req.body;
+
+  try {
+
+    if (typeof filename !== 'string' || filename.trim() === '') {
+      return res.status(400).json({ error: 'Invalid fileName. It must be a non-empty string and contain only alphanumeric characters, hyphens, underscores, and periods.' });
     }
 
-    const newId = uuidv4();
-    const newCvData = { ...req.body, id: newId };
-    const filePath = path.join(dataPath, `${newId}.json`);
+    // Limpia el nombre del archivo para evitar caracteres no permitidos
+    const sanitizedFileName = filename.replace(/[^a-zA-Z0-9_\-\.]/g, '_');
 
-    fs.writeFileSync(filePath, JSON.stringify(newCvData, null, 2), 'utf8');
+    // Busca nombres de archivo y los transforma en numeros para guardar el proximo
+    // aqui lee los archivos de la carpeta y busca todos los ids
+    // retorna ids, busca el mas alto y devuelve ese
+    // como es un string lo convierte a numero y le suma uno
+    // const files = fs.readdirSync(dataPath);
+    // const cvIds = files.map(file => path.basename(file, '.json'));
+    // que puede decirse asi tambien:
 
-    res.status(201).json({ message: 'New CV created successfully', newId });
+    // Lee los archivos del directorio actual
+    const files = fs.readdirSync(dataPath);
+    // Extrae y convierte los IDs de los archivos .json
+    const cvIds = files
+      .filter(file => file.endsWith('.json')) // Filtra solo archivos .json
+      .map(file => path.basename(file, '.json')) // Extrae el nombre base sin extensión
+      .map(id => parseInt(id, 10)) // Convierte a números
+      .filter(id => !isNaN(id)); // Filtra valores NaN
+
+    // Encuentra el ID máximo y calcula el siguiente ID
+    const maxIdNumber = cvIds.length > 0 ? Math.max(...cvIds) + 1 : 1;
+
+    console.log('maxIdNumber', maxIdNumber)
+
+    // Define el path del archivo con el ID generado
+    const filePath = path.join(dataPath, `${maxIdNumber}.json`);
+
+
+    // Crea el archivo vacío
+    fs.writeFile(filePath, JSON.stringify({ cvName: sanitizedFileName }), (err) => {
+      if (err) {
+        return res.status(500).json({ error: 'Error creating file' });
+      }
+      res.status(201).json({ message: 'File created successfully', filePath, newId: maxIdNumber });
+    });
 
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
+
+
+
+
+function getAllFilesIds() {
+
+  return cvIds;
+
+}
 
 module.exports = {
   getAllCvIds,
