@@ -25,8 +25,8 @@ export class DataService {
     return this.http.get<cvIdsModel>(`${this.apiUrl}/api/cv/get-cv`);
   }
 
-  createNewCv(cvname: string): Observable<createNewCVModel> {
-    return this.http.post<createNewCVModel>(`${this.apiUrl}/api/cv/create-cv`, cvname);
+  createNewCv(cvname: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/api/cv/create-cv/${cvname}`);
   }
 
   deleteCv(name: string): Observable<string> {
