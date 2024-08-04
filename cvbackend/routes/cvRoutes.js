@@ -14,4 +14,7 @@ router.post('/save-cv', cvController.saveCv);
 // Ruta para crear un nuevo CV
 router.post('/create-cv', cvController.createNewCv);
 
+// Ruta para borrar un CV
+router.delete('/get-cv/:id', cvController.deleteCv);
+
 module.exports = router;

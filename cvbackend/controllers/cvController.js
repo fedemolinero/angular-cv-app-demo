@@ -98,14 +98,16 @@ const createNewCv = (req, res) => {
     // Encuentra el ID máximo y calcula el siguiente ID
     const maxIdNumber = cvIds.length > 0 ? Math.max(...cvIds) + 1 : 1;
 
-    console.log('maxIdNumber', maxIdNumber)
 
     // Define el path del archivo con el ID generado
     const filePath = path.join(dataPath, `${maxIdNumber}.json`);
 
-
     // Crea el archivo vacío
-    fs.writeFile(filePath, JSON.stringify({ cvName: sanitizedFileName }), (err) => {
+    fs.writeFile(filePath, JSON.stringify({
+      id: maxIdNumber,
+      resumeId: maxIdNumber,
+      cvName: sanitizedFileName
+    }), (err) => {
       if (err) {
         return res.status(500).json({ error: 'Error creating file' });
       }
@@ -119,16 +121,49 @@ const createNewCv = (req, res) => {
 
 
 
+const deleteCv = (req, res) => {
 
-function getAllFilesIds() {
+  const { id } = req.params; // Asume que el ID se pasa como un parámetro en la URL
 
-  return cvIds;
+  try {
+    // Verifica que el ID es un número entero positivo
+    const cvId = parseInt(id, 10);
+    if (isNaN(cvId) || cvId <= 0) {
+      return res.status(400).json({ error: 'Invalid ID. It must be a positive integer.' });
+    }
 
-}
+    // Define el path del archivo a borrar
+    const filePath = path.join(dataPath, `${cvId}.json`);
+
+    // Verifica si el archivo existe antes de intentar eliminarlo
+    fs.access(filePath, fs.constants.F_OK, (err) => {
+      if (err) {
+        console.error('File does not exist:', err);
+        return res.status(404).json({ error: 'File not found' });
+      }
+
+      // Elimina el archivo
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          console.error('Error deleting file:', err);
+          return res.status(500).json({ error: 'Error deleting file' });
+        }
+
+        // Responde con éxito si el archivo se eliminó correctamente
+        res.status(200).json({ message: 'File deleted successfully' });
+      });
+    });
+  } catch (error) {
+    console.error('Caught exception:', error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
 
 module.exports = {
   getAllCvIds,
   getCvById,
   saveCv,
+  deleteCv,
   createNewCv,
 };
