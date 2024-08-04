@@ -8,7 +8,7 @@ import { resumeDataModel } from '@app/models/cv.model';
   templateUrl: './cvpreview.component.html',
   styleUrls: ['./cvpreview.component.scss']
 })
-export class CvPreviewComponent implements OnInit, OnDestroy {
+export class CvPreviewComponent implements OnDestroy {
 
   @Input() personalData!: resumeDataModel;
 
@@ -19,28 +19,10 @@ export class CvPreviewComponent implements OnInit, OnDestroy {
   ) {
   }
 
-  ngOnInit(): void {
-    // this.getpersonalDataList()
-  }
-
   ngOnDestroy(): void {
     if (this.personalDataSubscription) {
       this.personalDataSubscription.unsubscribe();
     }
-  }
-
-  getpersonalDataList(id: number) {
-    this.personalDataSubscription = this.personalDataService.getCvById(id)
-      .subscribe(
-        {
-          next: (personalDataResponse: resumeDataModel) => {
-            this.personalData = personalDataResponse;
-          },
-          error: (e) => {
-            console.error(e);
-          }
-        }
-      );
   }
 
 }

@@ -1,160 +1,157 @@
-<main class="main">
-    <!-- NEW WAY IN ANGULAR 17 TO SHOW NGIFS -->
-    @if (!personalData){
-    <div class="container-fluid">
-        <div class="row">
-            <div> SERVER OFFLINE </div>
+@if (!personalData){
+<div class="container-fluid">
+    <div class="row">
+        <div> SERVER OFFLINE </div>
+    </div>
+</div>
+}@else{
+
+<section name="personalData" class="d-flex p-3 align-items-center justify-content-center">
+    <div class="headerPhoto">
+        <!-- <img src="../../../assets/images/cv-photo.jpg" class="thumbnail"> -->
+    </div>
+    <div class="headerDescription m-1 p-2">
+        <div class="headername">
+            <h2>{{personalData.userFirstName}} {{personalData.userLastName}}</h2>
+        </div>
+        <div class="headerjob">
+            <h3>{{personalData.userHeading}}</h3>
+        </div>
+        <div class="headerlocation">
+            <h6><i class="bi bi-geo-fill"></i> {{personalData.userAddress}} </h6>
         </div>
     </div>
-    }@else{
-    <div class="container-fluid" id="contentToConvert">
+</section>
 
-        <section name="personalData" class="d-flex p-3 align-items-center justify-content-center">
-            <div class="headerPhoto">
-                <!-- <img src="../../../assets/images/cv-photo.jpg" class="thumbnail"> -->
-            </div>
-            <div class="headerDescription m-1 p-2">
-                <div class="headername">
-                    <h2>{{personalData.userFirstName}} {{personalData.userFirstName}} {{personalData.userLastName}}</h2>
+<section name="about" class="carda p-3 mb-2">
+    @for (aboutDescription of personalData.projects; track personalData.projects ){
+    <div class="about-item">
+        <!-- <i [ngClass]="aboutDescription.icon" class="m-1"></i> -->
+        <span>{{aboutDescription}}</span>
+    </div>
+    } @empty {
+    <div class="text-center">
+        <h3>ABOUT</h3>
+    </div>
+    <!-- <img src="../../../assets/images/cv-about.png" class="img-fluid"> -->
+    }
+</section>
+
+<section name="experience" class="carda p-3 mb-2">
+    @for (work of personalData.work; track personalData.work ){
+    <div class="carda mb-3">
+        <div class="carda-header bg-transparent p-3">
+            <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
+                <div class="jobPhoto p-1">
+                    <!-- <img [src]="job.companyLogo" class="thumbnail"> -->
                 </div>
-                <div class="headerjob">
-                    <h3>{{personalData.userHeading}}</h3>
+
+                <div class="jobData p-1">
+                    <div class="expJobCompany">
+                        <h4>
+                            {{work.company}}
+                        </h4>
+                    </div>
+                    <div class="expJobName ">
+                        <h5>
+                            {{work.role}}
+                        </h5>
+                    </div>
+
                 </div>
-                <div class="headerlocation">
-                    <h6><i class="bi bi-geo-fill"></i> {{personalData.userAddress}} </h6>
+
+                <div class="jobData p-1 ms-auto">
+                    <div class="expJobDate">
+                        <i class="bi bi-calendar3"></i> {{work.endDate}}
+                    </div>
+                    <div class="expJobPlace">
+                        <i class="bi bi-geo-alt"></i> {{work.description}}
+                    </div>
+                    <span class="expJobType">
+                        <i class="bi bi-person-workspace"></i> {{work.role}}
+                    </span> -
+                    <span class="jobRange">
+                        {{work.role}}
+                    </span>
                 </div>
+
             </div>
-        </section>
-
-        <section name="about" class="card p-3 mb-2">
-            @for (aboutDescription of personalData.projects; track personalData.projects ){
-            <div class="about-item">
-                <!-- <i [ngClass]="aboutDescription.icon" class="m-1"></i> -->
-                <span>{{aboutDescription}}</span>
+        </div>
+        <div class="carda-body">
+            <div class="carda-text">{{work.description}}</div>
+        </div>
+        <div class="carda-footer bg-transparent border-success">
+            <div class="d-flex flex-row justify-content-center flex-wrap">
+                <!-- NEW WAY IN ANGULAR 17 TO SHOW NGFORS -->
+                <!-- @for (description of work.description; track description ){
+                <div class="btn-group btn-group-sm p-1">
+                    <button type="button" class="btn btn-outline-primary">
+                        {{ description }}
+                    </button>
+                </div>
+                } @empty {
+                <div class="p-1">
+                    DEVELOPING APTITUDES
+                </div>
+                } -->
             </div>
-            } @empty {
-            <div class="text-center">
-                <h3>ABOUT</h3>
-            </div>
-            <!-- <img src="../../../assets/images/cv-about.png" class="img-fluid"> -->
-            }
-        </section>
+        </div>
+    </div>
+    } @empty {
+    <div class="text-center">
+        <h3>EXPERIENCE</h3>
+    </div>
+    <!-- <img src="../../../assets/images/cv-job-offers.png" class="img-fluid"> -->
+    }
+</section>
 
-        <section name="experience" class="card p-3 mb-2">
-            @for (work of personalData.work; track personalData.work ){
-            <div class="card mb-3">
-                <div class="card-header bg-transparent p-3">
-                    <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
-                        <div class="jobPhoto p-1">
-                            <!-- <img [src]="job.companyLogo" class="thumbnail"> -->
-                        </div>
-
-                        <div class="jobData p-1">
-                            <div class="expJobCompany">
-                                <h4>
-                                    {{work.company}}
-                                </h4>
-                            </div>
-                            <div class="expJobName ">
-                                <h5>
-                                    {{work.role}}
-                                </h5>
-                            </div>
-
-                        </div>
-
-                        <div class="jobData p-1 ms-auto">
-                            <div class="expJobDate">
-                                <i class="bi bi-calendar3"></i> {{work.endDate}}
-                            </div>
-                            <div class="expJobPlace">
-                                <i class="bi bi-geo-alt"></i> {{work.description}}
-                            </div>
-                            <span class="expJobType">
-                                <i class="bi bi-person-workspace"></i> {{work.role}}
-                            </span> -
-                            <span class="jobRange">
-                                {{work.role}}
-                            </span>
-                        </div>
-
+<section name="studies" class="carda p-3 mb-2">
+    @for (education of personalData.education; track education ){
+    <div class="carda mb-3">
+        <div class="carda-header bg-transparent p-3">
+            <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
+                <div class="studyPhoto p-1">
+                    <!-- <img [src]="study.studyLogo" class="thumbnail"> -->
+                </div>
+                <div class="studyData p-1">
+                    <div class="expstudyCompany">
+                        <h4>{{education.institution}}</h4>
+                    </div>
+                    <div class="expstudyName">
+                        <h5>{{education.degree}}</h5>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="card-text">{{work.description}}</div>
-                </div>
-                <div class="card-footer bg-transparent border-success">
-                    <div class="d-flex flex-row justify-content-center flex-wrap">
-                        <!-- NEW WAY IN ANGULAR 17 TO SHOW NGFORS -->
-                        @for (description of work.description; track description ){
-                        <div class="btn-group btn-group-sm p-1">
-                            <button type="button" class="btn btn-outline-primary">
-                                {{ description }}
-                            </button>
-                        </div>
-                        } @empty {
-                        <div class="p-1">
-                            DEVELOPING APTITUDES
-                        </div>
-                        }
+                <div class="studyData p-1 ms-auto">
+                    <div class="expstudyDate">
+                        <i class="bi bi-calendar3"></i> {{education.completionDate}}
                     </div>
-                </div>
-            </div>
-            } @empty {
-            <div class="text-center">
-                <h3>EXPERIENCE</h3>
-            </div>
-            <!-- <img src="../../../assets/images/cv-job-offers.png" class="img-fluid"> -->
-            }
-        </section>
-
-        <section name="studies" class="card p-3 mb-2">
-            @for (education of personalData.education; track education ){
-            <div class="card mb-3">
-                <div class="card-header bg-transparent p-3">
-                    <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
-                        <div class="studyPhoto p-1">
-                            <!-- <img [src]="study.studyLogo" class="thumbnail"> -->
-                        </div>
-                        <div class="studyData p-1">
-                            <div class="expstudyCompany">
-                                <h4>{{education.institution}}</h4>
-                            </div>
-                            <div class="expstudyName">
-                                <h5>{{education.degree}}</h5>
-                            </div>
-                        </div>
-                        <div class="studyData p-1 ms-auto">
-                            <div class="expstudyDate">
-                                <i class="bi bi-calendar3"></i> {{education.completionDate}}
-                            </div>
-                            <div class="expstudyPlace">
-                                <i class="bi bi-geo-alt"></i> {{education.location}}
-                            </div>
-                            <span class="expstudyType">
-                                <i class="bi bi-person-workspace"></i> {{education.studyType}}
-                            </span>
-                        </div>
+                    <div class="expstudyPlace">
+                        <i class="bi bi-geo-alt"></i> {{education.location}}
                     </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-text">{{education.score}}</div>
+                    <span class="expstudyType">
+                        <i class="bi bi-person-workspace"></i> {{education.studyType}}
+                    </span>
                 </div>
             </div>
-            } @empty {
-            <div class="text-center">
-                <h3>STUDIES</h3>
-            </div>
-            <!-- <img src="../../../assets/images/cv-studies.png" class="img-fluid"> -->
-            }
+        </div>
+        <div class="carda-body">
+            <div class="carda-text">{{education.score}}</div>
+        </div>
+    </div>
+    } @empty {
+    <div class="text-center">
+        <h3>STUDIES</h3>
+    </div>
+    <!-- <img src="../../../assets/images/cv-studies.png" class="img-fluid"> -->
+    }
 
-        </section>
+</section>
 
-        <!-- <section name="languagues" class="card p-3 mb-2"> -->
-        <!-- @for (language of personalData.languages; track language ){ -->
+<!-- <section name="languagues" class="carda p-3 mb-2"> -->
+<!-- @for (language of personalData.languages; track language ){ -->
 
-        <!-- <div class="card mb-3">
-            <div class="card-body bg-transparent p-3">
+<!-- <div class="carda mb-3">
+            <div class="carda-body bg-transparent p-3">
                 <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
                     <div class="langData p-1">
                         <div class="explangCompany">
@@ -173,35 +170,35 @@
             </div>
 
         </div> -->
-        <!-- } @empty { -->
-        <!-- <div class="text-center">
+<!-- } @empty { -->
+<!-- <div class="text-center">
                 <h3>LANGUAGES</h3>
             </div> -->
-        <!-- <img src="../../../assets/images/cv-languages.png" class="img-fluid"> -->
-        <!-- } -->
-        <!-- </section> -->
+<!-- <img src="../../../assets/images/cv-languages.png" class="img-fluid"> -->
+<!-- } -->
+<!-- </section> -->
 
-        <section name="courses" class="card p-3 mb-2">
-            @for (certification of personalData.certifications; track certification ){
-            <div class="card mb-3">
-                <div class="card-header bg-transparent p-3">
-                    <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
-                        <div class="coursePhoto p-1">
-                            <!-- <img [src]="course.courseLogo" class="thumbnail"> -->
-                        </div>
-                        <div class="courseData p-1">
-                            <div class="expcourseCompany">
-                                <h4>
-                                    {{certification.issuedBy}}
-                                </h4>
-                            </div>
-                            <div class="expcourseName">
-                                <h5>
-                                    {{certification.description}}
-                                </h5>
-                            </div>
-                        </div>
-                        <!-- <div class="courseData p-1 ms-auto">
+<section name="courses" class="carda p-3 mb-2">
+    @for (certification of personalData.certifications; track certification ){
+    <div class="carda mb-3">
+        <div class="carda-header bg-transparent p-3">
+            <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
+                <div class="coursePhoto p-1">
+                    <!-- <img [src]="course.courseLogo" class="thumbnail"> -->
+                </div>
+                <div class="courseData p-1">
+                    <div class="expcourseCompany">
+                        <h4>
+                            {{certification.issuedBy}}
+                        </h4>
+                    </div>
+                    <div class="expcourseName">
+                        <h5>
+                            {{certification.description}}
+                        </h5>
+                    </div>
+                </div>
+                <!-- <div class="courseData p-1 ms-auto">
                             <div class="expcourseDate">
                                 <i class="bi bi-calendar3"></i> {{course.courseTime}}
                             </div>
@@ -209,18 +206,15 @@
                                 <i class="bi bi-person-workspace"></i> {{course.courseType}}
                             </span>
                         </div> -->
-                    </div>
-                </div>
-
             </div>
-            } @empty {
-            <div class="text-center">
-                <h3>COURSES</h3>
-            </div>
-            <!-- <img src="../../../assets/images/cv-courses.png" class="img-fluid"> -->
-            }
-        </section>
+        </div>
 
     </div>
+    } @empty {
+    <div class="text-center">
+        <h3>COURSES</h3>
+    </div>
+    <!-- <img src="../../../assets/images/cv-courses.png" class="img-fluid"> -->
     }
-</main>
+</section>
+}

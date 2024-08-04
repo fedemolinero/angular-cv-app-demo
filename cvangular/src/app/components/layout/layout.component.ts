@@ -18,13 +18,12 @@ export class LayoutComponent implements OnInit, OnDestroy {
   ) { }
 
   inputEvent(id: number) {
-    console.log(id)
+    console.log('id', id);
     
     this.personalDataSubscription = this.personalDataService.getCvById(id)
       .subscribe(
         {
           next: (cvListResponse: resumeDataModel) => {
-            console.log('cvData', cvListResponse)
             this.cvData = cvListResponse;
           },
           error: (e) => {
