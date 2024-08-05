@@ -8,4 +8,10 @@ import { Certifications } from '@app/models/cv.model';
 })
 export class CertificationCardComponent {
   @Input() certification!: Certifications;
+
+    // Método para abrir la URL en una nueva ventana
+    openLink(url: string): void {
+      window.open(url, '_blank');
+  }
+
 }

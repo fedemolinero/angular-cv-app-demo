@@ -1,36 +1,29 @@
 @if ( personalData ){
 
 <section name="personalData" class="preview-section">
-    <h1>{{personalData.userFirstName}} {{personalData.userLastName}}</h1>
-    <h2>{{personalData.userHeading}}</h2>
-    <h6>{{personalData.userAddress}}</h6>
-    <h6>{{personalData.userEmail}} - {{personalData.userAddress}} - {{personalData.userPhoneNumber}}</h6>
+    <div class="card-template">
+        <h1>{{personalData.userFirstName}} {{personalData.userLastName}}</h1>
+        <h2>{{personalData.userHeading}}</h2>
+        <h6>{{personalData.userAddress}}</h6>
+        <h6>{{personalData.userEmail}} - {{personalData.userAddress}} - {{personalData.userPhoneNumber}}</h6>
+    </div>
 </section>
 
 <section name="work" class="preview-section">
-    <span class="preview-section__title">WORK EXPERIENCE</span>
     @for (work of personalData.work; track personalData.work ){
     <app-work-card [work]="work"></app-work-card>
-    } @empty {
-    <h3>Work experience not found</h3>
     }
 </section>
 
 <section name="education" class="preview-section">
-    <span class="preview-section__title">EDUCATION</span>
     @for (education of personalData.education; track education ){
     <app-education-card [education]="education"></app-education-card>
-    } @empty {
-    <h3>Education not found</h3>
     }
 </section>
 
 <section name="certifications" class="preview-section">
-    <span class="preview-section__title">CERTIFICATIONS</span>
     @for (certification of personalData.certifications; track certification ){
     <app-certification-card [certification]="certification"></app-certification-card>
-    } @empty {
-    <h3>Certifications not found</h3>
     }
 </section>
 

@@ -1,3 +1,4 @@
-<h4>{{certification.description}}</h4>
-<h6>{{certification.issuedBy}}</h6>
-<p>{{certification.url}}</p>
+<button class="card-template" (click)="openLink(certification.url)">
+    <h4>{{certification.description}}</h4>
+    <h6>{{certification.issuedBy}}</h6>
+</button>

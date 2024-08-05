@@ -58,8 +58,8 @@
     <!-- Work -->
     <div class="mb-3">
         <!-- <label for="work" class="form-label">Work</label> -->
-        <div formArrayName="works">
-            <div *ngFor="let work of works.controls; let i = index" [formGroupName]="i" class="mb-3">
+        <div formArrayName="work">
+            <div *ngFor="let work of work.controls; let i = index" [formGroupName]="i" class="mb-3">
                 <input formControlName="description" type="text" class="form-control mb-2" placeholder="Description">
                 <input formControlName="currentJob" type="text" class="form-control mb-2" placeholder="current Job">
                 <input formControlName="role" type="text" class="form-control mb-2" placeholder="role">

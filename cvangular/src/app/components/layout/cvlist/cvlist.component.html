@@ -1,11 +1,8 @@
 @if (!cvList){
-<div class="container-fluid">
-    <div class="row">
-        <h1> SERVER OFFLINE </h1>
-    </div>
-</div>
+<h1> SERVER OFFLINE </h1>
 }@else{
 <div class="card">
+
     <div class="tools">
         <div class="circle">
             <span class="red box"></span>
@@ -18,11 +15,9 @@
         </div>
     </div>
 
-    <div class="card__content text-white text-center">
-
+    <div class="card__content">
         <form [formGroup]="nameForm">
-            <!-- User First Name -->
-            <div class="input-group mt-3 mb-3">
+            <div class="input-group m-1">
                 <span id="cvNameLabel" class="input-group-text">CV Name</span>
                 <input id="cvName" type="text" class="form-control" formControlName="cvName">
                 <button type="submit" class="btn btnColor" [disabled]="!nameForm.valid || cvList.cvIds.length > 3 "
@@ -31,11 +26,8 @@
                 </button>
             </div>
         </form>
-
         <div *ngFor="let cvIds of cvList.cvIds; let i = index">
-
             <div class="d-flex flex-row ">
-
                 <button class="btn btnColor m-1" (click)="openEditor(cvList.cvIds[i])">
                     {{cvIds}}
                 </button>
@@ -47,9 +39,8 @@
                     </svg>
                 </button>
             </div>
-
-
         </div>
     </div>
+
 </div>
 }
