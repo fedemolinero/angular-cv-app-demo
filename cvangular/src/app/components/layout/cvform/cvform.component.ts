@@ -29,8 +29,6 @@ export class CvformComponent implements OnChanges, OnDestroy {
 
     if (changes['cvData'] && this.cvData) {
 
-      // console.log('reseted', this.personForm.controls['skills'].value.length)
-
       this.personForm.reset();
 
       this.setFormArrays(this.cvData);
@@ -52,7 +50,7 @@ export class CvformComponent implements OnChanges, OnDestroy {
       userPhoneNumber: [''],
       certifications: this.fb.array([]),
       education: this.fb.array([]),
-      work: this.fb.array([]),
+      works: this.fb.array([]),
       skills: this.fb.array([]),
       links: this.fb.array([]),
       // projects: this.fb.array([]),
@@ -62,7 +60,7 @@ export class CvformComponent implements OnChanges, OnDestroy {
 
   get certifications() { return this.personForm.get('certifications') as FormArray; }
   get education() { return this.personForm.get('education') as FormArray; }
-  get work() { return this.personForm.get('work') as FormArray; }
+  get works() { return this.personForm.get('works') as FormArray; }
   get skills() { return this.personForm.get('skills') as FormArray; }
   get links() { return this.personForm.get('links') as FormArray; }
   // get awards() { return this.personForm.get('awards') as FormArray; }
@@ -70,11 +68,12 @@ export class CvformComponent implements OnChanges, OnDestroy {
 
   // Set form arrays with existing data
   private setFormArrays(data: resumeDataModel) {
-    !!data.certifications ? this.setArrayValues(this.certifications, data.certifications, 'certifications') : this.certifications.clear();
-    !!data.education ? this.setArrayValues(this.education, data.education, 'education') : this.education.clear();
-    !!data.work ? this.setArrayValues(this.work, data.work, 'work') : this.work.clear();
-    !!data.skills ? this.setArrayValues(this.skills, data.skills, 'skills') : this.skills.clear();
-    !!data.links ? this.setArrayValues(this.links, data.links, 'links') : this.links.clear();
+
+    data.certifications && (data.certifications.length > 0) ? this.setArrayValues(this.certifications, data.certifications, 'certifications') : this.certifications.clear();
+    data.education && data.education.length > 0 ? this.setArrayValues(this.education, data.education, 'education') : this.education.clear();
+    data.work && data.work.length > 0 ? this.setArrayValues(this.works, data.work, 'works') : this.works.clear();
+    data.skills && data.skills.length > 0 ? this.setArrayValues(this.skills, data.skills, 'skills') : this.skills.clear();
+    data.links && data.links.length > 0 ? this.setArrayValues(this.links, data.links, 'links') : this.links.clear();
     // this.setArrayValues(this.projects, data.projects);
     // this.setArrayValues(this.awards, data.awards);
   }
@@ -106,7 +105,7 @@ export class CvformComponent implements OnChanges, OnDestroy {
           studyType: [value.studyType],
           updatedAt: [value.updatedAt]
         }));
-      } else if (itemToUpdate == 'work') {
+      } else if (itemToUpdate == 'works') {
         formArray.push(this.fb.group({
           id: [value.id],
           description: [value.description],
@@ -183,7 +182,7 @@ export class CvformComponent implements OnChanges, OnDestroy {
   }
 
   addWork() {
-    this.work.push(this.fb.group({
+    this.works.push(this.fb.group({
       id: [],
       description: [],
       endDate: [],
@@ -200,7 +199,7 @@ export class CvformComponent implements OnChanges, OnDestroy {
   }
 
   removeWork(index: number) {
-    this.work.removeAt(index);
+    this.works.removeAt(index);
   }
 
   addSkill() {
