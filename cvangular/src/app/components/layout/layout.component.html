@@ -8,12 +8,16 @@
         @if(cvData){
 
         <div class="col-4">
-            <app-cvform class="m-3" [cvData]="cvData"></app-cvform>
+            <app-cvform class="m-3" (formChanged)="savedDataEvent($event)" [cvData]="cvData"></app-cvform>
         </div>
         }
 
         <div class="col-8">
+            @if(cvSavedData){
+            <app-cv-preview [personalData]="cvSavedData"></app-cv-preview>
+            }@else{
             <app-cv-preview [personalData]="cvData"></app-cv-preview>
+            }
         </div>
 
     </div>

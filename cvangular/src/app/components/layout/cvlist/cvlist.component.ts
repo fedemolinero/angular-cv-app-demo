@@ -11,12 +11,11 @@ import { Subscription } from 'rxjs';
 })
 export class CvlistComponent implements OnInit, OnDestroy {
 
-  private cvListSubscription: Subscription = new Subscription;
+  private cvListSubscription!: Subscription;
   @Output() idSelected = new EventEmitter<number>();
 
   nameForm!: FormGroup;
   cvList!: cvIdsModel;
-  // name: string = 'new';
   newID!: string;
 
   constructor(
@@ -38,6 +37,9 @@ export class CvlistComponent implements OnInit, OnDestroy {
   };
 
   ngOnDestroy(): void {
+
+    console.log('ondestroy', this.idSelected)
+
     if (this.cvListSubscription) {
       this.cvListSubscription.unsubscribe();
     }
@@ -53,6 +55,7 @@ export class CvlistComponent implements OnInit, OnDestroy {
       .subscribe(
         {
           next: (response: any) => {
+            this.idSelected.emit(0);
             this.getCVList();
             console.log('response', response)
           },

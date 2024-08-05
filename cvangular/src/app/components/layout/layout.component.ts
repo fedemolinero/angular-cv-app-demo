@@ -11,24 +11,34 @@ import { resumeDataModel } from '@app/models/cv.model';
 export class LayoutComponent implements OnDestroy {
 
   private personalDataSubscription: Subscription = new Subscription();
-  cvData!: resumeDataModel;
+  cvData!: resumeDataModel | null;
+  cvSavedData!: resumeDataModel;
 
   constructor(
     private personalDataService: DataService
   ) { }
 
   inputEvent(id: number) {
-    this.personalDataSubscription = this.personalDataService.getCvById(id)
-      .subscribe(
-        {
-          next: (cvListResponse: resumeDataModel) => {
-            this.cvData = cvListResponse;
-          },
-          error: (e) => {
-            console.error(e);
+    if (id != 0) {
+      this.personalDataSubscription = this.personalDataService.getCvById(id)
+        .subscribe(
+          {
+            next: (cvListResponse: resumeDataModel) => {
+              this.cvData = cvListResponse;
+            },
+            error: (e) => {
+              console.error(e);
+            }
           }
-        }
-      );
+        );
+    } else {
+      this.cvData = null;
+    }
+  }
+
+
+  savedDataEvent(savedData: any) {
+    this.cvSavedData = savedData.cvData;
   }
 
   ngOnDestroy(): void {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '@services/data-service.service';
 import { resumeDataModel } from '@app/models/cv.model';
@@ -22,21 +22,16 @@ export class CvformComponent implements OnChanges, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private personalDataService: DataService
-  ) { this.initForm() }
 
+  ) { this.initForm(); }
 
   ngOnChanges(changes: SimpleChanges): void {
-
     if (changes['cvData'] && this.cvData) {
-
       this.personForm.reset();
-
       this.setFormArrays(this.cvData);
-
       this.personForm.patchValue(this.cvData);
     }
   }
-
 
   initForm() {
     this.personForm = this.fb.group({
@@ -68,12 +63,18 @@ export class CvformComponent implements OnChanges, OnDestroy {
 
   // Set form arrays with existing data
   private setFormArrays(data: resumeDataModel) {
+    // clearing array Forms
+    this.education.clear()
+    this.certifications.clear();
+    this.work.clear()
+    this.skills.clear();
+    this.links.clear();
 
-    data.certifications && (data.certifications.length > 0) ? this.setArrayValues(this.certifications, data.certifications, 'certifications') : this.certifications.clear();
-    data.education && data.education.length > 0 ? this.setArrayValues(this.education, data.education, 'education') : this.education.clear();
-    data.work && data.work.length > 0 ? this.setArrayValues(this.work, data.work, 'works') : this.work.clear();
-    data.skills && data.skills.length > 0 ? this.setArrayValues(this.skills, data.skills, 'skills') : this.skills.clear();
-    data.links && data.links.length > 0 ? this.setArrayValues(this.links, data.links, 'links') : this.links.clear();
+    data.certifications && (data.certifications.length > 0) ? this.setArrayValues(this.certifications, data.certifications, 'certifications') : false;
+    data.education && data.education.length > 0 ? this.setArrayValues(this.education, data.education, 'education') : false;
+    data.work && data.work.length > 0 ? this.setArrayValues(this.work, data.work, 'works') : false;
+    data.skills && data.skills.length > 0 ? this.setArrayValues(this.skills, data.skills, 'skills') : false;
+    data.links && data.links.length > 0 ? this.setArrayValues(this.links, data.links, 'links') : false;
     // this.setArrayValues(this.projects, data.projects);
     // this.setArrayValues(this.awards, data.awards);
   }
@@ -136,14 +137,6 @@ export class CvformComponent implements OnChanges, OnDestroy {
 
     });
   }
-
-  // addAward() {
-  //   this.awards.push(this.fb.control(''));
-  // }
-
-  // removeAward(index: number) {
-  //   this.awards.removeAt(index);
-  // }
 
   addCertification() {
     this.certifications.push(this.fb.group({
@@ -248,6 +241,7 @@ export class CvformComponent implements OnChanges, OnDestroy {
       .subscribe({
         next: (response: string) => {
           console.log('saved', response);
+          this.formChanged.emit(response)
         },
         error: (e) => {
           console.error(e);
@@ -261,6 +255,14 @@ export class CvformComponent implements OnChanges, OnDestroy {
 
   // removeProject(index: number) {
   //   this.projects.removeAt(index);
+  // }
+
+  // addAward() {
+  //   this.awards.push(this.fb.control(''));
+  // }
+
+  // removeAward(index: number) {
+  //   this.awards.removeAt(index);
   // }
 
 }

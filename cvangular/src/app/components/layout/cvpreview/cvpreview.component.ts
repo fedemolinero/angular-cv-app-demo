@@ -9,7 +9,7 @@ import { jsPDF } from "jspdf";
 })
 export class CvPreviewComponent {
 
-  @Input() personalData!: resumeDataModel;
+  @Input() personalData!: resumeDataModel | null;
 
   constructor() { }
 
