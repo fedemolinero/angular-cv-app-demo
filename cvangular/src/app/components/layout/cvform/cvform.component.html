@@ -35,22 +35,6 @@
         <input id="userPhoneNumber" type="text" class="form-control" formControlName="userPhoneNumber">
     </div>
 
-    <!-- Certifications -->
-    <!-- <div class="mb-3">
-        <label for="certifications" class="form-label">Certifications</label>
-        <div formArrayName="certifications">
-            <div *ngFor="let cert of certifications.controls; let i = index" [formGroupName]="i" class="mb-3">
-                <input formControlName="description" type="text" class="form-control mb-2" placeholder="Description">
-                <input formControlName="issuedBy" type="text" class="form-control mb-2" placeholder="Issued By">
-                <input formControlName="url" type="text" class="form-control mb-2" placeholder="URL">
-                <input formControlName="sortOrderId" type="number" class="form-control mb-2" placeholder="Sort Order">
-                <button type="button" (click)="removeCertification(i)" class="btn btn-danger btn-sm">Remove</button>
-            </div>
-            <button type="button" (click)="addCertification()" class="btn btn-primary">Add Certification</button>
-        </div>
-    </div> -->
-
-
     <!-- Education -->
     <!-- <div class="mb-3">
         <label for="education" class="form-label">Education</label>
@@ -72,8 +56,8 @@
     </div> -->
 
     <!-- Work -->
-    <!-- <div class="mb-3">
-        <label for="work" class="form-label">Work</label>
+    <div class="mb-3">
+        <!-- <label for="work" class="form-label">Work</label> -->
         <div formArrayName="work">
             <div *ngFor="let work of work.controls; let i = index" [formGroupName]="i" class="mb-3">
                 <input formControlName="description" type="text" class="form-control mb-2" placeholder="Description">
@@ -87,7 +71,23 @@
             </div>
             <button type="button" (click)="addWork()" class="btn btn-primary">Add Work</button>
         </div>
-    </div> -->
+    </div>
+
+    <!-- Certifications -->
+    <div class="mb-3">
+        <!-- <label for="certifications" class="form-label">Certifications</label> -->
+        <div formArrayName="certifications">
+            <div *ngFor="let cert of certifications.controls; let i = index" [formGroupName]="i" class="mb-3">
+                <input formControlName="description" type="text" class="form-control mb-2" placeholder="Description">
+                <input formControlName="issuedBy" type="text" class="form-control mb-2" placeholder="Issued By">
+                <input formControlName="url" type="text" class="form-control mb-2" placeholder="URL">
+                <!-- <input formControlName="sortOrderId" type="number" class="form-control mb-2" placeholder="Sort Order"> -->
+                <button type="button" (click)="removeCertification(i)" class="btn btn-danger btn-sm">Remove</button>
+            </div>
+            <button type="button" (click)="addCertification()" class="btn btn-primary">Add Certification</button>
+        </div>
+    </div>
+
 
     <!-- Skills -->
     <div class="mb-3">
@@ -100,11 +100,9 @@
             </div>
             <button type="button" (click)="addSkill()" class="btn btn-primary">Add Skill</button>
         </div>
-
     </div>
 
     <!-- Links -->
-
     <div formArrayName="links">
         <div *ngFor="let link of links.controls; let i = index" [formGroupName]="i" class="mb-3">
             <input formControlName="url" type="text" class="form-control mb-2" placeholder="url">

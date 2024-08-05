@@ -28,9 +28,11 @@ export class CvformComponent implements OnChanges, OnDestroy {
   ngOnChanges(changes: SimpleChanges): void {
 
     if (changes['cvData'] && this.cvData) {
+
+      // console.log('reseted', this.personForm.controls['skills'].value.length)
+
       this.personForm.reset();
 
-      console.log(this.personForm.value)
       this.setFormArrays(this.cvData);
 
       this.personForm.patchValue(this.cvData);
@@ -68,21 +70,11 @@ export class CvformComponent implements OnChanges, OnDestroy {
 
   // Set form arrays with existing data
   private setFormArrays(data: resumeDataModel) {
-    if (data.certifications) {
-      this.setArrayValues(this.certifications, data.certifications, 'certifications');
-    }
-    if (data.education) {
-      this.setArrayValues(this.education, data.education, 'education');
-    }
-    if (data.work) {
-      this.setArrayValues(this.work, data.work, 'work');
-    }
-    if (data.skills) {
-      this.setArrayValues(this.skills, data.skills, 'skills');
-    }
-    if (data.links) {
-      this.setArrayValues(this.links, data.links, 'links');
-    }
+    !!data.certifications ? this.setArrayValues(this.certifications, data.certifications, 'certifications') : this.certifications.clear();
+    !!data.education ? this.setArrayValues(this.education, data.education, 'education') : this.education.clear();
+    !!data.work ? this.setArrayValues(this.work, data.work, 'work') : this.work.clear();
+    !!data.skills ? this.setArrayValues(this.skills, data.skills, 'skills') : this.skills.clear();
+    !!data.links ? this.setArrayValues(this.links, data.links, 'links') : this.links.clear();
     // this.setArrayValues(this.projects, data.projects);
     // this.setArrayValues(this.awards, data.awards);
   }
@@ -90,7 +82,6 @@ export class CvformComponent implements OnChanges, OnDestroy {
   // Helper method to set array values
   private setArrayValues(formArray: FormArray, values: any[], itemToUpdate: string = '') {
     values.forEach(value => {
-
       if (itemToUpdate == 'certifications') {
         formArray.push(this.fb.group({
           id: [value.id],
@@ -215,6 +206,7 @@ export class CvformComponent implements OnChanges, OnDestroy {
   addSkill() {
     this.skills.push(this.fb.group({
       skillType: [],
+      skillValues: []
     }));
   }
 
@@ -234,17 +226,19 @@ export class CvformComponent implements OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
+
     if (this.personalDataSubscription) {
       this.personalDataSubscription.unsubscribe();
     }
   }
 
   saveChanges() {
+
     if (this.personForm.valid) {
-      console.log('Form Data:', this.personForm.value);
+
       this.postPersonalDataList(this.personForm.value);
-      console.log('Save Complete');
       this.savedSuccess = 'Well done saving!!! It was successful.';
+
     } else {
       console.error('Formulario inválido');
     }
@@ -260,10 +254,6 @@ export class CvformComponent implements OnChanges, OnDestroy {
           console.error(e);
         }
       });
-  }
-
-  onInputChange() {
-    this.formChanged.emit(this.personForm);
   }
 
   // addProject() {

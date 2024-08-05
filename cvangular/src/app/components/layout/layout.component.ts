@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from '@services/data-service.service';
 import { resumeDataModel } from '@app/models/cv.model';
@@ -8,7 +8,7 @@ import { resumeDataModel } from '@app/models/cv.model';
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
-export class LayoutComponent implements OnInit, OnDestroy {
+export class LayoutComponent implements OnDestroy {
 
   private personalDataSubscription: Subscription = new Subscription();
   cvData!: resumeDataModel;
@@ -18,8 +18,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
   ) { }
 
   inputEvent(id: number) {
-    console.log('id', id);
-    
     this.personalDataSubscription = this.personalDataService.getCvById(id)
       .subscribe(
         {
@@ -33,10 +31,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
       );
   }
 
-  ngOnInit(): void {
-  }
-
   ngOnDestroy(): void {
+    this.personalDataSubscription.unsubscribe();
   }
 
 }
