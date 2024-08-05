@@ -47,7 +47,7 @@ const saveCv = (req, res) => {
   try {
 
     fs.writeFileSync(filePath, JSON.stringify(cvData, null, 2), 'utf8');
-    res.status(201).json({ message: 'CV saved successfully' });
+    res.status(201).json({ message: 'CV saved successfully', cvData: cvData });
 
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -78,14 +78,6 @@ const createNewCv = (req, res) => {
     // Limpia el nombre del archivo para evitar caracteres no permitidos
     const sanitizedFileName = filename.replace(/[^a-zA-Z0-9_\-\.]/g, '_');
 
-    // Busca nombres de archivo y los transforma en numeros para guardar el proximo
-    // aqui lee los archivos de la carpeta y busca todos los ids
-    // retorna ids, busca el mas alto y devuelve ese
-    // como es un string lo convierte a numero y le suma uno
-    // const files = fs.readdirSync(dataPath);
-    // const cvIds = files.map(file => path.basename(file, '.json'));
-    // que puede decirse asi tambien:
-
     // Lee los archivos del directorio actual
     const files = fs.readdirSync(dataPath);
     // Extrae y convierte los IDs de los archivos .json
@@ -97,8 +89,6 @@ const createNewCv = (req, res) => {
 
     // Encuentra el ID máximo y calcula el siguiente ID
     const maxIdNumber = cvIds.length > 0 ? Math.max(...cvIds) + 1 : 1;
-
-
     // Define el path del archivo con el ID generado
     const filePath = path.join(dataPath, `${maxIdNumber}.json`);
 
