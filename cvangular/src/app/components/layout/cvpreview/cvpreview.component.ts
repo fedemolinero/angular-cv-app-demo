@@ -8,21 +8,10 @@ import { resumeDataModel } from '@app/models/cv.model';
   templateUrl: './cvpreview.component.html',
   styleUrls: ['./cvpreview.component.scss']
 })
-export class CvPreviewComponent implements OnDestroy {
+export class CvPreviewComponent {
 
   @Input() personalData!: resumeDataModel;
 
-  private personalDataSubscription: Subscription | undefined;
-
-  constructor(
-    private personalDataService: DataService
-  ) {
-  }
-
-  ngOnDestroy(): void {
-    if (this.personalDataSubscription) {
-      this.personalDataSubscription.unsubscribe();
-    }
-  }
+  constructor() { }
 
 }

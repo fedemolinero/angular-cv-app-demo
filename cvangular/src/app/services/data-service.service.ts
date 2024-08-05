@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { resumeDataModel } from '@app/models/cv.model';
-import { createNewCVModel, cvIdsModel, ResumeModel } from '@app/models/response.model';
+import { cvIdsModel } from '@app/models/response.model';
 
 @Injectable({
   providedIn: 'root'

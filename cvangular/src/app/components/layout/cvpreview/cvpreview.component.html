@@ -1,10 +1,4 @@
-@if (!personalData){
-<div class="container-fluid">
-    <div class="row">
-        <div> SERVER OFFLINE </div>
-    </div>
-</div>
-}@else{
+@if ( personalData ){
 
 <section name="personalData" class="d-flex p-3 align-items-center justify-content-center">
     <div class="headerPhoto">
@@ -37,7 +31,7 @@
     }
 </section>
 
-<section name="experience" class="carda p-3 mb-2">
+<section name="work" class="carda p-3 mb-2">
     @for (work of personalData.work; track personalData.work ){
     <div class="carda mb-3">
         <div class="carda-header bg-transparent p-3">
@@ -105,13 +99,12 @@
     }
 </section>
 
-<section name="studies" class="carda p-3 mb-2">
+<section name="education" class="carda p-3 mb-2">
     @for (education of personalData.education; track education ){
     <div class="carda mb-3">
         <div class="carda-header bg-transparent p-3">
             <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
                 <div class="studyPhoto p-1">
-                    <!-- <img [src]="study.studyLogo" class="thumbnail"> -->
                 </div>
                 <div class="studyData p-1">
                     <div class="expstudyCompany">
@@ -142,43 +135,10 @@
     <div class="text-center">
         <h3>STUDIES</h3>
     </div>
-    <!-- <img src="../../../assets/images/cv-studies.png" class="img-fluid"> -->
     }
-
 </section>
 
-<!-- <section name="languagues" class="carda p-3 mb-2"> -->
-<!-- @for (language of personalData.languages; track language ){ -->
-
-<!-- <div class="carda mb-3">
-            <div class="carda-body bg-transparent p-3">
-                <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
-                    <div class="langData p-1">
-                        <div class="explangCompany">
-                            <h4>
-                                <i class="bi bi-flag"></i>
-                                {{language.langName}}
-                            </h4>
-                        </div>
-                        <div class="explangName">
-                            <h5>
-                                {{language.proficiency}}
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div> -->
-<!-- } @empty { -->
-<!-- <div class="text-center">
-                <h3>LANGUAGES</h3>
-            </div> -->
-<!-- <img src="../../../assets/images/cv-languages.png" class="img-fluid"> -->
-<!-- } -->
-<!-- </section> -->
-
-<section name="courses" class="carda p-3 mb-2">
+<section name="certifications" class="carda p-3 mb-2">
     @for (certification of personalData.certifications; track certification ){
     <div class="carda mb-3">
         <div class="carda-header bg-transparent p-3">
@@ -217,4 +177,42 @@
     <!-- <img src="../../../assets/images/cv-courses.png" class="img-fluid"> -->
     }
 </section>
+
+<!-- <section name="languagues" class="carda p-3 mb-2"> -->
+<!-- @for (language of personalData.languages; track language ){ -->
+
+<!-- <div class="carda mb-3">
+            <div class="carda-body bg-transparent p-3">
+                <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
+                    <div class="langData p-1">
+                        <div class="explangCompany">
+                            <h4>
+                                <i class="bi bi-flag"></i>
+                                {{language.langName}}
+                            </h4>
+                        </div>
+                        <div class="explangName">
+                            <h5>
+                                {{language.proficiency}}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> -->
+<!-- } @empty { -->
+<!-- <div class="text-center">
+                <h3>LANGUAGES</h3>
+            </div> -->
+<!-- <img src="../../../assets/images/cv-languages.png" class="img-fluid"> -->
+<!-- } -->
+<!-- </section> -->
+
+
+
+} @else {
+<div class="container text-center m-1 p-1">
+    <h1>NO DATA => NO PREVIEW</h1>
+</div>
 }
