@@ -1,140 +1,46 @@
 @if ( personalData ){
 
-<section name="personalData" class="d-flex p-3 align-items-center justify-content-center">
-    <div class="headerPhoto">
-        <!-- <img src="../../../assets/images/cv-photo.jpg" class="thumbnail"> -->
-    </div>
-    <div class="headerDescription m-1 p-2">
-        <div class="headername">
-            <h2>{{personalData.userFirstName}} {{personalData.userLastName}}</h2>
-        </div>
-        <div class="headerjob">
-            <h3>{{personalData.userHeading}}</h3>
-        </div>
-        <div class="headerlocation">
-            <h6><i class="bi bi-geo-fill"></i> {{personalData.userAddress}} </h6>
-        </div>
-    </div>
-</section>
+<button (click)="generatePdf()">Generate</button>
 
-<section name="about" class="carda p-3 mb-2">
-    @for (aboutDescription of personalData.projects; track personalData.projects ){
-    <div class="about-item">
-        <!-- <i [ngClass]="aboutDescription.icon" class="m-1"></i> -->
-        <span>{{aboutDescription}}</span>
-    </div>
-    } @empty {
-    <div class="text-center">
-        <h3>ABOUT</h3>
-    </div>
-    <!-- <img src="../../../assets/images/cv-about.png" class="img-fluid"> -->
-    }
-</section>
+<div class="row coupon-wrapper" id="couponPage" #couponPage>
 
-<section name="work" class="carda p-3 mb-2">
+        <section name="personalData" class="d-flex flex-column align-items-center justify-content-center">
+            <h2 class="headerName">{{personalData.userFirstName}} {{personalData.userLastName}}</h2>
+            <h3 class="headerJob">{{personalData.userHeading}}</h3>
+            <h6 class="headerLocation">{{personalData.userAddress}}</h6>
+            <h6 class="headerEmail">{{personalData.userEmail}} - {{personalData.userAddress}} -
+                {{personalData.userPhoneNumber}}
+            </h6>
+        </section>
+</div>
+
+<section name="work" class="section">
     @for (work of personalData.work; track personalData.work ){
-    <div class="carda mb-3">
-        <div class="carda-header bg-transparent p-3">
-            <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
-                <div class="jobPhoto p-1">
-                    <!-- <img [src]="job.companyLogo" class="thumbnail"> -->
-                </div>
-
-                <div class="jobData p-1">
-                    <div class="expJobCompany">
-                        <h4>
-                            {{work.company}}
-                        </h4>
-                    </div>
-                    <div class="expJobName ">
-                        <h5>
-                            {{work.role}}
-                        </h5>
-                    </div>
-
-                </div>
-
-                <div class="jobData p-1 ms-auto">
-                    <div class="expJobDate">
-                        <i class="bi bi-calendar3"></i> {{work.endDate}}
-                    </div>
-                    <div class="expJobPlace">
-                        <i class="bi bi-geo-alt"></i> {{work.description}}
-                    </div>
-                    <span class="expJobType">
-                        <i class="bi bi-person-workspace"></i> {{work.role}}
-                    </span> -
-                    <span class="jobRange">
-                        {{work.role}}
-                    </span>
-                </div>
-
-            </div>
-        </div>
-        <div class="carda-body">
-            <div class="carda-text">{{work.description}}</div>
-        </div>
-        <div class="carda-footer bg-transparent border-success">
-            <div class="d-flex flex-row justify-content-center flex-wrap">
-                <!-- NEW WAY IN ANGULAR 17 TO SHOW NGFORS -->
-                <!-- @for (description of work.description; track description ){
-                <div class="btn-group btn-group-sm p-1">
-                    <button type="button" class="btn btn-outline-primary">
-                        {{ description }}
-                    </button>
-                </div>
-                } @empty {
-                <div class="p-1">
-                    DEVELOPING APTITUDES
-                </div>
-                } -->
-            </div>
-        </div>
+    <div class="carda p-1 m-1">
+        <h4>{{work.company}}</h4>
+        <h5>{{work.role}}</h5>
+        <h6>{{work.startDate}} - {{work.endDate}}</h6>
+        <div class="carda-text">{{work.description}}</div>
     </div>
     } @empty {
-    <div class="text-center">
-        <h3>EXPERIENCE</h3>
-    </div>
-    <!-- <img src="../../../assets/images/cv-job-offers.png" class="img-fluid"> -->
+    <h3>EXPERIENCE</h3>
     }
 </section>
 
-<section name="education" class="carda p-3 mb-2">
+<section name="education" class="section">
     @for (education of personalData.education; track education ){
     <div class="carda mb-3">
-        <div class="carda-header bg-transparent p-3">
-            <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
-                <div class="studyPhoto p-1">
-                </div>
-                <div class="studyData p-1">
-                    <div class="expstudyCompany">
-                        <h4>{{education.institution}}</h4>
-                    </div>
-                    <div class="expstudyName">
-                        <h5>{{education.degree}}</h5>
-                    </div>
-                </div>
-                <div class="studyData p-1 ms-auto">
-                    <div class="expstudyDate">
-                        <i class="bi bi-calendar3"></i> {{education.completionDate}}
-                    </div>
-                    <div class="expstudyPlace">
-                        <i class="bi bi-geo-alt"></i> {{education.location}}
-                    </div>
-                    <span class="expstudyType">
-                        <i class="bi bi-person-workspace"></i> {{education.studyType}}
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="carda-body">
-            <div class="carda-text">{{education.score}}</div>
+        <div class="d-flex flex-column flex-wrap justify-content-start align-items-center">
+            <h4> {{education.institution}}</h4>
+            <h5> {{education.degree}}</h5>
+            <h6> {{education.completionDate}}</h6>
+            <h6> {{education.location}}</h6>
+            <h5> {{education.score}}</h5>
+            <h6> {{education.studyType}} </h6>
         </div>
     </div>
     } @empty {
-    <div class="text-center">
-        <h3>STUDIES</h3>
-    </div>
+    <h3>STUDIES</h3>
     }
 </section>
 
@@ -212,7 +118,7 @@
 
 
 }
- <!-- @else {
+<!-- @else {
 <div class="container text-center m-1 p-1">
     <h1>NO DATA => NO PREVIEW</h1>
 </div>
