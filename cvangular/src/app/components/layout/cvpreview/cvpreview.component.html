@@ -1,125 +1,37 @@
 @if ( personalData ){
 
-<button (click)="generatePdf()">Generate</button>
+<section name="personalData" class="preview-section">
+    <h1>{{personalData.userFirstName}} {{personalData.userLastName}}</h1>
+    <h2>{{personalData.userHeading}}</h2>
+    <h6>{{personalData.userAddress}}</h6>
+    <h6>{{personalData.userEmail}} - {{personalData.userAddress}} - {{personalData.userPhoneNumber}}</h6>
+</section>
 
-<div class="row coupon-wrapper" id="couponPage" #couponPage>
-
-        <section name="personalData" class="d-flex flex-column align-items-center justify-content-center">
-            <h2 class="headerName">{{personalData.userFirstName}} {{personalData.userLastName}}</h2>
-            <h3 class="headerJob">{{personalData.userHeading}}</h3>
-            <h6 class="headerLocation">{{personalData.userAddress}}</h6>
-            <h6 class="headerEmail">{{personalData.userEmail}} - {{personalData.userAddress}} -
-                {{personalData.userPhoneNumber}}
-            </h6>
-        </section>
-</div>
-
-<section name="work" class="section">
+<section name="work" class="preview-section">
+    <span class="preview-section__title">WORK EXPERIENCE</span>
     @for (work of personalData.work; track personalData.work ){
-    <div class="carda p-1 m-1">
-        <h4>{{work.company}}</h4>
-        <h5>{{work.role}}</h5>
-        <h6>{{work.startDate}} - {{work.endDate}}</h6>
-        <div class="carda-text">{{work.description}}</div>
-    </div>
+    <app-work-card [work]="work"></app-work-card>
     } @empty {
-    <h3>EXPERIENCE</h3>
+    <h3>Work experience not found</h3>
     }
 </section>
 
-<section name="education" class="section">
+<section name="education" class="preview-section">
+    <span class="preview-section__title">EDUCATION</span>
     @for (education of personalData.education; track education ){
-    <div class="carda mb-3">
-        <div class="d-flex flex-column flex-wrap justify-content-start align-items-center">
-            <h4> {{education.institution}}</h4>
-            <h5> {{education.degree}}</h5>
-            <h6> {{education.completionDate}}</h6>
-            <h6> {{education.location}}</h6>
-            <h5> {{education.score}}</h5>
-            <h6> {{education.studyType}} </h6>
-        </div>
-    </div>
+    <app-education-card [education]="education"></app-education-card>
     } @empty {
-    <h3>STUDIES</h3>
+    <h3>Education not found</h3>
     }
 </section>
 
-<section name="certifications" class="carda p-3 mb-2">
+<section name="certifications" class="preview-section">
+    <span class="preview-section__title">CERTIFICATIONS</span>
     @for (certification of personalData.certifications; track certification ){
-    <div class="carda mb-3">
-        <div class="carda-header bg-transparent p-3">
-            <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
-                <div class="coursePhoto p-1">
-                    <!-- <img [src]="course.courseLogo" class="thumbnail"> -->
-                </div>
-                <div class="courseData p-1">
-                    <div class="expcourseCompany">
-                        <h4>
-                            {{certification.issuedBy}}
-                        </h4>
-                    </div>
-                    <div class="expcourseName">
-                        <h5>
-                            {{certification.description}}
-                        </h5>
-                    </div>
-                </div>
-                <!-- <div class="courseData p-1 ms-auto">
-                            <div class="expcourseDate">
-                                <i class="bi bi-calendar3"></i> {{course.courseTime}}
-                            </div>
-                            <span class="expcourseType">
-                                <i class="bi bi-person-workspace"></i> {{course.courseType}}
-                            </span>
-                        </div> -->
-            </div>
-        </div>
-
-    </div>
+    <app-certification-card [certification]="certification"></app-certification-card>
     } @empty {
-    <div class="text-center">
-        <h3>COURSES</h3>
-    </div>
-    <!-- <img src="../../../assets/images/cv-courses.png" class="img-fluid"> -->
+    <h3>Certifications not found</h3>
     }
 </section>
-
-<!-- <section name="languagues" class="carda p-3 mb-2"> -->
-<!-- @for (language of personalData.languages; track language ){ -->
-
-<!-- <div class="carda mb-3">
-            <div class="carda-body bg-transparent p-3">
-                <div class="d-flex flex-row flex-wrap justify-content-start align-items-center">
-                    <div class="langData p-1">
-                        <div class="explangCompany">
-                            <h4>
-                                <i class="bi bi-flag"></i>
-                                {{language.langName}}
-                            </h4>
-                        </div>
-                        <div class="explangName">
-                            <h5>
-                                {{language.proficiency}}
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div> -->
-<!-- } @empty { -->
-<!-- <div class="text-center">
-                <h3>LANGUAGES</h3>
-            </div> -->
-<!-- <img src="../../../assets/images/cv-languages.png" class="img-fluid"> -->
-<!-- } -->
-<!-- </section> -->
-
-
 
 }
-<!-- @else {
-<div class="container text-center m-1 p-1">
-    <h1>NO DATA => NO PREVIEW</h1>
-</div>
-} -->

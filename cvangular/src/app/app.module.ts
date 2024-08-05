@@ -34,6 +34,10 @@ import { InputGameComponent } from './components/shared/input-game/input-game.co
 import { RedbuttonComponent } from './components/shared/redbutton/redbutton.component';
 import { CvlistComponent } from './components/layout/cvlist/cvlist.component';
 import { PatternCrazyComponent } from './components/shared/pattern-crazy/pattern-crazy.component';
+import { CertificationCardComponent } from './components/shared/certification-card/certification-card.component';
+import { WorkCardComponent } from './components/shared/work-card/work-card.component';
+import { EducationCardComponent } from './components/shared/education-card/education-card.component';
+import { AboutCardComponent } from './components/shared/about-card/about-card.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +66,10 @@ import { PatternCrazyComponent } from './components/shared/pattern-crazy/pattern
     RedbuttonComponent,
     CvlistComponent,
     PatternCrazyComponent,
+    CertificationCardComponent,
+    WorkCardComponent,
+    EducationCardComponent,
+    AboutCardComponent,
   ],
   imports: [
     CommonModule,
