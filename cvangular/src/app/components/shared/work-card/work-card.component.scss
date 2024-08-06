@@ -1,3 +1,11 @@
-textarea {
-    field-sizing: content;
-}
+// .description {
+//     max-width: 100%; /* Ajusta el ancho máximo al contenedor */
+//     overflow-wrap: break-word; /* Permite el ajuste de palabras largas */
+//   }
+  
+  pre {
+    white-space: pre-wrap; /* Permite el ajuste de texto y preserva los saltos de línea */
+    word-wrap: break-word; /* Ajusta las palabras largas al final de la línea */
+    margin: 0; /* Opcional: Elimina el margen predeterminado */
+    padding: 0; /* Opcional: Elimina el padding predeterminado */
+  }
