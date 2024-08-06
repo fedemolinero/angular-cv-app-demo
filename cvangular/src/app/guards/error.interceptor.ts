@@ -1,4 +1,3 @@
-// error-interceptor.service.ts
 import { Injectable } from '@angular/core';
 import {
   HttpEvent,
@@ -32,7 +31,6 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (error.error instanceof ErrorEvent) {
           // Error de cliente, como un error de red
           errorMessage = `Error: ${error.error.message}`;
-
         } else {
           // Error del servidor
           errorMessage = this.getServerErrorMessage(error);
@@ -40,8 +38,8 @@ export class ErrorInterceptor implements HttpInterceptor {
           if (error.status === 401) {
             // En este ejemplo, mostramos un mensaje usando el PopupService
             errorMessage = 'Session expired. Please log in again.';
+            // Aquí podrías redirigir al usuario a la página de login o cerrar sesión
           }
-
         }
 
         // Mostrar mensaje de error al usuario
@@ -59,6 +57,8 @@ export class ErrorInterceptor implements HttpInterceptor {
         return 'Server Offline. Try Again in a few minutes';
       case 401:
         return 'Unauthorized';
+      case 403:
+        return 'Forbidden'; // Agregado para manejar errores de acceso prohibido
       case 404:
         return 'Not found';
       default:

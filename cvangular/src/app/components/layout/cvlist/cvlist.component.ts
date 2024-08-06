@@ -2,21 +2,21 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { createNewCVModel, cvIdsModel } from '@app/models/response.model';
 import { DataService } from '@app/services/data-service.service';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cvlist',
   templateUrl: './cvlist.component.html',
-  styleUrl: './cvlist.component.scss'
+  styleUrls: ['./cvlist.component.scss'] // Corregido el nombre de la propiedad
 })
 export class CvlistComponent implements OnInit, OnDestroy {
 
-  private cvListSubscription!: Subscription;
+  private destroy$ = new Subject<void>();
   @Output() idSelected = new EventEmitter<number>();
 
   nameForm!: FormGroup;
   cvList!: cvIdsModel;
-  newID!: string;
 
   constructor(
     private personalDataService: DataService,
@@ -33,67 +33,57 @@ export class CvlistComponent implements OnInit, OnDestroy {
   initForm() {
     this.nameForm = this.fb.group({
       cvName: ['', Validators.required],
-    })
-  };
+    });
+  }
 
   ngOnDestroy(): void {
-
-    console.log('ondestroy', this.idSelected)
-
-    if (this.cvListSubscription) {
-      this.cvListSubscription.unsubscribe();
-    }
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   openEditor(id: number) {
     this.idSelected.emit(id);
   }
 
-  removeCV(name: number) {
-
-    this.personalDataService.deleteCv(name)
-      .subscribe(
-        {
-          next: (response: any) => {
-            this.idSelected.emit(0);
-            this.getCVList();
-            console.log('response', response)
-          },
-          error: (e) => {
-            console.error(e);
-          }
+  removeCV(id: number) {
+    this.personalDataService.deleteCv(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: () => {
+          this.idSelected.emit(0);
+          this.getCVList();
+        },
+        error: (e) => {
+          console.error(e);
         }
-      );
-
+      });
   }
 
   createNewCV() {
-    this.personalDataService.createNewCv(this.nameForm.value.cvName)
-      .subscribe(
-        {
+    if (this.nameForm.valid) {
+      this.personalDataService.createNewCv(this.nameForm.value.cvName)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
           next: (response: createNewCVModel) => {
-            this.newID = response.newId;
-            this.getCVList();
+            this.getCVList(); // No es necesario almacenar el ID aquí
           },
           error: (e) => {
             console.error(e);
           }
-        }
-      );
+        });
+    }
   }
 
   getCVList() {
-    this.cvListSubscription = this.personalDataService.getCvList()
-      .subscribe(
-        {
-          next: (cvListResponse: cvIdsModel) => {
-            this.cvList = cvListResponse;
-          },
-          error: (e) => {
-            console.error(e);
-          }
+    this.personalDataService.getCvList()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (cvListResponse: cvIdsModel) => {
+          this.cvList = cvListResponse;
+        },
+        error: (e) => {
+          console.error(e);
         }
-      );
+      });
   }
-
 }

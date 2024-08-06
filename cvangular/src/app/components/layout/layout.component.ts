@@ -1,49 +1,47 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { DataService } from '@services/data-service.service';
 import { resumeDataModel } from '@app/models/cv.model';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.scss'
+  styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnDestroy {
 
-  private personalDataSubscription: Subscription = new Subscription();
-  cvData!: resumeDataModel | null;
-  cvSavedData!: resumeDataModel;
+  private destroy$ = new Subject<void>();
+  cvData: resumeDataModel | null = null;
+  cvSavedData: resumeDataModel | null = null;
 
   constructor(
     private personalDataService: DataService
   ) { }
 
   inputEvent(id: number) {
-    if (id != 0) {
-      this.personalDataSubscription = this.personalDataService.getCvById(id)
-        .subscribe(
-          {
-            next: (cvListResponse: resumeDataModel) => {
-              this.cvData = cvListResponse;
-            },
-            error: (e) => {
-              console.error(e);
-            }
+    if (id !== 0) {
+      this.personalDataService.getCvById(id)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (cvListResponse: resumeDataModel) => {
+            this.cvData = cvListResponse;
+          },
+          error: (e) => {
+            console.error(e);
           }
-        );
+        });
     } else {
       this.cvData = null;
     }
   }
 
-
-  savedDataEvent(savedData: any) {
+  savedDataEvent(savedData: { cvData: resumeDataModel }) {
     this.cvSavedData = savedData.cvData;
   }
 
   ngOnDestroy(): void {
-    this.personalDataSubscription.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
-
 }
-

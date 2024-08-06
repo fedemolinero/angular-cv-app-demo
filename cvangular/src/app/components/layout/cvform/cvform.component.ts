@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '@services/data-service.service';
 import { resumeDataModel } from '@app/models/cv.model';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cvform',
@@ -14,16 +15,15 @@ export class CvformComponent implements OnChanges, OnDestroy {
   @Output() formChanged = new EventEmitter<any>();
   @Input() cvData!: resumeDataModel;
 
-  private personalDataSubscription!: Subscription;
-
+  private destroy$ = new Subject<void>();
   personForm!: FormGroup;
-  savedSuccess!: string;
 
   constructor(
     private fb: FormBuilder,
     private personalDataService: DataService
-
-  ) { this.initForm(); }
+  ) {
+    this.initForm();
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['cvData'] && this.cvData) {
@@ -48,8 +48,6 @@ export class CvformComponent implements OnChanges, OnDestroy {
       work: this.fb.array([]),
       skills: this.fb.array([]),
       links: this.fb.array([]),
-      // projects: this.fb.array([]),
-      // awards: this.fb.array([]),
     });
   }
 
@@ -58,41 +56,39 @@ export class CvformComponent implements OnChanges, OnDestroy {
   get work() { return this.personForm.get('work') as FormArray; }
   get skills() { return this.personForm.get('skills') as FormArray; }
   get links() { return this.personForm.get('links') as FormArray; }
-  // get awards() { return this.personForm.get('awards') as FormArray; }
-  // get projects() { return this.personForm.get('projects') as FormArray; }
 
-  // Set form arrays with existing data
   private setFormArrays(data: resumeDataModel) {
-    // clearing array Forms
-    this.education.clear()
-    this.certifications.clear();
-    this.work.clear()
-    this.skills.clear();
-    this.links.clear();
-
-    data.certifications && (data.certifications.length > 0) ? this.setArrayValues(this.certifications, data.certifications, 'certifications') : false;
-    data.education && data.education.length > 0 ? this.setArrayValues(this.education, data.education, 'education') : false;
-    data.work && data.work.length > 0 ? this.setArrayValues(this.work, data.work, 'works') : false;
-    data.skills && data.skills.length > 0 ? this.setArrayValues(this.skills, data.skills, 'skills') : false;
-    data.links && data.links.length > 0 ? this.setArrayValues(this.links, data.links, 'links') : false;
-    // this.setArrayValues(this.projects, data.projects);
-    // this.setArrayValues(this.awards, data.awards);
+    this.clearFormArrays();
+    this.setArrayValues(this.certifications, data.certifications, 'certifications');
+    this.setArrayValues(this.education, data.education, 'education');
+    this.setArrayValues(this.work, data.work, 'work');
+    this.setArrayValues(this.skills, data.skills, 'skills');
+    this.setArrayValues(this.links, data.links, 'links');
   }
 
-  // Helper method to set array values
-  private setArrayValues(formArray: FormArray, values: any[], itemToUpdate: string = '') {
+  private setArrayValues(formArray: FormArray, values: any[], itemType: string) {
     values.forEach(value => {
-      if (itemToUpdate == 'certifications') {
-        formArray.push(this.fb.group({
-          id: [value.id],
+      formArray.push(this.fb.group(this.getFormGroupControls(itemType, value)));
+    });
+  }
+
+  private getFormGroupControls(type: string, value: any) {
+    const commonControls = {
+      id: [value.id],
+      sortOrderId: [value.sortOrderId]
+    };
+
+    switch (type) {
+      case 'certifications':
+        return {
+          ...commonControls,
           description: [value.description],
           issuedBy: [value.issuedBy],
-          url: [value.url],
-          sortOrderId: [value.sortOrderId]
-        }));
-      } else if (itemToUpdate == 'education') {
-        formArray.push(this.fb.group({
-          id: [value.id],
+          url: [value.url]
+        };
+      case 'education':
+        return {
+          ...commonControls,
           degree: [value.degree],
           location: [value.location],
           resumeId: [value.resumeId],
@@ -101,14 +97,13 @@ export class CvformComponent implements OnChanges, OnDestroy {
           institution: [value.institution],
           score: [value.score],
           scoreType: [value.scoreType],
-          sortOrderId: [value.sortOrderId],
           startDate: [value.startDate],
           studyType: [value.studyType],
           updatedAt: [value.updatedAt]
-        }));
-      } else if (itemToUpdate == 'works') {
-        formArray.push(this.fb.group({
-          id: [value.id],
+        };
+      case 'work':
+        return {
+          ...commonControls,
           description: [value.description],
           endDate: [value.endDate],
           currentJob: [value.currentJob],
@@ -116,132 +111,67 @@ export class CvformComponent implements OnChanges, OnDestroy {
           company: [value.company],
           location: [value.location],
           startDate: [value.startDate],
-          sortOrderId: [value.sortOrderId],
           resumeId: [value.resumeId],
           createdAt: [value.createdAt],
-          updatedAt: [value.updatedAt],
-        }));
-      } else if (itemToUpdate == 'skills') {
-        formArray.push(this.fb.group({
+          updatedAt: [value.updatedAt]
+        };
+      case 'skills':
+        return {
           skillType: [value.skillType],
-          skillValues: [value.skillValues],
-        }));
-      } else if (itemToUpdate == 'links') {
-        formArray.push(this.fb.group({
+          skillValues: [value.skillValues]
+        };
+      case 'links':
+        return {
           url: [value.url],
-          network: [value.network],
-        }));
-      } else {
-        formArray.push(this.fb.control(value));
-      }
-
-    });
-  }
-
-  addCertification() {
-    this.certifications.push(this.fb.group({
-      id: [null],
-      description: [''],
-      issuedBy: [''],
-      url: [''],
-      sortOrderId: [0]
-    }));
-  }
-
-  removeCertification(index: number) {
-    this.certifications.removeAt(index);
-  }
-
-  addEducation() {
-    this.education.push(this.fb.group({
-      id: [null],
-      degree: [],
-      location: [],
-      resumeId: [],
-      completionDate: [],
-      createdAt: [],
-      institution: [],
-      score: [],
-      scoreType: [],
-      sortOrderId: [],
-      startDate: [],
-      studyType: [],
-      updatedAt: [],
-    }));
-  }
-
-  removeEducation(index: number) {
-    this.education.removeAt(index);
-  }
-
-  addWork() {
-    this.work.push(this.fb.group({
-      id: [],
-      description: [],
-      endDate: [],
-      currentJob: [],
-      role: [],
-      location: [],
-      company: [],
-      startDate: [],
-      sortOrderId: [],
-      resumeId: [],
-      createdAt: [],
-      updatedAt: []
-    }));
-  }
-
-  removeWork(index: number) {
-    this.work.removeAt(index);
-  }
-
-  addSkill() {
-    this.skills.push(this.fb.group({
-      skillType: [],
-      skillValues: []
-    }));
-  }
-
-  removeSkill(index: number) {
-    this.skills.removeAt(index);
-  }
-
-  addLink() {
-    this.links.push(this.fb.group({
-      url: [],
-      network: []
-    }));
-  }
-
-  removeLink(index: number) {
-    this.links.removeAt(index);
-  }
-
-  ngOnDestroy(): void {
-
-    if (this.personalDataSubscription) {
-      this.personalDataSubscription.unsubscribe();
+          network: [value.network]
+        };
+      default:
+        return {};
     }
   }
 
+  addItem(formArray: FormArray, itemType: string) {
+    formArray.push(this.fb.group(this.getFormGroupControls(itemType, {})));
+  }
+
+  removeItem(formArray: FormArray, index: number) {
+    formArray.removeAt(index);
+  }
+
+  addCertification() { this.addItem(this.certifications, 'certifications'); }
+  removeCertification(index: number) { this.removeItem(this.certifications, index); }
+  addEducation() { this.addItem(this.education, 'education'); }
+  removeEducation(index: number) { this.removeItem(this.education, index); }
+  addWork() { this.addItem(this.work, 'work'); }
+  removeWork(index: number) { this.removeItem(this.work, index); }
+  addSkill() { this.addItem(this.skills, 'skills'); }
+  removeSkill(index: number) { this.removeItem(this.skills, index); }
+  addLink() { this.addItem(this.links, 'links'); }
+  removeLink(index: number) { this.removeItem(this.links, index); }
+
+  private clearFormArrays() {
+    this.certifications.clear();
+    this.education.clear();
+    this.work.clear();
+    this.skills.clear();
+    this.links.clear();
+  }
+
   saveChanges() {
-
     if (this.personForm.valid) {
-
       this.postPersonalDataList(this.personForm.value);
-      this.savedSuccess = 'Well done saving!!! It was successful.';
-
     } else {
       console.error('Formulario inválido');
     }
   }
 
-  postPersonalDataList(personalData: resumeDataModel) {
-    this.personalDataSubscription = this.personalDataService.saveCv(personalData)
+  private postPersonalDataList(personalData: resumeDataModel) {
+    this.personalDataService.saveCv(personalData)
+      .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response: string) => {
           console.log('saved', response);
-          this.formChanged.emit(response)
+          this.formChanged.emit(response);
         },
         error: (e) => {
           console.error(e);
@@ -249,20 +179,8 @@ export class CvformComponent implements OnChanges, OnDestroy {
       });
   }
 
-  // addProject() {
-  //   this.projects.push(this.fb.control(''));
-  // }
-
-  // removeProject(index: number) {
-  //   this.projects.removeAt(index);
-  // }
-
-  // addAward() {
-  //   this.awards.push(this.fb.control(''));
-  // }
-
-  // removeAward(index: number) {
-  //   this.awards.removeAt(index);
-  // }
-
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }

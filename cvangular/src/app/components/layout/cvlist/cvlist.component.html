@@ -1,44 +1,44 @@
 @if (!cvList){
 <h1> SERVER OFFLINE </h1>
-}@else{
-<div class="card">
+} @else {
 
-    <div class="tools">
-        <div class="circle">
-            <span class="red box"></span>
-        </div>
-        <div class="circle">
-            <span class="yellow box"></span>
-        </div>
-        <div class="circle">
-            <span class="green box"></span>
-        </div>
+<form [formGroup]="nameForm" (ngSubmit)="createNewCV()">
+    <div class="input-group m-2">
+        <label id="cvNameLabel" class="input-group-text" for="cvName">CV Name</label>
+        <input id="cvName" name="cvName" type="text" class="form-control" formControlName="cvName"
+            aria-labelledby="cvNameLabel" placeholder="Enter CV Name" />
+        <button type="submit" class="btn btnColor" [disabled]="!nameForm.valid || cvList.cvIds.length > 3">
+            +
+        </button>
     </div>
+</form>
 
-    <div class="card__content">
-        <form [formGroup]="nameForm">
-            <div class="input-group m-1">
-                <span id="cvNameLabel" class="input-group-text">CV Name</span>
-                <input id="cvName" type="text" class="form-control" formControlName="cvName">
-                <button type="submit" class="btn btnColor" [disabled]="!nameForm.valid || cvList.cvIds.length > 3 "
-                    (click)="createNewCV()">
-                    +
-                </button>
+<div class="row">
+
+    <div *ngFor="let cvId of cvList.cvIds; let i = index" class="card col-2 m-3">
+        <div class="tools">
+            <div class="circle">
+                <span class="red box"></span>
             </div>
-        </form>
-        <div *ngFor="let cvIds of cvList.cvIds; let i = index">
-            <div class="d-flex flex-row ">
-                <button class="btn btnColor m-1" (click)="openEditor(cvList.cvIds[i])">
-                    {{cvIds}}
-                </button>
-                <button class="delete-button m-1" type="button" (click)="removeCV(cvList.cvIds[i])">
-                    <svg class="delete-svgIcon" viewBox="0 0 448 512">
-                        <path
-                            d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z">
-                        </path>
-                    </svg>
-                </button>
+            <div class="circle">
+                <span class="yellow box"></span>
             </div>
+            <div class="circle">
+                <span class="green box"></span>
+            </div>
+        </div>
+
+        <div class="card__content d-flex flex-column align-items-center ">
+            <button class="btn btnColor m-1" (click)="openEditor(cvId)">
+                {{cvId}}
+            </button>
+            <button class="delete-button m-1" type="button" (click)="removeCV(cvId)">
+                <svg class="delete-svgIcon" viewBox="0 0 448 512">
+                    <path
+                        d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z">
+                    </path>
+                </svg>
+            </button>
         </div>
     </div>
 
