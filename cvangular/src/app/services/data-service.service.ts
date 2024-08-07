@@ -3,34 +3,35 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { resumeDataModel } from '@app/models/cv.model';
 import { cvIdsModel } from '@app/models/response.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = environment.apiUrl; // Usa la URL desde el archivo de configuración
 
   constructor(private http: HttpClient) { }
 
   saveCv(cvData: resumeDataModel): Observable<string> {
-    return this.http.post<string>(`${this.apiUrl}/api/cv/save-cv`, cvData);
+    return this.http.post<string>(`${this.apiUrl}/cv/save-cv`, cvData);
   }
 
   getCvById(id: number): Observable<resumeDataModel> {
-    return this.http.get<resumeDataModel>(`${this.apiUrl}/api/cv/get-cv/${id}`);
+    return this.http.get<resumeDataModel>(`${this.apiUrl}/cv/get-cv/${id}`);
   }
 
   getCvList(): Observable<cvIdsModel> {
-    return this.http.get<cvIdsModel>(`${this.apiUrl}/api/cv/get-cv`);
+    return this.http.get<cvIdsModel>(`${this.apiUrl}/cv/get-cv`);
   }
 
   createNewCv(filename: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/api/cv/create-cv/`, { filename });
+    return this.http.post<any>(`${this.apiUrl}/cv/create-cv/`, { filename });
   }
 
   deleteCv(nameID: number): Observable<number> {
-    return this.http.delete<number>(`${this.apiUrl}/api/cv/get-cv/${nameID}`);
+    return this.http.delete<number>(`${this.apiUrl}/cv/get-cv/${nameID}`);
   }
 
 }
