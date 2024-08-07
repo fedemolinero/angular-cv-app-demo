@@ -10,57 +10,58 @@
   "certifications": [
     {
       "id": 300423,
+      "sortOrderId": 0,
       "description": "Node.js API Masterclass With Express & MongoDB",
       "issuedBy": "Udemy",
-      "url": "https://www.udemy.com/certificate/UC-05d7ea88-9baa-43ab-86dc-8a175386a0f7/",
-      "sortOrderId": 0
+      "url": "https://www.udemy.com/certificate/UC-05d7ea88-9baa-43ab-86dc-8a175386a0f7/"
     },
     {
       "id": 300424,
+      "sortOrderId": 1,
       "description": "Angular - The Complete Guide",
       "issuedBy": "Udemy",
-      "url": "https://www.udemy.com/certificate/UC-84d0f9a1-b234-4fae-972e-cb4f6b37120f/",
-      "sortOrderId": 1
+      "url": "https://www.udemy.com/certificate/UC-84d0f9a1-b234-4fae-972e-cb4f6b37120f/"
     },
     {
       "id": 300426,
+      "sortOrderId": 3,
       "description": "Css",
       "issuedBy": "HackerRank",
-      "url": "https://www.hackerrank.com/certificates/c363f692ce06",
-      "sortOrderId": 3
+      "url": "https://www.hackerrank.com/certificates/c363f692ce06"
     },
     {
       "id": 301060,
+      "sortOrderId": 4,
       "description": "Javascript",
       "issuedBy": "HackerRank",
-      "url": "https://www.hackerrank.com/certificates/287702323a4c",
-      "sortOrderId": 4
+      "url": "https://www.hackerrank.com/certificates/287702323a4c"
     },
     {
       "id": 300843,
+      "sortOrderId": 4,
       "description": "Angular",
       "issuedBy": "HackerRank",
-      "url": "https://www.hackerrank.com/certificates/69210d48a697",
-      "sortOrderId": 4
+      "url": "https://www.hackerrank.com/certificates/69210d48a697"
     },
     {
       "id": 302230,
+      "sortOrderId": 5,
       "description": "Rest API",
       "issuedBy": "HackerRank",
-      "url": "https://www.hackerrank.com/certificates/0e3b9206d9b1",
-      "sortOrderId": 5
+      "url": "https://www.hackerrank.com/certificates/0e3b9206d9b1"
     },
     {
       "id": 302231,
+      "sortOrderId": 6,
       "description": "Node.js",
       "issuedBy": "HackerRank",
-      "url": "https://www.hackerrank.com/certificates/b2830c76a7c5",
-      "sortOrderId": 6
+      "url": "https://www.hackerrank.com/certificates/b2830c76a7c5"
     }
   ],
   "education": [
     {
       "id": 546080,
+      "sortOrderId": 0,
       "degree": "Higher education",
       "location": "Rafaela, Santa Fe",
       "resumeId": 258139,
@@ -69,13 +70,13 @@
       "institution": "San Jose Institute",
       "score": "100",
       "scoreType": "Percentage",
-      "sortOrderId": 0,
       "startDate": "January 2002",
       "studyType": "Computer",
       "updatedAt": "2024-07-02T14:37:24.326Z"
     },
     {
       "id": 546655,
+      "sortOrderId": 1,
       "degree": "Bachelor",
       "location": "Rosario, Santa Fe",
       "resumeId": 258139,
@@ -84,13 +85,13 @@
       "institution": "Universidad nacional de Rosario",
       "score": "10",
       "scoreType": "Percentage",
-      "sortOrderId": 1,
       "startDate": "January 2006",
       "studyType": "Computer Science",
       "updatedAt": "2024-07-02T14:37:24.326Z"
     },
     {
       "id": 546083,
+      "sortOrderId": 2,
       "degree": "University",
       "location": "Rosario, Santa Fe",
       "resumeId": 258139,
@@ -99,7 +100,6 @@
       "institution": "Universidad Tecnologica Nacional",
       "score": "30",
       "scoreType": "Percentage",
-      "sortOrderId": 2,
       "startDate": "January 2010",
       "studyType": "Computer Systems Engineering",
       "updatedAt": "2024-07-02T14:37:24.326Z"
@@ -108,6 +108,7 @@
   "work": [
     {
       "id": 336803,
+      "sortOrderId": 0,
       "description": "- Built responsive UIs for all devices, screen sizes, and resolutions using clean, semantic html, css best practices (including Sass, BEM, SCSS, flexbox and Preprocessors, mixins, media queries, and functions), and enhanced with Angular Material, Bootstrap, and other design elements.  \n- Experienced in addressing browser compatibility issues and using modern javaScript features (ES6+) and typescript.\n- Proficient in performing unit testing using Mocha, Karma, Jasmine and Jest to ensure code reliability and functionality.  \n- Crafted clean, modular, and maintainable code using best practices. Planned and created reusable and modular solutions that can be used across multiple products.  \n- Demonstrated a solid understanding of APIs, both consuming and integrating, along with the ability to quickly learn and utilize new APIs, as well as experience with RESTful APIs and asynchronous data handling.\n- Gained familiarity with version control systems, such as GitHub, and collaboration and pull requests, including CI/CD pipelines, testing, and deployment processes.\n- Conducted thorough application testing, debugging, and troubleshooting to identify and resolve issues promptly.  \n- Acquired knowledge of JavaScript packages, package managers, bundlers, and their use in building complex interactive experiences.\n- Led the development and implementation of new features, ensuring code quality and adherence to best practices.  \n- Led, participated in, and mentored the code reviews cycle to ensure code quality, consistency, and compliance with coding standards.\n- Mentored and guided other engineers, fostering a collaborative and knowledge-sharing environment within the team.\n- Participated in and contributed to architectural/system design discussions and decisions, and team hiring activities.\n- Communicated effectively and collaborated well in a dynamic, cross-functional environment using agile development methodologies.\n- Collaborated with cross-functional teams, including developers, product managers, and designers, to translate business requirements into technical solutions. Gathered user requirements from business documentation and generated correctly structured Epics, Features, User Stories, and Tasks.\n- Demonstrated a self-directed and proactive mindset with a track record of independently delivering high-quality solutions and results.\n- Performed follow-up in Azure DevOps to track project progress, monitor tasks, and ensure adherence to timelines and quality standards.",
       "endDate": "September 2023",
       "currentJob": false,
@@ -115,13 +116,13 @@
       "company": "Globant",
       "location": "Rosario, Argentina",
       "startDate": "June 2019",
-      "sortOrderId": 0,
       "resumeId": 258139,
       "createdAt": "2024-07-01T05:10:23.960Z",
       "updatedAt": "2024-07-02T03:22:41.535Z"
     },
     {
       "id": 337094,
+      "sortOrderId": 1,
       "description": "- Leveraged Node.js and AWS services, including Lambda and S3, to optimize development and deployment processes, ensuring scalable and efficient application architecture.\n- Contributed to the development, implementation, and maintenance of applications using agile methodologies, collaborating with globally distributed teams.\n- Actively participated in team code reviews and design discussions to uphold code quality and promote collaboration.\n- Demonstrated expertise in developing REST APIs to facilitate seamless communication between applications and services.\n- Utilized AWS Lambda functions and S3 for serverless computing and scalable storage solutions, integrating both SQL (MySQL, PostgreSQL) and NoSQL databases (MongoDB) to architect robust backend systems.\n- Collaborated closely with Solution Architect teams to align technical solutions with business objectives and architectural standards.\n- Engaged with cross-functional teams, including developers, clients, product managers, and product owners, to translate business requirements into scalable and maintainable technical solutions.\n- Experienced in administering cloud-based database environments",
       "endDate": "June 2019",
       "currentJob": false,
@@ -129,13 +130,13 @@
       "company": "Accenture",
       "location": "Rosario, Argentina",
       "startDate": "June 2018",
-      "sortOrderId": 1,
       "resumeId": 258139,
       "createdAt": "2024-07-01T20:07:55.750Z",
       "updatedAt": "2024-07-02T03:22:41.535Z"
     },
     {
       "id": 337095,
+      "sortOrderId": 2,
       "description": "- Spearheaded front-end development initiatives utilizing cutting-edge XML, HTML, CSS, Ajax, and JavaScript technologies, ensuring robust and dynamic user interfaces.\n- Demonstrated profound expertise in JavaScript, leveraging advanced packages such as npm, and adeptly interfacing with RESTful APIs to streamline data integration and enhance application functionality.\n- Contributed practical experience with the Laravel framework, developing robust and scalable web applications.\n- Developed future-oriented architectures and solutions based on stakeholder requirements.\n- Collaborated with the software development team to design and implement CRM solutions tailored to our business needs.\n- Integrated CRM systems with existing applications and databases, ensuring seamless data flow and user experiences.\n- Utilized REST APIs and managed JSON data structures effectively.\n        • Implemented version control systems like Git to orchestrate collaboration and maintain code integrity across diverse project teams.\n- Orchestrated collaborative efforts with teams including developers, clients, product managers, and product owners, adeptly translating intricate business objectives into scalable, agile technical solutions.\n- Recognized for problem-solving skills and a commitment to precision and detail, consistently delivering high-quality solutions that surpass project requirements.",
       "endDate": "November 2017",
       "currentJob": false,
@@ -143,13 +144,13 @@
       "company": "MundoIT",
       "location": "Rosario, Argentina",
       "startDate": "June 2016",
-      "sortOrderId": 2,
       "resumeId": 258139,
       "createdAt": "2024-07-01T20:14:15.613Z",
       "updatedAt": "2024-07-02T03:22:41.535Z"
     },
     {
       "id": 337096,
+      "sortOrderId": 3,
       "description": "- Developed solutions for monitoring, availability, reliability, performance analytics, and integration of applications and CMS.\n- Implemented REST APIs, and proficient in working with JSON, HTML, JavaScript, jQuery, AJAX, and CSS. \n- Installed, configured, and upgraded database server software and related products.\n- Utilized MySQL database server on UNIX/Linux and ubuntu platforms, implementing backups and recovery solutions. \n- Proficient in creating, configuring, upgrading, and migrating databases, along with writing complex SQL queries, stored procedures, and triggers. \n- Managed data migration using export/import techniques and various document and data formats such as JSON and XML.\n- Utilized collaborative software tools such as Jira and Confluence for managing tickets and documentation. \n- Defined, documented, and executed software development lifecycle tasks including requirements gathering, continuous integration using git and bitbucket, and bug tracking.",
       "endDate": "April 2016",
       "currentJob": false,
@@ -157,13 +158,13 @@
       "company": "Superintendencia de Riesgos del Trabajo",
       "location": "Rosario, Argentina",
       "startDate": "May 2014",
-      "sortOrderId": 3,
       "resumeId": 258139,
       "createdAt": "2024-07-01T20:18:07.310Z",
       "updatedAt": "2024-07-02T03:22:41.535Z"
     },
     {
       "id": 337097,
+      "sortOrderId": 4,
       "description": "- Managed the installation, maintenance, configuration, and control of workstations and devices, including hardware enhancements.\n- Implemented monitoring and operation of databases, utilizing data interface protocols to manage data integrity and security. Enhanced existing monitoring and notification infrastructure, logged incidents, and managed inventory.\n- Proficient in system integration and automation, with expertise in scripting languages such as PowerShell and Bash.\n- Hands-on experience in SQL administration across multiple data centers, specializing in Microsoft SQL Server. Implemented backups, disaster recovery strategies, restorations, and maintenance solutions.\n- Administered applications and user accounts for shopping centers, overseeing system implementations across various locations.\n- Delivered telephone and remote support to customers, ensuring seamless assistance and resolution of technical issues.",
       "endDate": "September 2013",
       "currentJob": false,
@@ -171,7 +172,6 @@
       "company": "IRSA Corporation",
       "location": "Rosario, Argentina",
       "startDate": "August 2011",
-      "sortOrderId": 4,
       "resumeId": 258139,
       "createdAt": "2024-07-01T20:23:13.018Z",
       "updatedAt": "2024-07-02T03:22:41.535Z"

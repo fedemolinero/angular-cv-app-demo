@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authRoutes = require('./authRoutes');
-const { verifyToken } = require('../middlewares/authMiddleware');
+const { verifyToken } = require('../middleware/authMiddleware');
 
 // Public routes
 router.use('/auth', authRoutes);
