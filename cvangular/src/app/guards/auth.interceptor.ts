@@ -9,7 +9,6 @@ import {
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { catchError, switchMap, filter, take, finalize } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -17,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
   private isRefreshing = false;
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const authToken = this.authService.getToken();
@@ -31,7 +30,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (error.status === 401) {
           return this.handle401Error(req, next);
         } else {
-          return throwError(() => error); // Utilizar función de fábrica para crear el error
+          return throwError(() => error);
         }
       })
     );
@@ -47,7 +46,7 @@ export class AuthInterceptor implements HttpInterceptor {
         }
       });
     }
-    return req; // Si no hay token, devolver la solicitud original sin modificar
+    return req;
   }
 
   private handle401Error(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -58,17 +57,15 @@ export class AuthInterceptor implements HttpInterceptor {
       return this.authService.refreshToken().pipe(
         switchMap((newToken: any) => {
           if (newToken) {
-            this.authService.setToken(newToken); // Actualizar el token en AuthService
+            this.authService.setToken(newToken);
             return next.handle(this.addToken(req, newToken));
           }
 
-          // Si no se pudo obtener un nuevo token, manejar según la lógica de tu aplicación
-          this.authService.logout(); // Cerrar sesión o manejar el error
+          this.authService.logout();
           return throwError(() => new Error('No se pudo obtener un nuevo token'));
         }),
         catchError((error) => {
-          // Manejar el error de refreshToken, por ejemplo, cerrar sesión o manejar de acuerdo a la lógica de tu aplicación
-          this.authService.logout(); 
+          this.authService.logout();
           return throwError(() => error);
         }),
         finalize(() => {
@@ -77,7 +74,6 @@ export class AuthInterceptor implements HttpInterceptor {
         })
       );
     } else {
-      // Esperar a que se complete la solicitud de refreshToken antes de repetir la solicitud original
       return this.refreshTokenSubject.pipe(
         filter(result => result !== null),
         take(1),

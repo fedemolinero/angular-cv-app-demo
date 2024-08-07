@@ -38,6 +38,12 @@ import { CertificationCardComponent } from './components/shared/certification-ca
 import { WorkCardComponent } from './components/shared/work-card/work-card.component';
 import { EducationCardComponent } from './components/shared/education-card/education-card.component';
 import { AboutCardComponent } from './components/shared/about-card/about-card.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthInterceptor } from './guards/auth.interceptor';
+
+export function tokenGetter() {
+  return localStorage.getItem('fedeKpo');
+}
 
 @NgModule({
   declarations: [
@@ -79,12 +85,23 @@ import { AboutCardComponent } from './components/shared/about-card/about-card.co
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:3000'],
+        disallowedRoutes: ['http://localhost:3000/api/auth/'],
+      },
+    }),
   ],
   providers: [
     provideClientHydration(),
     provideHttpClient(withFetch()),
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
     PopupService,
     AuthService
   ],

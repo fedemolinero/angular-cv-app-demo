@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { tap, catchError, map } from 'rxjs/operators';
 import { ResponseModel } from '@app/models/response.model';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +14,13 @@ export class AuthService {
   private tokenKey = 'fedeKpo';
   private apiUrl = 'http://localhost:3000';
 
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.isTokenValid());
   public isAuthenticatedUser$ = this.isAuthenticatedSubject.asObservable();
 
   constructor(
     private http: HttpClient,
     private router: Router,
+    private jwtHelper: JwtHelperService
   ) { }
 
   register(username: string, password: string): Observable<ResponseModel> {
@@ -49,66 +51,50 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return this.isLocalStorageAvailable() ? localStorage.getItem(this.tokenKey) : null;
+    return localStorage.getItem(this.tokenKey);
   }
 
   setToken(token: string): void {
-    if (this.isLocalStorageAvailable()) {
-      localStorage.setItem(this.tokenKey, token);
-    }
+    localStorage.setItem(this.tokenKey, token);
   }
 
   removeToken(): void {
-    if (this.isLocalStorageAvailable()) {
-      localStorage.removeItem(this.tokenKey);
-    }
+    localStorage.removeItem(this.tokenKey);
   }
 
   isAuthenticated(): boolean {
-    return !!this.getToken();
+    return this.isTokenValid();
   }
 
   refreshToken(): Observable<string | null> {
     const refreshToken = this.getToken();
 
     if (!refreshToken) {
-      // Manejar el caso cuando no hay refresh token disponible
       return throwError(() => 'No hay refresh token disponible') as Observable<string | null>;
     }
 
     return this.http.post<ResponseModel>(`${this.apiUrl}/api/auth/refresh-token`, { refreshToken })
       .pipe(
         catchError(error => {
-          // Manejar errores de la solicitud
           console.error('Error al renovar el token:', error);
           return throwError(() => 'Error al renovar el token');
         }),
         tap((response: ResponseModel) => {
           if (response.token) {
-            // Actualizar el token en el almacenamiento local
             this.setToken(response.token);
-            this.isAuthenticatedSubject.next(true); // Indicar que el usuario está autenticado
+            this.isAuthenticatedSubject.next(true);
           }
         }),
-        // Mapear la respuesta para devolver solo el token o null si no hay token en la respuesta
         map((response: ResponseModel) => response.token ?? null)
       );
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
-
     return throwError(() => error);
-
   }
 
-  private isLocalStorageAvailable(): boolean {
-    try {
-      const test = '__storage_test__';
-      localStorage.setItem(test, test);
-      localStorage.removeItem(test);
-      return true;
-    } catch (e) {
-      return false;
-    }
+  private isTokenValid(): boolean {
+    const token = this.getToken();
+    return token ? !this.jwtHelper.isTokenExpired(token) : false;
   }
 }
