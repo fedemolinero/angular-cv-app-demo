@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const authRoutes = require('./authRoutes');
-const cvRoutes = require('./cvRoutes');
+const { verifyToken } = require('../middlewares/authMiddleware');
 
+// Public routes
 router.use('/auth', authRoutes);
-router.use('/cv', cvRoutes);
+
+// Protected routes
+router.use('/cv', verifyToken, require('./cvRoutes'));
 
 module.exports = router;

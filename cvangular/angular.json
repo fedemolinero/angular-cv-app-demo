@@ -27,7 +27,6 @@
             "outputPath": "dist/cvangular",
             "index": "src/index.html",
             "main": "src/main.ts",
-
             "polyfills": [
               "zone.js"
             ],
@@ -40,7 +39,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -67,6 +66,9 @@
           "defaultConfiguration": "production"
         },
         "serve": {
+          "options": {
+            "proxyConfig": "src/proxy.conf.json"
+          },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {

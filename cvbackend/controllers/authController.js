@@ -1,8 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { readUsers, writeUsers } = require('../utils/fileHandler');
+require('dotenv').config(); // Cargar variables de entorno
 
-const secretKey = 'fedeKpo';
+const secretKey = process.env.SECRET_KEY || 'default_secret_key'; // Usar clave secreta del entorno
 
 const register = (req, res) => {
   const { username, password } = req.body;
