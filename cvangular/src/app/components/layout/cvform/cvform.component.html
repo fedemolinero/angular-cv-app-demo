@@ -36,7 +36,8 @@
     <!-- User Phone Number -->
     <div class="input-group mb-3">
         <span id="phoneNumberLabel" class="input-group-text">Phone Number</span>
-        <input id="userPhoneNumber" name="userPhoneNumber" type="text" class="form-control" formControlName="userPhoneNumber">
+        <input id="userPhoneNumber" name="userPhoneNumber" type="text" class="form-control"
+            formControlName="userPhoneNumber">
     </div>
 
     <!-- Education -->
@@ -44,14 +45,22 @@
         <label for="education" class="form-label">Education</label>
         <div formArrayName="education">
             <div *ngFor="let edu of education.controls; let i = index" [formGroupName]="i" class="mb-3">
-                <input id="degree{{i}}" name="degree{{i}}" formControlName="degree" type="text" class="form-control mb-2" placeholder="Degree">
-                <input id="studyType{{i}}" name="studyType{{i}}" formControlName="studyType" type="text" class="form-control mb-2" placeholder="Study Type">
-                <input id="location{{i}}" name="location{{i}}" formControlName="location" type="text" class="form-control mb-2" placeholder="Location">
-                <input id="startDate{{i}}" name="startDate{{i}}" formControlName="startDate" type="text" class="form-control mb-2" placeholder="Start Date">
-                <input id="completionDate{{i}}" name="completionDate{{i}}" formControlName="completionDate" type="text" class="form-control mb-2" placeholder="Completion Date">
-                <input id="institution{{i}}" name="institution{{i}}" formControlName="institution" type="text" class="form-control mb-2" placeholder="Institution">
-                <input id="score{{i}}" name="score{{i}}" formControlName="score" type="number" class="form-control mb-2" placeholder="Score">
-                <input id="scoreType{{i}}" name="scoreType{{i}}" formControlName="scoreType" type="text" class="form-control mb-2" placeholder="Score Type">
+                <input id="degree{{i}}" name="degree{{i}}" formControlName="degree" type="text"
+                    class="form-control mb-2" placeholder="Degree">
+                <input id="studyType{{i}}" name="studyType{{i}}" formControlName="studyType" type="text"
+                    class="form-control mb-2" placeholder="Study Type">
+                <input id="location{{i}}" name="location{{i}}" formControlName="location" type="text"
+                    class="form-control mb-2" placeholder="Location">
+                <input id="startDate{{i}}" name="startDate{{i}}" formControlName="startDate" type="text"
+                    class="form-control mb-2" placeholder="Start Date">
+                <input id="completionDate{{i}}" name="completionDate{{i}}" formControlName="completionDate" type="text"
+                    class="form-control mb-2" placeholder="Completion Date">
+                <input id="institution{{i}}" name="institution{{i}}" formControlName="institution" type="text"
+                    class="form-control mb-2" placeholder="Institution">
+                <input id="score{{i}}" name="score{{i}}" formControlName="score" type="number" class="form-control mb-2"
+                    placeholder="Score">
+                <input id="scoreType{{i}}" name="scoreType{{i}}" formControlName="scoreType" type="text"
+                    class="form-control mb-2" placeholder="Score Type">
                 <button type="button" (click)="removeEducation(i)" class="btn btn-danger btn-sm">Remove</button>
             </div>
             <button type="button" (click)="addEducation()" class="btn btn-primary">Add Education</button>
@@ -63,13 +72,20 @@
         <label for="work" class="form-label">Work Experience</label>
         <div formArrayName="work">
             <div *ngFor="let work of work.controls; let i = index" [formGroupName]="i" class="mb-3">
-                <input id="description{{i}}" name="description{{i}}" formControlName="description" type="text" class="form-control mb-2" placeholder="Description">
-                <input id="currentJob{{i}}" name="currentJob{{i}}" formControlName="currentJob" type="text" class="form-control mb-2" placeholder="Current Job">
-                <input id="role{{i}}" name="role{{i}}" formControlName="role" type="text" class="form-control mb-2" placeholder="Role">
-                <input id="company{{i}}" name="company{{i}}" formControlName="company" type="text" class="form-control mb-2" placeholder="Company">
-                <input id="startDate{{i}}" name="startDate{{i}}" formControlName="startDate" type="text" class="form-control mb-2" placeholder="Start Date">
-                <input id="endDate{{i}}" name="endDate{{i}}" formControlName="endDate" type="text" class="form-control mb-2" placeholder="End Date">
-                <input id="location{{i}}" name="location{{i}}" formControlName="location" type="text" class="form-control mb-2" placeholder="Location">
+                <input id="description{{i}}" name="description{{i}}" formControlName="description" type="text"
+                    class="form-control mb-2" placeholder="Description">
+                <input id="currentJob{{i}}" name="currentJob{{i}}" formControlName="currentJob" type="text"
+                    class="form-control mb-2" placeholder="Current Job">
+                <input id="role{{i}}" name="role{{i}}" formControlName="role" type="text" class="form-control mb-2"
+                    placeholder="Role">
+                <input id="company{{i}}" name="company{{i}}" formControlName="company" type="text"
+                    class="form-control mb-2" placeholder="Company">
+                <input id="startDate{{i}}" name="startDate{{i}}" formControlName="startDate" type="text"
+                    class="form-control mb-2" placeholder="Start Date">
+                <input id="endDate{{i}}" name="endDate{{i}}" formControlName="endDate" type="text"
+                    class="form-control mb-2" placeholder="End Date">
+                <input id="location{{i}}" name="location{{i}}" formControlName="location" type="text"
+                    class="form-control mb-2" placeholder="Location">
                 <button type="button" (click)="removeWork(i)" class="btn btn-danger btn-sm">Remove</button>
             </div>
             <button type="button" (click)="addWork()" class="btn btn-primary">Add Work</button>
@@ -81,9 +97,12 @@
         <label for="certifications" class="form-label">Certifications</label>
         <div formArrayName="certifications">
             <div *ngFor="let cert of certifications.controls; let i = index" [formGroupName]="i" class="mb-3">
-                <input id="description{{i}}" name="description{{i}}" formControlName="description" type="text" class="form-control mb-2" placeholder="Description">
-                <input id="issuedBy{{i}}" name="issuedBy{{i}}" formControlName="issuedBy" type="text" class="form-control mb-2" placeholder="Issued By">
-                <input id="url{{i}}" name="url{{i}}" formControlName="url" type="text" class="form-control mb-2" placeholder="URL">
+                <input id="description{{i}}" name="description{{i}}" formControlName="description" type="text"
+                    class="form-control mb-2" placeholder="Description">
+                <input id="issuedBy{{i}}" name="issuedBy{{i}}" formControlName="issuedBy" type="text"
+                    class="form-control mb-2" placeholder="Issued By">
+                <input id="url{{i}}" name="url{{i}}" formControlName="url" type="text" class="form-control mb-2"
+                    placeholder="URL">
                 <button type="button" (click)="removeCertification(i)" class="btn btn-danger btn-sm">Remove</button>
             </div>
             <button type="button" (click)="addCertification()" class="btn btn-primary">Add Certification</button>
@@ -95,8 +114,10 @@
         <label for="skills" class="form-label">Skills</label>
         <div formArrayName="skills">
             <div *ngFor="let skill of skills.controls; let i = index" [formGroupName]="i" class="mb-3">
-                <input id="skillType{{i}}" name="skillType{{i}}" formControlName="skillType" type="text" class="form-control mb-2" placeholder="Skill Type">
-                <input id="skillValues{{i}}" name="skillValues{{i}}" formControlName="skillValues" type="text" class="form-control mb-2" placeholder="Skill Values">
+                <input id="skillType{{i}}" name="skillType{{i}}" formControlName="skillType" type="text"
+                    class="form-control mb-2" placeholder="Skill Type">
+                <input id="skillValues{{i}}" name="skillValues{{i}}" formControlName="skillValues" type="text"
+                    class="form-control mb-2" placeholder="Skill Values">
                 <button type="button" (click)="removeSkill(i)" class="btn btn-danger btn-sm">Remove</button>
             </div>
             <button type="button" (click)="addSkill()" class="btn btn-primary">Add Skill</button>
@@ -108,8 +129,10 @@
         <label for="links" class="form-label">Links</label>
         <div formArrayName="links">
             <div *ngFor="let link of links.controls; let i = index" [formGroupName]="i" class="mb-3">
-                <input id="url{{i}}" name="url{{i}}" formControlName="url" type="text" class="form-control mb-2" placeholder="URL">
-                <input id="network{{i}}" name="network{{i}}" formControlName="network" type="text" class="form-control mb-2" placeholder="Network">
+                <input id="url{{i}}" name="url{{i}}" formControlName="url" type="text" class="form-control mb-2"
+                    placeholder="URL">
+                <input id="network{{i}}" name="network{{i}}" formControlName="network" type="text"
+                    class="form-control mb-2" placeholder="Network">
                 <button type="button" (click)="removeLink(i)" class="btn btn-danger btn-sm">Remove</button>
             </div>
             <button type="button" (click)="addLink()" class="btn btn-primary">Add Link</button>

@@ -2,7 +2,8 @@
 
 <div class="container-fluid" [ngClass]="{'clear': !isButtonActive, 'dark': isButtonActive}">
 
-    <app-mainmenu [ngClass]="{'clear': !isButtonActive, 'dark': isButtonActive}" [isAuthenticated]="isAuthenticated$ | async"></app-mainmenu>
+    <app-mainmenu [ngClass]="{'clear': !isButtonActive, 'dark': isButtonActive}"
+        [isAuthenticated]="isAuthenticated$ | async"></app-mainmenu>
 
     <div class="ptvh-5 pbvh-5">
         <router-outlet />
