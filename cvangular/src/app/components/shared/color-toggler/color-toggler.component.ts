@@ -23,8 +23,7 @@ import { TemplateService } from '@services/template.service';
 })
 export class ColorTogglerComponent implements OnInit, OnDestroy {
 
-  // Inicialización aquí
-  flipState: string = 'inactive';
+  flipState: boolean = false;
 
   private destroy$ = new Subject<void>();
 
@@ -46,7 +45,7 @@ export class ColorTogglerComponent implements OnInit, OnDestroy {
   }
 
   toggleFlip(): void {
-    this.flipState = this.flipState === 'inactive' ? 'active' : 'inactive';
+    this.flipState = !this.flipState
     this.templateService.setColorMode(this.flipState);
     // Asegúrate de que setColorMode se llama con this.flipState
   }

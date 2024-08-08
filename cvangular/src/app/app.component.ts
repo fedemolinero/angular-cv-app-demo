@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   title = 'cvangular';
   isButtonActive = true;
   isAuthenticated$!: Observable<boolean>;
+  color$!: Observable<boolean>;
 
   constructor(
     private templateService: TemplateService,
@@ -24,7 +25,7 @@ export class AppComponent implements OnInit {
 
     this.templateService.color$
       .subscribe(state => {
-        (state == 'active') ? this.isButtonActive = true : this.isButtonActive = false;
+        this.isButtonActive = state;
       });
 
   }

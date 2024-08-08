@@ -6,11 +6,11 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class TemplateService {
 
-  private colorSubject = new BehaviorSubject<string>('inactive');
+  private colorSubject = new BehaviorSubject<boolean>(false);
 
   color$ = this.colorSubject.asObservable();
   
-  setColorMode(color: string) {
+  setColorMode(color: boolean) {
     this.colorSubject.next(color);
   }
 }

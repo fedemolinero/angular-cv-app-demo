@@ -1,0 +1,15 @@
+.imagened {
+    background-image: url('../../../../assets/svg/websiteBanner.svg');
+    /* Ruta a la imagen de fondo */
+    background-position: center center;
+    /* Alinea la imagen a la derecha y al centro verticalmente */
+    background-repeat: no-repeat;
+    /* Evita que la imagen se repita */
+    background-size: cover;
+    /* Ajusta el tamaño de la imagen para cubrir el contenedor */
+
+    width: 100%;
+    /* Ajusta el ancho del div como necesites */
+    height: 100vh;
+    /* Ajusta la altura del div como necesites (100vh es la altura completa de la ventana) */
+}
