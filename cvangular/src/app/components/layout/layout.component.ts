@@ -1,8 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
 import { DataService } from '@services/data-service.service';
 import { resumeDataModel } from '@app/models/cv.model';
 import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-layout',

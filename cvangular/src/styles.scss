@@ -48,32 +48,6 @@ $dark-bg: #0d1b2a;
 }
 
 
-.component-flex-container {
-  display: flex;
-  justify-content: center;
-  /* Centra horizontalmente los elementos */
-  align-items: center;
-  /* Centra verticalmente los elementos */
-}
-
-.left-side,
-.right-side {
-  flex: 1;
-  /* Cada sección ocupa el mismo espacio */
-}
-
-.left-side {
-  padding: 20px;
-  /* Añade espacio interno para separación */
-}
-
-.right-side {
-  display: flex;
-  justify-content: center;
-  /* Centra horizontalmente el contenido */
-}
-
-
 .ptvh-5 {
   padding-top: 5vh;
 }
@@ -83,7 +57,6 @@ $dark-bg: #0d1b2a;
 }
 
 
-// Tooltip
 .tooltip-wrapper [tooltip] {
   display: inline-block;
 }
@@ -151,59 +124,7 @@ $dark-bg: #0d1b2a;
 
 
 
-// HOVERBUTTON
-.bracketbutton {
-  width: 10em;
-  position: relative;
-  height: 3.5em;
-  border: 3px ridge #149CEA;
-  outline: none;
-  background-color: transparent;
-  color: white;
-  transition: 1s;
-  border-radius: 0.3em;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.bracketbutton::after {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 3%;
-  width: 95%;
-  height: 40%;
-  background-color: $clear-bg;
-  transition: 0.5s;
-  transform-origin: center;
-}
-
-.bracketbutton::before {
-  content: "";
-  transform-origin: center;
-  position: absolute;
-  top: 80%;
-  left: 3%;
-  width: 95%;
-  height: 40%;
-  background-color: $clear-bg;
-  transition: 0.5s;
-}
-
-.bracketbutton:hover::before,
-.bracketbutton:hover::after {
-  transform: scale(0)
-}
-
-.bracketbutton:hover {
-  box-shadow: inset 0px 0px 25px #1479EA;
-}
-
-
 .card {
-  // width: 190px;
-  // height: 254px;
   padding: 1rem;
   margin: 0 auto;
   background: linear-gradient(0deg, #000, #272727);
@@ -315,8 +236,6 @@ $dark-bg: #0d1b2a;
   transform: skewX(-15deg);
   border: none;
 }
-
-
 .arrowsButton-inverted {
   display: flex;
   padding: 11px 33px;
@@ -330,43 +249,32 @@ $dark-bg: #0d1b2a;
   transform: skewX(-15deg);
   border: none;
 }
-
 .arrowsButton:focus {
   outline: none;
 }
-
 .arrowsButton-inverted:focus {
   outline: none;
 }
-
 .arrowsButton:hover {
   transition: 0.5s;
   box-shadow: 10px 10px 0 #4a90e2;
 }
-
 .arrowsButton-inverted:hover {
   transition: 0.5s;
   box-shadow: 10px 10px 0 #FBC638;
 }
-
-
-
 .arrowsButton .second {
   transition: 0.5s;
   margin-right: 0px;
 }
-
-
 .arrowsButton-inverted .second {
   transition: 0.5s;
   margin-right: 0px;
 }
-
 .arrowsButton:hover .second {
   transition: 0.5s;
   margin-right: 45px;
 }
-
 .arrowsButton-inverted:hover .second {
   transition: 0.5s;
   margin-right: 45px;
@@ -392,6 +300,7 @@ $dark-bg: #0d1b2a;
   transition: 0.5s;
   transform: translateX(-30%);
 }
+
 
 .arrowsButton:hover .three {
   animation: color_anim 1s infinite 0.2s;
@@ -439,18 +348,11 @@ $dark-bg: #0d1b2a;
 
 
 
-
-
-
-
-
-
 .inputSmoosh-container {
   position: relative;
   // width: 250px;
   font-family: monospace;
 }
-
 .inputSmoosh-input {
   width: 100%;
   padding: 15px;
@@ -466,7 +368,6 @@ $dark-bg: #0d1b2a;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   box-shadow: 5px 5px 0 #000, 10px 10px 0 #4a90e2;
 }
-
 @keyframes glitch {
   0% {
     transform: translate(0);
@@ -492,12 +393,10 @@ $dark-bg: #0d1b2a;
     transform: translate(0);
   }
 }
-
 .inputSmoosh-input:focus {
   animation: focus-pulse 4s cubic-bezier(0.25, 0.8, 0.25, 1) infinite,
     glitch 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
 }
-
 .inputSmoosh-input:focus::after {
   content: "";
   position: absolute;
@@ -508,7 +407,6 @@ $dark-bg: #0d1b2a;
   background: white;
   z-index: -1;
 }
-
 .inputSmoosh-input:focus::before {
   content: "";
   position: absolute;
@@ -521,7 +419,6 @@ $dark-bg: #0d1b2a;
   clip-path: inset(0 100% 0 0);
   animation: glitch-slice 4s steps(2, end) infinite;
 }
-
 @keyframes glitch-slice {
   0% {
     clip-path: inset(0 100% 0 0);
@@ -581,7 +478,6 @@ $dark-bg: #0d1b2a;
   z-index: 1;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-
 .inputSmoosh-input:focus+.inputSmoosh-label {
   transform: rotate(0deg) scale(1.05);
   background-color: #4a90e2;
@@ -591,7 +487,6 @@ $dark-bg: #0d1b2a;
   position: relative;
   overflow: hidden;
 }
-
 .smooth-type::before {
   content: "";
   position: absolute;
@@ -604,7 +499,6 @@ $dark-bg: #0d1b2a;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-
 .smooth-type:focus::before {
   opacity: 1;
   animation: type-gradient 2s linear infinite;
@@ -644,28 +538,6 @@ $dark-bg: #0d1b2a;
     border-color: #4a90e2;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .card-template {
@@ -783,23 +655,23 @@ $dark-bg: #0d1b2a;
 
 @keyframes glitch {
   0% {
-      transform: translate(2px, 2px);
+    transform: translate(2px, 2px);
   }
 
   25% {
-      transform: translate(-2px, -2px);
+    transform: translate(-2px, -2px);
   }
 
   50% {
-      transform: translate(-2px, 2px);
+    transform: translate(-2px, 2px);
   }
 
   75% {
-      transform: translate(2px, -2px);
+    transform: translate(2px, -2px);
   }
 
   100% {
-      transform: translate(2px, 2px);
+    transform: translate(2px, 2px);
   }
 }
 

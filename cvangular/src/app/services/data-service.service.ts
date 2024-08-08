@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { resumeDataModel } from '@app/models/cv.model';
 import { cvIdsModel } from '@app/models/response.model';
-import { environment } from '../../environments/environment';
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'

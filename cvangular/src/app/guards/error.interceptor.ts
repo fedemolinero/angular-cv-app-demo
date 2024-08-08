@@ -8,14 +8,12 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { PopupService } from '../services/popup.service';
-import { AuthService } from '../services/auth.service';
+import { PopupService } from '@services/popup.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
   constructor(
-    private popupService: PopupService,
-    private authService: AuthService // Inyecta el servicio de autenticación
+    private popupService: PopupService
   ) { }
 
   intercept(
@@ -29,24 +27,24 @@ export class ErrorInterceptor implements HttpInterceptor {
         let errorMessage = 'An unknown error occurred';
 
         if (error.error instanceof ErrorEvent) {
-          // Error de cliente, como un error de red
+          // Client error as network error
           errorMessage = `Error: ${error.error.message}`;
         } else {
-          // Error del servidor
+          // Server error
           errorMessage = this.getServerErrorMessage(error);
 
           if (error.status === 401) {
-            // En este ejemplo, mostramos un mensaje usando el PopupService
+            // In this demo, show a message using PopUpService.
             errorMessage = 'Session expired. Please log in again.';
-            // Aquí podrías redirigir al usuario a la página de login o cerrar sesión
+            // Other logic here
           }
         }
 
-        // Mostrar mensaje de error al usuario
+        // Show message to user
         this.popupService.addErrorMessage(errorMessage);
 
-        // Retornar un error observable con un mensaje útil para el manejo en otros lugares
-        return throwError(() => error );
+        // Return error observable with a message.
+        return throwError(() => error);
       })
     );
   }

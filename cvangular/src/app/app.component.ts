@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TemplateService } from './services/template.service';
-import { AuthService } from './services/auth.service';
+import { TemplateService } from '@services/template.service';
+import { AuthService } from '@services/auth.service';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Component({

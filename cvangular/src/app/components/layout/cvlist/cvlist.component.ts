@@ -2,13 +2,13 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { createNewCVModel, cvIdsModel } from '@app/models/response.model';
 import { DataService } from '@app/services/data-service.service';
-import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-cvlist',
   templateUrl: './cvlist.component.html',
-  styleUrls: ['./cvlist.component.scss'] // Corregido el nombre de la propiedad
+  styleUrls: ['./cvlist.component.scss']
 })
 export class CvlistComponent implements OnInit, OnDestroy {
 
