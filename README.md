@@ -2,12 +2,21 @@
 
 This project is a Curriculum Vitae generator developed in Angular 17, leveraging Bootstrap for responsive design and Reactive Forms for dynamic form handling.
 
+# Preview
+
+![ImageWebsiteCV](cvangular/src/assets/website-preview-1.jpg)
+
+# Live Demo
+
+You can see (and use) a real time live demo of the app deployed on my website:
+<https://angular.federicomolinero.com/>
+
 ## Key Features
 
-- **Technologies used**: Angular 17, Bootstrap, Reactive Forms.
+- **Technologies used**: Angular 17, Bootstrap, Reactive Forms, JWT.
 - **Advanced Components**: Implementation of various component techniques for efficient code modularization and reuse.
 - **Custom Pipes and Directives**: Use of pipes for data transformation and custom directives to control DOM behavior.
-- **Frontend Authentication and Authorization**: Integration of a frontend login system and authorization management to ensure data privacy.
+- **Frontend Authentication and Authorization**: Integration of a frontend login system and authorization management to ensure data privacy with JWT.
 - **Template-based CV Generation**: Allows users to generate their Curriculum Vitae using different predefined templates.
 - **Unit Tests**: Includes comprehensive unit tests to ensure robustness and reliability of the application.
 
@@ -38,14 +47,3 @@ Contributions are welcome. If you want to improve this project, please follow th
 3. Make your changes and commit them (`git commit -am 'Add new feature'`)
 4. Push to the branch (`git push origin feature/improvement`)
 5. Create a new Pull Request
-
----
-
-# Live Demo
-
-You can see (and use) a real time live demo of the app deployed on my website:
-<https://angular.federicomolinero.com/>
-
-# Preview
-
-![ImageWebsiteCV](cvangular/src/assets/website-preview-1.jpg)
