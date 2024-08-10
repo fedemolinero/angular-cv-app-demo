@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { tap, catchError, map } from 'rxjs/operators';
 import { ResponseModel } from '@app/models/response.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService {
 
   private tokenKey = 'fedeKpo';
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = environment.apiUrl; 
 
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.isTokenValid());
   public isAuthenticatedUser$ = this.isAuthenticatedSubject.asObservable();
@@ -24,7 +25,7 @@ export class AuthService {
   ) { }
 
   register(username: string, password: string): Observable<ResponseModel> {
-    return this.http.post<ResponseModel>(`${this.apiUrl}/api/auth/register`, { username, password })
+    return this.http.post<ResponseModel>(`${this.apiUrl}/register`, { username, password })
       .pipe(
         catchError(this.handleError)
       );
@@ -32,7 +33,7 @@ export class AuthService {
 
   login(username: string, password: string): Observable<ResponseModel> {
     return this.http
-      .post<ResponseModel>(`${this.apiUrl}/api/auth/login`, { username, password })
+      .post<ResponseModel>(`${this.apiUrl}/login`, { username, password })
       .pipe(
         tap((response: ResponseModel) => {
           if (response.token) {
@@ -73,7 +74,7 @@ export class AuthService {
       return throwError(() => 'No hay refresh token disponible') as Observable<string | null>;
     }
 
-    return this.http.post<ResponseModel>(`${this.apiUrl}/api/auth/refresh-token`, { refreshToken })
+    return this.http.post<ResponseModel>(`${this.apiUrl}/auth/refresh-token`, { refreshToken })
       .pipe(
         catchError(error => {
           console.error('Error al renovar el token:', error);
@@ -97,4 +98,12 @@ export class AuthService {
     const token = this.getToken();
     return token ? !this.jwtHelper.isTokenExpired(token) : false;
   }
+
+  test(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/hello`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
 }

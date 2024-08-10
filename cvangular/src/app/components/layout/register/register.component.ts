@@ -32,6 +32,21 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.loadAttemptsFromStorage();
   }
 
+  //FEDE CHECK THIS
+  test() {
+    console.log('test')
+    this.authService.test().subscribe(
+      {
+        next: (response: any) => {
+          console.log('response', response);
+        },
+        error: (error) => {
+          console.log('error', error);
+        }
+      }
+    );
+  }
+
   ngOnDestroy(): void {
     if (this.registerSubscription) {
       this.registerSubscription.unsubscribe();

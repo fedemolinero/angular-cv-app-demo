@@ -40,10 +40,13 @@ import { EducationCardComponent } from './components/shared/education-card/educa
 import { AboutCardComponent } from './components/shared/about-card/about-card.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './guards/auth.interceptor';
+import { environment } from '@environments/environment';
+
 
 export function tokenGetter() {
   return localStorage.getItem('fedeKpo');
 }
+
 
 @NgModule({
   declarations: [
@@ -89,8 +92,10 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ['localhost:3000'],
-        disallowedRoutes: ['http://localhost:3000/api/auth/'],
+        // allowedDomains: ['localhost:3000'],
+        allowedDomains: [environment.apiUrl],
+        // disallowedRoutes: ['http://localhost:3000/api/auth/'],
+        disallowedRoutes: [environment.apiUrl+'/auth/'],
       },
     }),
   ],

@@ -17,4 +17,6 @@ export class HomeComponent {
     this.color$ = this.templateService.color$;
   }
 
+
+
 }
