@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { tap, catchError, map } from 'rxjs/operators';
 import { ResponseModel } from '@app/models/response.model';
-import { JwtHelperService } from '@auth0/angular-jwt';
+// import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from '@environments/environment';
 
 @Injectable({
@@ -12,20 +12,18 @@ import { environment } from '@environments/environment';
 })
 export class AuthService {
 
-  private tokenKey = 'fedeKpo';
-  private apiUrl = environment.apiUrl; 
+  private apiUrl = environment.apiUrl;
 
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.isTokenValid());
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(true);
   public isAuthenticatedUser$ = this.isAuthenticatedSubject.asObservable();
 
   constructor(
     private http: HttpClient,
     private router: Router,
-    private jwtHelper: JwtHelperService
   ) { }
 
   register(username: string, password: string): Observable<ResponseModel> {
-    return this.http.post<ResponseModel>(`${this.apiUrl}/register`, { username, password })
+    return this.http.post<ResponseModel>(`${this.apiUrl}/register`, { username, password }, { withCredentials: true })
       .pipe(
         catchError(this.handleError)
       );
@@ -37,7 +35,7 @@ export class AuthService {
       .pipe(
         tap((response: ResponseModel) => {
           if (response.token) {
-            this.setToken(response.token);
+            // this.setToken(response.token);
             this.isAuthenticatedSubject.next(true);
           }
         }),
@@ -46,58 +44,60 @@ export class AuthService {
   }
 
   logout(): void {
-    this.removeToken();
+    // this.removeToken();
     this.isAuthenticatedSubject.next(false);
     this.router.navigate(['']);
   }
 
-  getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
-  }
+  // getToken(): string | null {
+  //   return localStorage.getItem(this.tokenKey);
+  // }
 
-  setToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
-  }
+  // setToken(token: string): void {
+  //   localStorage.setItem(this.tokenKey, token);
+  // }
 
-  removeToken(): void {
-    localStorage.removeItem(this.tokenKey);
-  }
+  // removeToken(): void {
+  //   localStorage.removeItem(this.tokenKey);
+  // }
 
   isAuthenticated(): boolean {
-    return this.isTokenValid();
+    // return this.isTokenValid();
+    return true;
+
   }
 
-  refreshToken(): Observable<string | null> {
-    const refreshToken = this.getToken();
+  // refreshToken(): Observable<string | null> {
+  //   const refreshToken = this.getToken();
 
-    if (!refreshToken) {
-      return throwError(() => 'No hay refresh token disponible') as Observable<string | null>;
-    }
+  //   if (!refreshToken) {
+  //     return throwError(() => 'No hay refresh token disponible') as Observable<string | null>;
+  //   }
 
-    return this.http.post<ResponseModel>(`${this.apiUrl}/auth/refresh-token`, { refreshToken })
-      .pipe(
-        catchError(error => {
-          console.error('Error al renovar el token:', error);
-          return throwError(() => 'Error al renovar el token');
-        }),
-        tap((response: ResponseModel) => {
-          if (response.token) {
-            this.setToken(response.token);
-            this.isAuthenticatedSubject.next(true);
-          }
-        }),
-        map((response: ResponseModel) => response.token ?? null)
-      );
-  }
+  //   return this.http.post<ResponseModel>(`${this.apiUrl}/auth/refresh-token`, { refreshToken })
+  //     .pipe(
+  //       catchError(error => {
+  //         console.error('Error al renovar el token:', error);
+  //         return throwError(() => 'Error al renovar el token');
+  //       }),
+  //       tap((response: ResponseModel) => {
+  //         if (response.token) {
+  //           this.setToken(response.token);
+  //           this.isAuthenticatedSubject.next(true);
+  //         }
+  //       }),
+  //       map((response: ResponseModel) => response.token ?? null)
+  //     );
+  // }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     return throwError(() => error);
   }
 
-  private isTokenValid(): boolean {
-    const token = this.getToken();
-    return token ? !this.jwtHelper.isTokenExpired(token) : false;
-  }
+  // private isTokenValid(): boolean {
+  //   const token = this.getToken();
+  //   return token ? true : false;
+  // }
 
   test(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/hello`)

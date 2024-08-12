@@ -38,9 +38,11 @@ import { CertificationCardComponent } from './components/shared/certification-ca
 import { WorkCardComponent } from './components/shared/work-card/work-card.component';
 import { EducationCardComponent } from './components/shared/education-card/education-card.component';
 import { AboutCardComponent } from './components/shared/about-card/about-card.component';
-import { JwtModule } from '@auth0/angular-jwt';
-import { AuthInterceptor } from './guards/auth.interceptor';
+// import { JwtModule } from '@auth0/angular-jwt';
+// import { AuthInterceptor } from './guards/auth.interceptor';
 import { environment } from '@environments/environment';
+import { HttpXsrfInterceptor } from './guards/HttpXsrfInterceptor.interceptor';
+// import { AuthInterceptor } from './guards/auth.interceptor';
 
 
 export function tokenGetter() {
@@ -89,22 +91,22 @@ export function tokenGetter() {
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
+    // JwtModule.forRoot({
+      // config: {
+        // tokenGetter: tokenGetter,
         // allowedDomains: ['localhost:3000'],
-        allowedDomains: [environment.apiUrl],
+        // allowedDomains: [environment.apiUrl],
         // disallowedRoutes: ['http://localhost:3000/api/auth/'],
-        disallowedRoutes: [environment.apiUrl+'/auth/'],
-      },
-    }),
+        // disallowedRoutes: [environment.apiUrl+'/auth/'],
+      // },
+    // }),
   ],
   providers: [
     provideClientHydration(),
     provideHttpClient(withFetch()),
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
+      useClass: HttpXsrfInterceptor,
       multi: true,
     },
     { provide: HTTP_INTERCEPTORS, 

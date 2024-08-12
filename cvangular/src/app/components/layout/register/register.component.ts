@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initRegisterForm();
-    this.loadAttemptsFromStorage();
+    // this.loadAttemptsFromStorage();
   }
 
   //FEDE CHECK THIS
@@ -89,22 +89,22 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   register() {
 
-    if (this.disabledRegister || this.loading) {
-      return;
-    }
+    // if (this.disabledRegister || this.loading) {
+    //   return;
+    // }
 
     this.loading = true; // Establecer estado de carga
 
-    if (this.attempts >= this.maxAttempts) {
-      this.disabledRegister = true;
-      setTimeout(() => {
-        this.attempts = 0;
-        this.disabledRegister = false;
-        this.clearAttemptsFromStorage(); // Limpiar intentos en el almacenamiento
-        this.loading = false; // Restaurar estado de carga
-      }, 60000); // Bloquea el inicio de sesión durante 1 minuto
-      return;
-    }
+    // if (this.attempts >= this.maxAttempts) {
+    //   this.disabledRegister = true;
+    //   setTimeout(() => {
+    //     this.attempts = 0;
+    //     this.disabledRegister = false;
+    //     this.clearAttemptsFromStorage(); // Limpiar intentos en el almacenamiento
+    //     this.loading = false; // Restaurar estado de carga
+    //   }, 60000); // Bloquea el inicio de sesión durante 1 minuto
+    //   return;
+    // }
 
     this.registerSubscription = this.authService.register(
       this.registerForm.controls['username'].value,
@@ -120,7 +120,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
           // Si falla, incrementamos el contador de intentos
           this.attempts++;
-          this.saveAttemptsToStorage(); // Guardar intentos en el almacenamiento
+          // this.saveAttemptsToStorage(); // Guardar intentos en el almacenamiento
           // Mostrar mensaje de contraseña incorrecta y enfocar el campo de password
           if (error.status == 401) {
             this.registerForm.controls['password'].setErrors({ 'is-incorrect': true });
